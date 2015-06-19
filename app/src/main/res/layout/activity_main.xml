@@ -21,6 +21,13 @@
                 android:id="@+id/imageViewLogo"
                 android:src="@drawable/logo"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/main_activity_location_field_label"
+                android:id="@+id/textView" />
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

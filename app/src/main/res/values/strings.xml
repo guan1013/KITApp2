@@ -15,6 +15,7 @@
     <string name="title_activity_search">SearchActivity</string>
     <string name="action_kita_detail">KITA Detail</string>
     <string name="buttonSuche">Suchen</string>
+    <string name="main_activity_location_field_label">Suchort/Standort</string>
 
 
     <!-- Search Strings -->
