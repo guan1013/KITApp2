@@ -1,0 +1,6 @@
+<resources>
+    <string-array name="searchConfessionList">
+        <item>@string/searchConfessionValue1</item>
+        <item>@string/searchConfessionValue2</item>
+    </string-array>
+</resources>

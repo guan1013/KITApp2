@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class SearchActivity extends ActionBarActivity {
@@ -35,4 +36,21 @@ public class SearchActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private int circuiteValue;
+
+    public void sendSearch(View button) {
+
+    }
+
+    public void onToggle(View button) {
+
+    }
+
+
+    public int getCircuiteValue() {
+
+        return this.circuiteValue;
+    }
+
 }
