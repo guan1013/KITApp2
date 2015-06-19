@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 
 
 public class SearchActivity extends ActionBarActivity {
@@ -46,7 +47,9 @@ public class SearchActivity extends ActionBarActivity {
         final EditText editTextCity = (EditText) findViewById(R.id.editTextCity);
         String city = editTextCity.getText().toString();
 
+        final SeekBar seekBarCircuit = (SeekBar) findViewById(R.id.seekBarCircuit);
 
+        String circuit;
 
 
     }
