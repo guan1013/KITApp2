@@ -1,5 +1,6 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,6 +31,17 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
+
+            Intent myIntent = new Intent(this, LoginActivity.class);
+            startActivity(myIntent);
+            return true;
+        }
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_search) {
+
+            Intent myIntent = new Intent(this, SearchActivity.class);
+            startActivity(myIntent);
             return true;
         }
 
