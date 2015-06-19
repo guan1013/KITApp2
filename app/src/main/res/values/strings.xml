@@ -42,5 +42,17 @@
     <string name="searchConfessionValue1">Flying Spaghetti Monster</string>
     <string name="searchConfessionValue2">All other</string>
     <string name="searchSendButton">Suchen</string>
+    <string name="title_activity_kita_details">KitaDetailsActivity</string>
+
+    <!-- Kita Details Strings -->
+    <string name="kitaDetailsKitaName">Kita Regenbogen</string>
+    <string name="kitaDetailsEvaluation">Bewertung</string>
+    <string name="kitaDetailsCosts">Kosten</string>
+    <string name="kitaDetailsOpen">Öffnungszeiten</string>
+    <string name="kitaDetailsManagement">Frau Streng</string>
+    <string name="kitaDetailsConfession">Konfession</string>
+    <string name="kitaDetailsAge">Alter</string>
+    <string name="kitaDetailsAbout">Beschreibung</string>
+    <string name="kitaDetailsComments">Kommentare</string>
 
 </resources>
