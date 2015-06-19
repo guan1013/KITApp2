@@ -5,8 +5,8 @@
 .DS_Store
 /build
 /captures
-KITApp2.iml
-KITApp.iml
+/KITApp2.iml
+/KITApp.iml
 app/app.iml
-.idea/gradle.xml
-.idea/vcs.xml
+/.idea/gradle.xml
+/.idea/vcs.xml
