@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class SearchActivity extends ActionBarActivity {
@@ -39,7 +40,14 @@ public class SearchActivity extends ActionBarActivity {
 
     private int circuiteValue;
 
+
     public void sendSearch(View button) {
+
+        final EditText editTextCity = (EditText) findViewById(R.id.editTextCity);
+        String city = editTextCity.getText().toString();
+
+
+
 
     }
 

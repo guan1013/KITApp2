@@ -5,3 +5,6 @@
 .DS_Store
 /build
 /captures
+KITApp2.iml
+KITApp.iml
+app/app.iml
