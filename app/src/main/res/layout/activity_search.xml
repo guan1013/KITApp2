@@ -107,7 +107,7 @@
             android:text="@string/searchCost" />
 
         <RadioGroup
-            android:id="@+id/search.togglegroup.cost"
+            android:id="@+id/search.radiogroup.cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -184,7 +184,7 @@
             android:text="@string/searchSize" />
 
         <RadioGroup
-            android:id="@+id/search.togglegroup.size"
+            android:id="@+id/search.radiogroup.size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

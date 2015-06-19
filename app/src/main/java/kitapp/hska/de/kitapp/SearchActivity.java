@@ -6,8 +6,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
 public class SearchActivity extends ActionBarActivity {
@@ -41,6 +43,18 @@ public class SearchActivity extends ActionBarActivity {
             }
         });
 
+        ((RadioGroup) findViewById(R.id.search_radiogroup_cost)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
+                for (int j = 0; j < radioGroup.getChildCount(); j++) {
+                    final ToggleButton view = (ToggleButton) radioGroup.getChildAt(j);
+                    view.setChecked(view.getId() == i);
+                }
+            }
+        });
+
+        cost = 0;
+
 
     }
 
@@ -72,12 +86,37 @@ public class SearchActivity extends ActionBarActivity {
     EditText editTextCity;
     SeekBar seekBarCircuit;
     EditText editTextCircuit;
-
-
+    ToggleButton toggleButtonAge1;
+    ToggleButton toggleButtonAge2;
+    ToggleButton toggleButtonAge3;
+    int cost;
     public void sendSearch(View button) {
 
         String city = editTextCity.getText().toString();
         String circuit = editTextCircuit.getText().toString();
+
+        Boolean age1 = this.toggleButtonAge1.isChecked();
+        Boolean age2 = this.toggleButtonAge2.isChecked();
+        Boolean age3 = this.toggleButtonAge3.isChecked();
+
+        int minAge = 0;
+        int maxAge = 99;
+        if (age1) {
+            minAge = 0;
+            maxAge = 1;
+        }
+        if (age2) {
+            if (!age1) {
+                minAge = 1;
+            }
+            maxAge = 3;
+        }
+        if (age3) {
+            if(!age1 && !age2) {
+                minAge = 3;
+            }
+            maxAge = 99;
+        }
 
     }
 
@@ -85,10 +124,21 @@ public class SearchActivity extends ActionBarActivity {
         this.editTextCity = (EditText) findViewById(R.id.search_edittext_city);
         this.seekBarCircuit = (SeekBar) findViewById(R.id.search_seekbar_circuit);
         this.editTextCircuit = (EditText) findViewById(R.id.search_edittext_circuit);
+        this.toggleButtonAge1 = (ToggleButton) findViewById(R.id.search_togglebutton_age_1);
+        this.toggleButtonAge2 = (ToggleButton) findViewById(R.id.search_togglebutton_age_2);
+        this.toggleButtonAge3 = (ToggleButton) findViewById(R.id.search_togglebutton_age_3);
 
     }
 
     public void onToggle(View button) {
+        ((RadioGroup)button.getParent()).check(button.getId());
 
+        if(button.getId() == R.id.search_togglebutton_cost_1) {
+            cost = 200;
+        } else if(button.getId() == R.id.search_togglebutton_cost_2) {
+            cost = 350;
+        } else {
+            cost = 0;
+        }
     }
 }
