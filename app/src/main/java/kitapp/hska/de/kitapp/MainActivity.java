@@ -45,6 +45,14 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_kita_detail) {
+
+            Intent myIntent = new Intent(this, KitaDetailsActivity.class);
+            startActivity(myIntent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }
