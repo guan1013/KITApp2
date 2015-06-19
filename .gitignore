@@ -8,3 +8,5 @@
 KITApp2.iml
 KITApp.iml
 app/app.iml
+.idea/gradle.xml
+.idea/vcs.xml

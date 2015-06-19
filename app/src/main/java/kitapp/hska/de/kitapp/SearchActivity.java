@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 
 public class SearchActivity extends ActionBarActivity {
@@ -15,6 +16,32 @@ public class SearchActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        initViews();
+
+        editTextCircuit.setText("0");
+        seekBarCircuit.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            Integer progresValue = 0;
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progresValue = progress;
+                //Toast.makeText(getApplicationContext(), "Changing seekBarCircuit's progress", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //Toast.makeText(getApplicationContext(), "Started tracking seekBarCircuit", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                editTextCircuit.setText(progresValue.toString());
+                //Toast.makeText(getApplicationContext(), "Stopped tracking seekBarCircuit", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 
     @Override
@@ -42,26 +69,26 @@ public class SearchActivity extends ActionBarActivity {
     private int circuiteValue;
 
 
+    EditText editTextCity;
+    SeekBar seekBarCircuit;
+    EditText editTextCircuit;
+
+
     public void sendSearch(View button) {
 
-        final EditText editTextCity = (EditText) findViewById(R.id.editTextCity);
         String city = editTextCity.getText().toString();
+        String circuit = editTextCircuit.getText().toString();
 
-        final SeekBar seekBarCircuit = (SeekBar) findViewById(R.id.seekBarCircuit);
+    }
 
-        String circuit;
-
+    private void initViews() {
+        this.editTextCity = (EditText) findViewById(R.id.search_edittext_city);
+        this.seekBarCircuit = (SeekBar) findViewById(R.id.search_seekbar_circuit);
+        this.editTextCircuit = (EditText) findViewById(R.id.search_edittext_circuit);
 
     }
 
     public void onToggle(View button) {
 
     }
-
-
-    public int getCircuiteValue() {
-
-        return this.circuiteValue;
-    }
-
 }
