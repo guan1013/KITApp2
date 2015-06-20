@@ -79,5 +79,6 @@
     <string name="kitaDetailsAge">Alter</string>
     <string name="kitaDetailsAbout">Beschreibung</string>
     <string name="kitaDetailsComments">Kommentare</string>
+    <string name="kitaDetailsAddress">76517 Karlsruhe</string>
 
 </resources>
