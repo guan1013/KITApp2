@@ -45,8 +45,8 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
         if (kita != null) {
             TextView textViewName = (TextView) view.findViewById(R.id.result_textview_name);
             RatingBar ratingBarEvaluation = (RatingBar) view.findViewById(R.id.result_ratingbar_evaluation);
-           // ImageView imageViewTN = (ImageView) view.findViewById(R.id.result_imageview_thumbnail);
-            TextView textViewCircuit = (TextView) view.findViewById(R.id.result_textview_curcuit);
+            ImageView imageViewTN = (ImageView) view.findViewById(R.id.result_imageview_thumbnail);
+            TextView textViewCircuit = (TextView) view.findViewById(R.id.result_textview_circuit);
             ImageButton buttonTel = (ImageButton) view.findViewById(R.id.result_imagebutton_tel);
             ImageButton buttonEmail = (ImageButton) view.findViewById(R.id.result_imagebutton_email);
             ImageButton buttonFav = (ImageButton) view.findViewById(R.id.result_imagebutton_fav);
@@ -65,6 +65,7 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
             }*/
 
             if (textViewCircuit != null) {
+                textViewCircuit.setText(kita.getDistance().toString());
             }
 
             if (buttonTel != null) {

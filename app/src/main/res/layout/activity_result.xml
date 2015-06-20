@@ -17,7 +17,6 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -38,23 +37,16 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="90">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/result.listview"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:divider="#0000CC"
-                android:dividerHeight="0.1dp" />
-        </LinearLayout>
-
-    </ScrollView>
+        <ListView
+            android:id="@+id/result.listview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:divider="#0000CC"
+            android:dividerHeight="0.1dp" />
+    </LinearLayout>
 </LinearLayout>

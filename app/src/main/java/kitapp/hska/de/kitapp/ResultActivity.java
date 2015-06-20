@@ -1,11 +1,9 @@
 package kitapp.hska.de.kitapp;
 
-import android.provider.ContactsContract;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class ResultActivity extends ActionBarActivity {
         setContentView(R.layout.activity_result);
         initViews();
 
-        ListView listViewResult = (ListView) findViewById(R.id.result_listview);
+        resultListView = (ListView) findViewById(R.id.result_listview);
 
         KitaResult kita1 = new KitaResult("kita1", 3.5f, 13.0, "0172/30", "test1@email.com");
         KitaResult kita2 = new KitaResult("kita2", 5.0f, 50.2, "0173/40", "test2@mail.com");
@@ -38,11 +36,8 @@ public class ResultActivity extends ActionBarActivity {
 
         kitas.add(kita1);
         kitas.add(kita2);
-
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
-
-        listViewResult.setAdapter(resultAdapter);
-
+        resultListView.setAdapter(resultAdapter);
 
     }
 
