@@ -32,15 +32,25 @@ import kitapp.hska.de.kitapp.domain.Kita;
 
 public class KitaService extends Service {
 
+    private final KitaServiceBinder binder = new KitaServiceBinder();
+
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return binder;
     }
-
-    private final KitaServiceBinder binder = new KitaServiceBinder();
 
    public class KitaServiceBinder extends Binder {
        public Kita getKitaByCity(String city) {
+
+           AsyncTask<String,Void,Kita> kitaFinder = new AsyncTask<String, Void, Kita>() {
+               @Override
+               protected Kita doInBackground(String... params) {
+                   return null;
+               }
+           };
+
+
+
            // Do the shit here
            return null;
        }

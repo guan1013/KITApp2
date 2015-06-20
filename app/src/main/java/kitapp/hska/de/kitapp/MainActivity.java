@@ -48,25 +48,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     KitaService myService;
     boolean mBound = false;
 
-
-    /** Defines callbacks for service binding, passed to bindService() */
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            KitaService.LocalBinder binder = (KitaService.LocalBinder) service;
-            myService = binder.getService();
-            mBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
-
     /**
      * Textfield for entering location for search
      */
@@ -91,10 +72,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Start service for search
-        Intent intent = new Intent(this, KitaService.class);
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 
 
         // Set references for ui objects
@@ -291,17 +268,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
     private void toast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // Unbind from the service
-        if (mBound) {
-            unbindService(mConnection);
-            mBound = false;
-        }
     }
 
 }
