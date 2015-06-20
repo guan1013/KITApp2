@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="30dp"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/result.textview.name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_weight="1"
-            android:text="PLACEHOLDER" />
+            android:layout_weight="3"
+            android:text="@string/placeHolderString" />
 
         <RatingBar
             android:id="@+id/result.ratingbar.evaluation"
@@ -21,30 +23,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="2"
-            android:layout_weight="1"
-            android:isIndicator="true" />
-    </TableRow>
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.5" />
+    </LinearLayout>
 
-    <TableRow
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/result.imageview.thumbnail"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_column="1"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitXY"
             android:src="@drawable/im1" />
 
         <TextView
-            android:id="@+id/result.textview.curcuit"
+            android:id="@+id/result.textview.circuit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="2"
-            android:layout_gravity="top|left" />
-    </TableRow>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/placeHolderString"
+            android:background="@color/secondary_text_default_material_dark" />
+    </RelativeLayout>
 
-    <TableRow
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -52,24 +58,29 @@
             android:id="@+id/result.imagebutton.tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="1" />
+            android:src="@drawable/phone"
+            android:layout_weight="1"
+            />
 
         <ImageButton
             android:id="@+id/result.imagebutton.email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="2" />
+            android:src="@drawable/mail"
+            android:layout_weight="1" />
 
         <ImageButton
             android:id="@+id/result.imagebutton.fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="3" />
+            android:src="@drawable/fav"
+            android:layout_weight="1"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.cont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="4" />
-    </TableRow>
-</TableLayout>
+            android:src="@drawable/contact"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

@@ -32,6 +32,11 @@ import kitapp.hska.de.kitapp.domain.Kita;
 
 public class KitaService extends Service {
 
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
     private final KitaServiceBinder binder = new KitaServiceBinder();
 
    public class KitaServiceBinder extends Binder {

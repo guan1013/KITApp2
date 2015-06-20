@@ -8,7 +8,7 @@ import android.provider.ContactsContract;
  */
 public class KitaResult {
 
-    public KitaResult(String name, Float evaluation, Double distance, String tel, ContactsContract.CommonDataKinds.Email email) {
+    public KitaResult(String name, Float evaluation, Double distance, String tel, String email) {
         this.name = name;
         this.evaluation = evaluation;
         this.distance = distance;

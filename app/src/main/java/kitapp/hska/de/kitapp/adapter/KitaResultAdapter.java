@@ -35,45 +35,45 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
 
-        if(view == null) {
+        if (view == null) {
             LayoutInflater inflater;
             inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.kita_result_item_layout, null);
         }
         KitaResult kita = getItem(position);
 
-        if(kita != null) {
+        if (kita != null) {
             TextView textViewName = (TextView) view.findViewById(R.id.result_textview_name);
             RatingBar ratingBarEvaluation = (RatingBar) view.findViewById(R.id.result_ratingbar_evaluation);
             ImageView imageViewTN = (ImageView) view.findViewById(R.id.result_imageview_thumbnail);
-            TextView textViewCurcuit = (TextView) view.findViewById(R.id.result_textview_curcuit);
+            TextView textViewCircuit = (TextView) view.findViewById(R.id.result_textview_circuit);
             ImageButton buttonTel = (ImageButton) view.findViewById(R.id.result_imagebutton_tel);
             ImageButton buttonEmail = (ImageButton) view.findViewById(R.id.result_imagebutton_email);
             ImageButton buttonFav = (ImageButton) view.findViewById(R.id.result_imagebutton_fav);
             ImageButton buttonCont = (ImageButton) view.findViewById(R.id.result_imagebutton_cont);
 
-            if(textViewName != null) {
+            if (textViewName != null) {
                 textViewName.setText(kita.getName());
             }
 
-            if(ratingBarEvaluation != null) {
+            if (ratingBarEvaluation != null) {
                 ratingBarEvaluation.setRating(kita.getEvaluation());
             }
 
-            if(imageViewTN != null ) {
+           /* if (imageViewTN != null) {
 
+            }*/
+
+            if (textViewCircuit != null) {
+                String distance = kita.getDistance().toString();
+                textViewCircuit.setText(distance + " km");
             }
 
-            if(textViewCurcuit != null) {
-            }
-
-            if(buttonTel != null) {
+            if (buttonTel != null) {
 
             }
-
-
         }
-        return  null;
+        return view;
 
     }
 
