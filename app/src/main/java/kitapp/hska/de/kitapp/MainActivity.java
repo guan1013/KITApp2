@@ -1,26 +1,42 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+import kitapp.hska.de.kitapp.domain.Kita;
+import kitapp.hska.de.kitapp.services.KitaService;
 
 
 /**
@@ -28,6 +44,28 @@ import java.util.Locale;
  * search by entering a city.
  */
 public class MainActivity extends ActionBarActivity implements LocationListener {
+
+    KitaService myService;
+    boolean mBound = false;
+
+
+    /** Defines callbacks for service binding, passed to bindService() */
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            KitaService.LocalBinder binder = (KitaService.LocalBinder) service;
+            myService = binder.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 
     /**
      * Textfield for entering location for search
@@ -38,6 +76,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
      * Button for Location Service
      */
     ImageButton buttonLocation;
+
+    Button buttonSuche;
 
     /**
      * Locationmanager for getting user's gps location
@@ -52,9 +92,61 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Start service for search
+        Intent intent = new Intent(this, KitaService.class);
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
+
         // Set references for ui objects
         buttonLocation = (ImageButton) findViewById(R.id.imageButtonLocation);
         editTextLocation = (EditText) findViewById(R.id.editTextLocation);
+        buttonSuche = (Button) findViewById(R.id.buttonHomeSearch);
+
+        buttonSuche.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AsyncTask<String,Void,Kita> asyncTask = new AsyncTask<String, Void, Kita>() {
+                    @Override
+                    protected Kita doInBackground(String... params) {
+
+
+                        HttpClient client = new DefaultHttpClient();
+                        HttpGet get = new HttpGet("http://ebusiness-kitapp-backend.herokuapp.com/kitas?city=ettlingen");
+                        byte[] data = null;
+                        try {
+                            HttpResponse resp = client.execute(get);
+                            InputStream is = resp.getEntity().getContent();
+                            int contentSize = (int) resp.getEntity().getContentLength();
+                            System.out.println("Content size ["+contentSize+"]");
+                            BufferedInputStream bis = new BufferedInputStream(is, 512);
+
+                            data = new byte[contentSize];
+                            int bytesRead = 0;
+                            int offset = 0;
+
+                            while (bytesRead != -1 && offset < contentSize) {
+                                bytesRead = bis.read(data, offset, contentSize - offset);
+                                offset += bytesRead;
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            toast( e.getClass().getName());
+                        }
+                        return null;
+                    }
+                };
+
+                try {
+                    Kita kita = asyncTask.execute(editTextLocation.getText().toString()).get(10L, TimeUnit.SECONDS);
+
+                    System.out.println(kita);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    toast( e.getClass().getName());
+                }
+            }
+        });
 
         // Set on click listener for GPS button
         buttonLocation.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +258,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     }
 
 
-
     public String getLocationName(double lattitude, double longitude) {
 
         String cityName = "Not Found";
@@ -197,6 +288,22 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         return cityName;
 
     }
+
+    private void toast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Unbind from the service
+        if (mBound) {
+            unbindService(mConnection);
+            mBound = false;
+        }
+    }
+
 }
 
 

@@ -3,7 +3,11 @@ package kitapp.hska.de.kitapp.services;
 import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Binder;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -13,32 +17,27 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
+
+import kitapp.hska.de.kitapp.MainActivity;
+import kitapp.hska.de.kitapp.domain.Kita;
 
 /**
  *
  */
-public class KitaService extends IntentService {
 
-        public static final String SERVICE_NAME = "KITAService";
-        int duration = Toast.LENGTH_SHORT;
+public class KitaService extends Service {
 
+    private final KitaServiceBinder binder = new KitaServiceBinder();
 
-
-        public KitaService() {
-                super(SERVICE_NAME);
-        }
-
-        @Override
-        protected void onHandleIntent(Intent intent) {
-
-                System.out.println("Start..");
-
-                Toast.makeText(getApplicationContext(),"KitaService start...",Toast.LENGTH_LONG).show();
-
-                HttpClient client = new DefaultHttpClient();
-
-
-        }
+   public class KitaServiceBinder extends Binder {
+       public Kita getKitaByCity(String city) {
+           // Do the shit here
+           return null;
+       }
+   }
 }

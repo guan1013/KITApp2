@@ -41,6 +41,11 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="kitapp.hska.de.kitapp.MainActivity" />
+
+        <service
+            android:name=".services.KitaService"
+            android:enabled="true" >
+        </service>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

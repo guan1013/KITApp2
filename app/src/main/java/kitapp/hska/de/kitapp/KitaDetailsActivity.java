@@ -18,6 +18,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
     TextView kitaDetailsName;
     TextView kitaDetailsEvaluation;
     TextView kitaDetailsCosts;
+    boolean mBound;
 
 
 
@@ -45,6 +46,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsCosts = (TextView) findViewById(R.id.KitaDetailsCosts);
 
 
+
+
         kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
 
 
@@ -56,6 +59,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_kita_details, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
