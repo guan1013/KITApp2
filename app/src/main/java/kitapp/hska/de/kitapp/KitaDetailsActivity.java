@@ -9,24 +9,6 @@ import android.widget.ImageView;
 
 public class KitaDetailsActivity extends AppCompatActivity {
 
-    ImageView im;
-
-    public void biggerView(View v)
-    {
-        im=(ImageView)findViewById(R.id.selected);
-
-        switch (v.getId())
-        {
-            case R.id.image1: im.setImageResource(R.drawable.im1);
-                break;
-            case R.id.image2: im.setImageResource(R.drawable.im2);
-                break;
-            case R.id.image3: im.setImageResource(R.drawable.im3);
-                break;
-            case R.id.image4: im.setImageResource(R.drawable.im4);
-                break;
-        }
-    }
 
 
     @Override
