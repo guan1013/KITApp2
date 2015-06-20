@@ -7,14 +7,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import kitapp.hska.de.kitapp.domain.Kita;
+
 public class KitaDetailsActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kita_details);
+
+        Kita kita = new Kita();
+
+        kita.setName("Dunkle Seitenstraße");
+        kita.setConfession(kita.getConfession());
+        kita.setCost(666.66);
+        kita.setMaxAge(99);
+        kita.setMinAge(66);
+        kita.setOpeningHours(kita.getOpeningHours());
+        kita.setId(666L);
     }
 
     @Override
