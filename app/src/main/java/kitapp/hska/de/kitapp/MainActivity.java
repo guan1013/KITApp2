@@ -135,7 +135,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     @Override
     protected void onPause() {
         super.onPause();
-        locationManager.removeUpdates(this);
+        //locationManager.removeUpdates(this);
     }
 
     @Override

@@ -16,36 +16,58 @@
     <string name="action_kita_detail">KITA Detail</string>
     <string name="buttonSuche">Suchen</string>
     <string name="main_activity_location_field_label">Suchort/Standort</string>
+    <string name="title_activity_kita_details">KitaDetailsActivity</string>
 
 
     <!-- Search Strings -->
+        <!-- City -->
     <string name="searchCity">Stadt/Standort</string>
+        <!-- Circuit -->
     <string name="searchCircuit">Umkreis in km</string>
+    <string name="searchTextViewCircuite">km</string>
+        <!-- Age -->
     <string name="searchAge">Alter des Kindes</string>
-    <string name="searchAgeButtonValue1">0-1</string>
-    <string name="searchAgeButtonValue2">1-3</string>
-    <string name="searchAgeButtonValue3">3+</string>
+    <string name="searchAgeButtonValue1">0,1</string>
+    <string name="searchAgeButtonText1">0-1</string>
+    <string name="searchAgeButtonValue2">1,3</string>
+    <string name="searchAgeButtonText2">1-3</string>
+    <string name="searchAgeButtonValue3">3,99</string>
+    <string name="searchAgeButtonText3">3+</string>
+        <!-- Cost -->
     <string name="searchCost">Kosten</string>
-    <string name="searchCostButtonValue1">weniger 200€</string>
-    <string name="searchCostButtonValue2">weniger 350€</string>
-    <string name="searchCostButtonValue3">egal</string>
+    <string name="searchCostButtonValue1">200</string>
+    <string name="searchCostButtonText1">weniger 200€</string>
+    <string name="searchCostButtonValue2">350</string>
+    <string name="searchCostButtonText2">weniger 350€</string>
+    <string name="searchCostButtonValue3">0</string>
+    <string name="searchCostButtonText3">egal</string>
+        <!-- Open -->
     <string name="searchOpen">Öffnungszeiten</string>
     <string name="searchOpenButtonValue1">Halbtags</string>
     <string name="searchOpenButtonValue2">Verlängert</string>
     <string name="searchOpenButtonValue3">Ganztags</string>
+        <!-- Evaluation -->
     <string name="searchEvaluation">Bewertung</string>
+        <!-- Size -->
     <string name="searchSize">Anzahl der Kinder pro Gruppe</string>
-    <string name="searchSizeButtonValue1">bis 10</string>
-    <string name="searchSizeButtonValue2">bis 15</string>
-    <string name="searchSizeButtonValue3">bis 25</string>
+    <string name="searchSizeButtonValue1">10</string>
+    <string name="searchSizeButtonText1">bis 10</string>
+    <string name="searchSizeButtonValue2">15</string>
+    <string name="searchSizeButtonText2">bis 15</string>
+    <string name="searchSizeButtonValue3">25</string>
+    <string name="searchSizeButtonText3">bis 25</string>
+        <!-- Closing -->
     <string name="searchClosing">Anzahl der Schließtage pro Jahr</string>
-    <string name="searchClosingButtonValue1">weniger 10</string>
-    <string name="searchClosingButtonValue2">weniger 20</string>
+    <string name="searchClosingButtonValue1">10</string>
+    <string name="searchClosingButtonText1">weniger 10</string>
+    <string name="searchClosingButtonValue2">20</string>
+    <string name="searchClosingButtonText2">weniger 20</string>
+        <!-- Confession -->
     <string name="searchConfessionTitle">Confession</string>
     <string name="searchConfessionValue1">Flying Spaghetti Monster</string>
     <string name="searchConfessionValue2">All other</string>
+        <!-- Send Button -->
     <string name="searchSendButton">Suchen</string>
-    <string name="title_activity_kita_details">KitaDetailsActivity</string>
 
     <!-- Kita Details Strings -->
     <string name="kitaDetailsKitaName">Kita Regenbogen</string>

@@ -10,3 +10,7 @@
 app/app.iml
 /.idea/gradle.xml
 /.idea/vcs.xml
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/app/.gitignore

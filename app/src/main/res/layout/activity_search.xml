@@ -1,268 +1,311 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="kitapp.hska.de.kitapp.SearchActivity">
-<ScrollView
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    tools:context="kitapp.hska.de.kitapp.SearchActivity"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <!-- Send Button -->
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
-
-        <!-- Search Page -->
-        <TextView
-            android:id="@+id/search.textView.title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/search_activity_title"
-            android:textSize="10pt" />
-        <!-- Search for City-->
-        <EditText
-            android:id="@+id/search.edittext.city"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/searchCity" />
-
-        <!-- Search in Circuit of City -->
-        <TextView
-            android:id="@+id/search.textview.circuit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/searchCircuit" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <SeekBar
-                android:id="@+id/search.seekbar.circuit"
-                android:layout_width="207dp"
-                android:layout_height="wrap_content"
-                android:max="50"/>
-
-            <EditText
-                android:id="@+id/search.edittext.circuit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="km"
-                />
-        </LinearLayout>
-
-
-        <!-- Search for age group -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/searchAge" />
-
-        <RadioGroup
-            android:id="@+id/search.togglegroup.age"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.age.1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchAgeButtonValue1" />
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.age.2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchAgeButtonValue2" />
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.age.3"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:onClick="onToggle"
-                android:text="@string/searchAgeButtonValue3" />
-        </RadioGroup>
-
-        <!-- Search for Costs -->
-        <TextView
-            android:id="@+id/search.textview.cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/searchCost" />
-
-        <RadioGroup
-            android:id="@+id/search.radiogroup.cost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.cost.1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:onClick="onToggle"
-                android:text="@string/searchCostButtonValue1" />
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.cost.2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchCostButtonValue2" />
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.cost.3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchCostButtonValue3" />
-        </RadioGroup>
-
-        <!-- Search for Open Times-->
-        <TextView
-            android:id="@+id/search.textview.open"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/searchOpen" />
-
-        <ToggleButton
-            android:id="@+id/search.togglebutton.open.1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/searchOpenButtonValue1" />
-
-        <ToggleButton
-            android:id="@+id/search.togglebutton.open.2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/searchOpenButtonValue2" />
-
-        <ToggleButton
-            android:id="@+id/search.togglebutton.open.3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/searchOpenButtonValue3" />
-
-        <!-- Search for Evaluation -->
-        <TextView
-            android:id="@+id/search.textview.evaluation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/searchEvaluation" />
-
-        <RatingBar
-            android:id="@+id/search.ratingbar.evaluation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Search for Group Size -->
-        <TextView
-            android:id="@+id/search.textview.size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/searchSize" />
-
-        <RadioGroup
-            android:id="@+id/search.radiogroup.size"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ToggleButton
-                android:id="@+id/size.togglebutton.size.1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchSizeButtonValue1" />
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.size.2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:onClick="onToggle"
-                android:text="@string/searchSizeButtonValue2" />
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.size.3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchSizeButtonValue3" />
-        </RadioGroup>
-
-
-        <!-- Search for Closing Time per year -->
-        <TextView
-            android:id="@+id/search.textview.closing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/searchClosing" />
-
-        <RadioGroup
-            android:id="@+id/search.togglegroup.closing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.closing.1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchClosingButtonValue1" />
-
-            <ToggleButton
-                android:id="@+id/search.togglebutton.closing.2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onToggle"
-                android:text="@string/searchClosingButtonValue2" />
-        </RadioGroup>
-
-
-        <!-- Search for Confession -->
-        <Spinner
-            android:id="@+id/search.spinner.confession"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/searchConfessionList"
-            android:prompt="@string/searchConfessionTitle" />
+        android:gravity="bottom">
 
         <Button
             android:id="@+id/search.button.sendsearch"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="sendSearch"
-            android:text="@string/searchSendButton" />
-    </LinearLayout>
+            android:text="@string/searchSendButton"/>
 
-</ScrollView>
+    </RelativeLayout>
 
-</RelativeLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <!-- Search Page -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_activity_title"
+                android:textSize="10pt" />
+            <!-- Search for City-->
+            <EditText
+                android:id="@+id/search.edittext.city"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/searchCity" />
+
+            <!-- Search in Circuit of City -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchCircuit" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/search.seekbar.circuit"
+                    android:layout_width="207dp"
+                    android:layout_height="wrap_content"
+                    android:max="50" />
+
+                <EditText
+                    android:id="@+id/search.edittext.circuit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/searchTextViewCircuite" />
+            </LinearLayout>
+
+
+            <!-- Search for age group -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchAge" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.age.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/searchAgeButtonValue1"
+                    android:textOff="@string/searchAgeButtonText1"
+                    android:textOn="@string/searchAgeButtonText1" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.age.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/searchAgeButtonValue2"
+                    android:textOff="@string/searchAgeButtonText2"
+                    android:textOn="@string/searchAgeButtonText2" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.age.3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/searchAgeButtonValue3"
+                    android:textOff="@string/searchAgeButtonText3"
+                    android:textOn="@string/searchAgeButtonText3" />
+            </LinearLayout>
+
+            <!-- Search for Costs -->
+            <TextView
+                android:id="@+id/search.textview.cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchCost" />
+
+            <RadioGroup
+                android:id="@+id/search.radiogroup.cost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.cost.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:onClick="onToggleCost"
+                    android:text="@string/searchCostButtonValue1"
+                    android:textOff="@string/searchCostButtonText1"
+                    android:textOn="@string/searchCostButtonText1" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.cost.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onToggleCost"
+                    android:text="@string/searchCostButtonValue2"
+                    android:textOff="@string/searchCostButtonText2"
+                    android:textOn="@string/searchCostButtonText2" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.cost.3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onToggleCost"
+                    android:text="@string/searchCostButtonValue3"
+                    android:textOff="@string/searchCostButtonText3"
+                    android:textOn="@string/searchCostButtonText3" />
+            </RadioGroup>
+
+            <!-- Search for Open Times-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchOpen" />
+
+            <RadioGroup
+                android:id="@+id/search.radiogroup.open"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.open.1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onClick="onToggleOpen"
+                    android:text="@string/searchOpenButtonValue1"
+                    android:textOff="@string/searchOpenButtonValue1"
+                    android:textOn="@string/searchOpenButtonValue1" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.open.2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onToggleOpen"
+                    android:text="@string/searchOpenButtonValue2"
+                    android:textOff="@string/searchOpenButtonValue2"
+                    android:textOn="@string/searchOpenButtonValue2" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.open.3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="onToggleOpen"
+                    android:text="@string/searchOpenButtonValue3"
+                    android:textOff="@string/searchOpenButtonValue3"
+                    android:textOn="@string/searchOpenButtonValue3" />
+
+            </RadioGroup>
+
+            <!-- Search for Evaluation -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchEvaluation" />
+
+            <RatingBar
+                android:id="@+id/search.ratingbar.evaluation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:mirrorForRtl="true" />
+
+            <!-- Search for Group Size -->
+            <TextView
+                android:id="@+id/search.textview.size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchSize" />
+
+            <RadioGroup
+                android:id="@+id/search.radiogroup.size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ToggleButton
+                    android:id="@+id/size.togglebutton.size.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onToggleSize"
+                    android:text="@string/searchSizeButtonValue1"
+                    android:textOff="@string/searchSizeButtonText1"
+                    android:textOn="@string/searchSizeButtonText1" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.size.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:onClick="onToggleSize"
+                    android:text="@string/searchSizeButtonValue2"
+                    android:textOff="@string/searchSizeButtonText2"
+                    android:textOn="@string/searchSizeButtonText2" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.size.3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onToggleSize"
+                    android:text="@string/searchSizeButtonValue1"
+                    android:textOff="@string/searchSizeButtonText1"
+                    android:textOn="@string/searchSizeButtonText1" />
+            </RadioGroup>
+
+
+            <!-- Search for Closing Time per year -->
+            <TextView
+                android:id="@+id/search.textview.closing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchClosing" />
+
+            <RadioGroup
+                android:id="@+id/search.radiogroup.closing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.closing.1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onToggleClosing"
+                    android:text="@string/searchClosingButtonValue1"
+                    android:textOff="@string/searchClosingButtonText1"
+                    android:textOn="@string/searchClosingButtonText1" />
+
+                <ToggleButton
+                    android:id="@+id/search.togglebutton.closing.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onToggleClosing"
+                    android:text="@string/searchClosingButtonValue2"
+                    android:textOff="@string/searchClosingButtonText2"
+                    android:textOn="@string/searchClosingButtonText2" />
+            </RadioGroup>
+
+
+            <!-- Search for Confession -->
+            <Spinner
+                android:id="@+id/search.spinner.confession"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/searchConfessionList"
+                android:prompt="@string/searchConfessionTitle" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
