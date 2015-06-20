@@ -1,5 +1,6 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -24,7 +25,7 @@ public class SearchActivity extends ActionBarActivity {
     private ToggleButton toggleButtonAge2;
     private ToggleButton toggleButtonAge3;
     private RatingBar ratingBarEvaluation;
-//    private Button searchButton;
+    // private Button searchButton;
 
     /*
     <======================= CLASS ATTRUIBUTES =======================>
@@ -46,9 +47,12 @@ public class SearchActivity extends ActionBarActivity {
         int maxAge = minMaxAge[1];
         int cost = this.cost;
         String open = this.open;
-        Integer evaluation = this.ratingBarEvaluation.getNumStars();
+        Float evaluation = this.ratingBarEvaluation.getRating();
         int size = this.size;
         int closing = this.closing;
+
+        Intent myIntent = new Intent(this, ResultActivity.class);
+        startActivity(myIntent);
 
     }
 
@@ -235,7 +239,7 @@ public class SearchActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
     }
 
@@ -247,9 +251,22 @@ public class SearchActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
+
+            Intent myIntent = new Intent(this, LoginActivity.class);
+            startActivity(myIntent);
             return true;
+        }else if(id == R.id.action_home) {
+            Intent myIntent = new Intent(this, MainActivity.class);
+            startActivity(myIntent);
+            return true;
+
+        }else if(id == R.id.action_favorites) {
+
+        } else if(id == R.id.action_news) {
+
         }
+
 
         return super.onOptionsItemSelected(item);
     }
