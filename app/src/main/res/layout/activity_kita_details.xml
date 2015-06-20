@@ -28,14 +28,14 @@
 
 
             <TextView
-                android:id="@+id/KitaDetailsAddress"
+                android:id="@+id/KitaDetailsAddressData"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="10dp"
                 android:lines="4"
                 android:maxLines="4"
-                android:text="76841 Karlsruhe \nBlumenstraße 23 \n0721 / 164823 \nregenbogenkita@gmail.com "/>
+                android:text="@string/kitaDetailsAddressData" />
 
 
             <TextView
@@ -51,8 +51,17 @@
                 android:id="@+id/KitaDetailsRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:isIndicator="true"
                 android:numStars="5"
                 android:rating="4" />
+
+            <Button
+                android:id="@+id/KitaDetailsButtonNews"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="News "
+                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:id="@+id/KitaDetailsCosts"
@@ -60,8 +69,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:text="@string/kitaDetailsCosts" />
+
+            <TextView
+                android:id="@+id/KitaDetailsCostsData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/kitaDetailsCostsData" />
 
             <TextView
                 android:id="@+id/KitaDetailsOpen"
@@ -73,14 +91,102 @@
                 android:text="@string/kitaDetailsOpen" />
 
             <TextView
-                android:id="@+id/KitaDetailsOpen"
+                android:id="@+id/KitaDetailsOpenhours"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="10dp"
-                android:lines="4"
-                android:maxLines="4"
-                android:text="76841 Karlsruhe \nBlumenstraße 23 \n0721 / 164823 \nregenbogenkita@gmail.com "/>
+                android:lines="5"
+                android:maxLines="5"
+                android:text="@string/kitaDetailsOpenData" />
+
+            <TextView
+                android:id="@+id/KitaDetailsManagement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="40dp"
+                android:text="@string/kitaDetailsManagement" />
+
+            <TextView
+                android:id="@+id/KitaDetailsManagementData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/kitaDetailsManagementData" />
+
+            <TextView
+                android:id="@+id/KitaDetailsConfession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="40dp"
+                android:text="@string/kitaDetailsConfession" />
+
+            <TextView
+                android:id="@+id/KitaDetailsConfessionData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/kitaDetailsConfessionData" />
+
+            <TextView
+                android:id="@+id/KitaDetailsAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="40dp"
+                android:text="@string/kitaDetailsAge" />
+
+            <TextView
+                android:id="@+id/KitaDetailsAgeData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/kitaDetailsAgeData" />
+
+            <TextView
+                android:id="@+id/KitaDetailsAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="40dp"
+                android:text="@string/kitaDetailsAbout" />
+
+            <TextView
+                android:id="@+id/KitaDetailsAboutData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/kitaDetailsAboutData" />
+
+            <TextView
+                android:id="@+id/KitaDetailsComments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="40dp"
+                android:text="@string/kitaDetailsComments" />
+
+            <ListView
+                android:id="@+id/KitaDetailsListComments"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+            </ListView>
 
 
         </LinearLayout>

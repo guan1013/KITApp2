@@ -71,14 +71,31 @@
 
     <!-- Kita Details Strings -->
     <string name="kitaDetailsKitaName">Kita Regenbogen</string>
+    <string name="kitaDetailsAddressData">76841 Karlsruhe \nBlumenstraße 23 \n0721 / 164823 \nregenbogenkita@gmail.com</string>
+
     <string name="kitaDetailsEvaluation">Bewertung</string>
+
     <string name="kitaDetailsCosts">Kosten</string>
+    <string name="kitaDetailsCostsData">170 € pro Monat</string>
+
     <string name="kitaDetailsOpen">Öffnungszeiten</string>
-    <string name="kitaDetailsManagement">Frau Streng</string>
+    <string name="kitaDetailsOpenData">Mo 7:00 Uhr - 14:00 Uhr \nDi 7:00 Uhr - 14:00 Uhr \nMi 7:00 Uhr - 14:00 Uhr \nDo 7:00 Uhr - 14:00 Uhr \nFr 7:00 Uhr - 14:00 Uhr \n</string>
+
+    <string name="kitaDetailsManagement">Leitung</string>
+    <string name="kitaDetailsManagementData">Frau Streng</string>
+
     <string name="kitaDetailsConfession">Konfession</string>
+    <string name="kitaDetailsConfessionData">Katholisch</string>
+
     <string name="kitaDetailsAge">Alter</string>
+    <string name="kitaDetailsAgeData">3 - 14 Jahre</string>
+
     <string name="kitaDetailsAbout">Beschreibung</string>
+    <string name="kitaDetailsAboutData">Mit Kinder leben und lernen: Kindertagesstätte mit allen Altersklassen von 3 bis 14 Jahren. \n"Erkläre mir und ich werde vergessen, zeige mir und ich werde mit erinnern, beteilige mich und ich verstehen."</string>
+
     <string name="kitaDetailsComments">Kommentare</string>
-    <string name="kitaDetailsAddress">76517 Karlsruhe</string>
+
+
+
 
 </resources>
