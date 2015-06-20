@@ -115,6 +115,9 @@
     <string name="title_activity_comment">CommentActivity</string>
     <string name="title_activity_write_comment">WriteCommentActivity</string>
 
+    <!-- Login Strings -->
+    <string name="loginAccount">Noch kein Benutzerkonto?</string>
+
 
 
 

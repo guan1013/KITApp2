@@ -104,7 +104,16 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
         kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
 
-        //TODO: setText() für alle Attribute
+        kitaDetailsName.setText(kita.getName());
+        kitaDetailsEvaluation.setText(kita.getEvaluation().toString());
+        kitaDetailsCostsData.setText(kita.getCost().toString());
+        kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
+        kitaDetailsManagement.setText(kita.getManagement());
+        kitaDetailsConfessionData.setText(kita.getConfession().getText());
+        kitaDetailsAgeData.setText(kita.getMinAge()+" - "+kita.getMaxAge());
+        kitaDetailsAboutData.setText(kita.getAbout());
+
+
     }
 
     //////////////////////////////////////////////////
