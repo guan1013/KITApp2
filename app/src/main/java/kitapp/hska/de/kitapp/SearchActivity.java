@@ -59,8 +59,19 @@ public class SearchActivity extends ActionBarActivity {
     public void onToggleCost(View button) {
         ((RadioGroup) button.getParent()).check(button.getId());
 
+        String costString = "0";
+        if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchCostButtonText1))) {
+            costString = getString(R.string.searchCostButtonValue1);
+        } else if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchCostButtonText2))) {
+            costString = getString(R.string.searchCostButtonValue2);
+        } else if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchCostButtonText3))) {
+            costString = getString(R.string.searchCostButtonValue3);
+        }
+
+
         try {
-            cost = Integer.parseInt(((ToggleButton) button).getText().toString());
+
+            cost = Integer.parseInt(costString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,8 +80,17 @@ public class SearchActivity extends ActionBarActivity {
     public void onToggleSize(View button) {
         ((RadioGroup) button.getParent()).check(button.getId());
 
+        String sizeString = "0";
+        if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchSizeButtonText1))) {
+            sizeString = getString(R.string.searchSizeButtonValue1);
+        } else if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchSizeButtonText2))) {
+            sizeString = getString(R.string.searchSizeButtonValue2);
+        } else if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchSizeButtonText3))) {
+            sizeString = getString(R.string.searchSizeButtonValue3);
+        }
+
         try {
-            size = Integer.parseInt(((ToggleButton) button).getText().toString());
+            size = Integer.parseInt(sizeString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,8 +100,15 @@ public class SearchActivity extends ActionBarActivity {
     public void onToggleClosing(View button) {
         ((RadioGroup) button.getParent()).check(button.getId());
 
+        String closingString = "0";
+        if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchClosingButtonText1))) {
+            closingString = getString(R.string.searchClosingButtonValue1);
+        } else if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchClosingButtonText2))) {
+            closingString = getString(R.string.searchClosingButtonValue2);
+        }
+
         try {
-            closing = Integer.parseInt(((ToggleButton) button).getText().toString());
+            closing = Integer.parseInt(closingString);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,7 +134,10 @@ public class SearchActivity extends ActionBarActivity {
         int minAge = 0;
         int maxAge = 99;
         if (age1) {
-            String[] values = this.toggleButtonAge1.getText().toString().split(",");
+
+
+            String[] values = getString(R.string.searchAgeButtonValue1).split(",");
+
             try {
                 minAge = Integer.parseInt(values[0]);
                 maxAge = Integer.parseInt(values[1]);
@@ -116,7 +146,7 @@ public class SearchActivity extends ActionBarActivity {
             }
         }
         if (age2) {
-            String[] values = this.toggleButtonAge2.getText().toString().split(",");
+            String[] values = getString(R.string.searchAgeButtonValue2).split(",");
             try {
                 if (!age1) {
                     minAge = Integer.parseInt(values[0]);
@@ -127,7 +157,7 @@ public class SearchActivity extends ActionBarActivity {
             }
         }
         if (age3) {
-            String[] values = this.toggleButtonAge3.getText().toString().split(",");
+            String[] values = getString(R.string.searchAgeButtonValue3).split(",");
             try {
                 if (!age1 && !age2) {
                     minAge = Integer.parseInt(values[0]);
@@ -256,14 +286,14 @@ public class SearchActivity extends ActionBarActivity {
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
-        }else if(id == R.id.action_home) {
+        } else if (id == R.id.action_home) {
             Intent myIntent = new Intent(this, MainActivity.class);
             startActivity(myIntent);
             return true;
 
-        }else if(id == R.id.action_favorites) {
+        } else if (id == R.id.action_favorites) {
 
-        } else if(id == R.id.action_news) {
+        } else if (id == R.id.action_news) {
 
         }
 

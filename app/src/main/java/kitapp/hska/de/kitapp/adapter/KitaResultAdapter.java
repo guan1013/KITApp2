@@ -65,7 +65,8 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
             }*/
 
             if (textViewCircuit != null) {
-                textViewCircuit.setText(kita.getDistance().toString());
+                String distance = kita.getDistance().toString();
+                textViewCircuit.setText(distance + " km");
             }
 
             if (buttonTel != null) {

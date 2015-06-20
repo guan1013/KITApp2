@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +20,13 @@ import kitapp.hska.de.kitapp.model.KitaResult;
 public class ResultActivity extends ActionBarActivity {
 
     private ListView resultListView;
+    private LinearLayout resultLinearLayoutList;
+    private LinearLayout resultLinaerLayoutMap;
 
     private void initViews() {
         resultListView = (ListView) findViewById(R.id.result_listview);
+        resultLinearLayoutList = (LinearLayout) findViewById(R.id.result_linarlayout_list);
+        resultLinaerLayoutMap = (LinearLayout) findViewById(R.id.result_linarlayout_map);
     }
 
     @Override
@@ -38,6 +46,18 @@ public class ResultActivity extends ActionBarActivity {
         kitas.add(kita2);
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
         resultListView.setAdapter(resultAdapter);
+
+
+        ((RadioGroup) findViewById(R.id.result_radiogroup_buttons)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
+                for (int j = 0; j < radioGroup.getChildCount(); j++) {
+                    final ToggleButton view = (ToggleButton) radioGroup.getChildAt(j);
+                    view.setChecked(view.getId() == i);
+                }
+            }
+        });
+
 
     }
 
@@ -62,4 +82,20 @@ public class ResultActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onToggle(View button) {
+        ((RadioGroup) button.getParent()).check(button.getId());
+        try {
+            if (((ToggleButton) button).getText().toString().equals(getString(R.string.resultToggleButtonMap))) {
+                resultLinaerLayoutMap.setVisibility(View.VISIBLE);
+                resultLinearLayoutList.setVisibility(View.GONE);
+            } else {
+                resultLinaerLayoutMap.setVisibility(View.GONE);
+                resultLinearLayoutList.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

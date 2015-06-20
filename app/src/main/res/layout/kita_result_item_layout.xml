@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_weight="3"
-            android:text="PLACEHOLDER" />
+            android:text="@string/placeHolderString" />
 
         <RatingBar
             android:id="@+id/result.ratingbar.evaluation"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="PLACEHOLDER"
+            android:text="@string/placeHolderString"
             android:background="@color/secondary_text_default_material_dark" />
     </RelativeLayout>
 
