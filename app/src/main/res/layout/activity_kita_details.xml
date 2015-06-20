@@ -238,11 +238,11 @@
                 android:text="@string/kitaDetailsComments" />
 
             <ListView
-                android:id="@+id/KitaDetailsListComments"
+                android:id="@+id/result.listview"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
-            </ListView>
+                android:layout_height="wrap_content"
+                android:divider="#0000CC"
+                android:dividerHeight="0.1dp" />
 
 
         </LinearLayout>
