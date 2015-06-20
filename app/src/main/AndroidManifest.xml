@@ -35,16 +35,25 @@
         <activity
             android:name=".KitaDetailsActivity"
             android:label="@string/title_activity_kita_details"
+            android:parentActivityName=".MainActivity">
 
-            android:parentActivityName=".MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kitapp.hska.de.kitapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ResultActivity"
+            android:label="ResultActivity"
+            android:parentActivityName=".SearchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="kitapp.hska.de.kitapp.SearchActivity" />
+        </activity>
 
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="kitapp.hska.de.kitapp.MainActivity" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

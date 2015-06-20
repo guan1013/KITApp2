@@ -22,19 +22,21 @@
             android:layout_height="wrap_content"
             android:layout_column="2"
             android:layout_weight="1"
-            android:isIndicator="true" />
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.5" />
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/result.imageview.thumbnail"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_column="1"
-            android:src="@drawable/im1" />
+            android:src="" />-->
 
         <TextView
             android:id="@+id/result.textview.curcuit"
