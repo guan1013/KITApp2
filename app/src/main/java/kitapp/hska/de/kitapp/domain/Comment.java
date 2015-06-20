@@ -7,15 +7,25 @@ import java.util.Date;
  */
 public class Comment {
 
-    public Comment(String name, String text, Date date) {
+    public Comment(String name, String text, Date date, Float evaluation) {
         this.name = name;
         this.text = text;
         this.date = date;
+        this.evaluation = evaluation;
     }
 
     private String name;
     private String text;
     private Date date;
+    private Float evaluation;
+
+    public Float getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(Float evaluation) {
+        this.evaluation = evaluation;
+    }
 
     public String getName() {
         return name;
