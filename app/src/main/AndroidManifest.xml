@@ -57,6 +57,7 @@
             android:name=".WriteCommentActivity"
             android:label="@string/title_activity_write_comment" >
         </activity>
+        <service android:name=".services.KitaService"/>
     </application>
 
 </manifest>

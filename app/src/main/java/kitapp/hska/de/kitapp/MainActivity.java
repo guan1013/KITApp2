@@ -45,8 +45,20 @@ import kitapp.hska.de.kitapp.services.KitaService;
  */
 public class MainActivity extends ActionBarActivity implements LocationListener {
 
-    KitaService myService;
-    boolean mBound = false;
+    private KitaService.KitaServiceBinder kitaServiceBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            MainActivity.this.kitaServiceBinder = ((KitaService.KitaServiceBinder) service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     /**
      * Textfield for entering location for search
@@ -68,6 +80,19 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     private String provider;
 
     @Override
+    protected void onStart() {
+        Intent i = new Intent(this, KitaService.class);
+        bindService(i, serviceConnection, BIND_AUTO_CREATE);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unbindService(serviceConnection);
+        super.onStop();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -82,46 +107,34 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         buttonSuche.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AsyncTask<String,Void,Kita> asyncTask = new AsyncTask<String, Void, Kita>() {
-                    @Override
-                    protected Kita doInBackground(String... params) {
 
+                String city = editTextLocation.getText().toString();
 
-                        HttpClient client = new DefaultHttpClient();
-                        HttpGet get = new HttpGet("http://ebusiness-kitapp-backend.herokuapp.com/kitas?city=ettlingen");
-                        byte[] data = null;
-                        try {
-                            HttpResponse resp = client.execute(get);
-                            InputStream is = resp.getEntity().getContent();
-                            int contentSize = (int) resp.getEntity().getContentLength();
-                            System.out.println("Content size ["+contentSize+"]");
-                            BufferedInputStream bis = new BufferedInputStream(is, 512);
-
-                            data = new byte[contentSize];
-                            int bytesRead = 0;
-                            int offset = 0;
-
-                            while (bytesRead != -1 && offset < contentSize) {
-                                bytesRead = bis.read(data, offset, contentSize - offset);
-                                offset += bytesRead;
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            toast( e.getClass().getName());
-                        }
-                        return null;
-                    }
-                };
+                Kita[] kitas = null;
 
                 try {
-                    Kita kita = asyncTask.execute(editTextLocation.getText().toString()).get(10L, TimeUnit.SECONDS);
+                    kitas = kitaServiceBinder.getKitaByCity(city);
 
-                    System.out.println(kita);
-                }catch (Exception e) {
+                    if (kitas == null) {
+                        toast("Found 0 Kitas (kitas=null)");
+                    } else
+                    {
+                        toast("Found " + kitas.length + " Kitas");
+                    }
+
+
+                    if(kitas != null && kitas.length > 0) {
+                        Intent i = new Intent(getApplicationContext(), KitaDetailsActivity.class);
+                        i.putExtra("kita",kitas[0]);
+                        startActivity(i);
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
-                    toast( e.getClass().getName());
+                    toast(e.getClass().getName());
+                    return;
                 }
+
+
             }
         });
 

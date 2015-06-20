@@ -1,11 +1,12 @@
 package kitapp.hska.de.kitapp.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Yannick on 20.06.2015.
  */
-public class Kita {
+public class Kita implements Serializable{
 
     private Long id;
 
