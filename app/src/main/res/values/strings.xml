@@ -22,6 +22,10 @@
     <!-- Placeholder String -->
     <string name="placeHolderString">PLACEHOLDER</string>
 
+    <!-- Button -->
+    <string name="buttonSend">Senden</string>
+    <string name="buttonSearch">Suchen</string>
+
     <!-- Result Strings -->
         <!-- Toogle Button -->
     <string name="resultToggleButtonList">Liste</string>
@@ -81,8 +85,7 @@
     <string name="searchConfessionTitle">Confession</string>
     <string name="searchConfessionValue1">Flying Spaghetti Monster</string>
     <string name="searchConfessionValue2">All other</string>
-        <!-- Send Button -->
-    <string name="searchSendButton">Suchen</string>
+
 
     <!-- Kita Details Strings -->
     <string name="kitaDetailsKitaName">Kita Regenbogen</string>
@@ -110,6 +113,7 @@
 
     <string name="kitaDetailsComments">Kommentare</string>
     <string name="title_activity_comment">CommentActivity</string>
+    <string name="title_activity_write_comment">WriteCommentActivity</string>
 
 
 

@@ -13,7 +13,6 @@
             android:id="@+id/result.textview.name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="1"
             android:layout_weight="3"
             android:text="@string/placeHolderString" />
 
@@ -22,7 +21,6 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="2"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.5" />
