@@ -2,13 +2,18 @@ package kitapp.hska.de.kitapp.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Yannick on 20.06.2015.
  */
 public class Kita implements Serializable {
 
-    public Kita(String name, Date dateCreated, Double cost, Integer minAge, Integer maxAge, Confession confession, Float evaluation, String management, OpeningHours openingHours) {
+    public Kita() {
+
+    }
+
+    public Kita(String name, Date dateCreated, Double cost, Integer minAge, Integer maxAge, Confession confession, Float evaluation, String management, List<Comment> ratings, String about, OpeningHours openingHours) {
         this.name = name;
         this.dateCreated = dateCreated;
         this.cost = cost;
@@ -17,6 +22,8 @@ public class Kita implements Serializable {
         this.confession = confession;
         this.evaluation = evaluation;
         this.management = management;
+        this.ratings = ratings;
+        this.about = about;
         this.openingHours = openingHours;
     }
 
@@ -38,13 +45,11 @@ public class Kita implements Serializable {
 
     private String management;
 
-    public String getManagement() {
-        return management;
-    }
+    private List<Comment> ratings;
 
-    public void setManagement(String management) {
-        this.management = management;
-    }
+    private String about;
+
+    private OpeningHours openingHours;
 
     public enum Confession {
 
@@ -63,7 +68,6 @@ public class Kita implements Serializable {
 
     }
 
-    private OpeningHours openingHours;
 
     public enum OpeningHours {
 
@@ -91,6 +95,18 @@ public class Kita implements Serializable {
                 ", dateCreated=" + dateCreated +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public void addRating(Comment rating) {
+        this.ratings.add(rating);
+    }
+
+    public String getManagement() {
+        return management;
+    }
+
+    public void setManagement(String management) {
+        this.management = management;
     }
 
     public Long getId() {
@@ -163,5 +179,21 @@ public class Kita implements Serializable {
 
     public void setEvaluation(Float evaluation) {
         this.evaluation = evaluation;
+    }
+
+    public List<Comment> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Comment> ratings) {
+        this.ratings = ratings;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
     }
 }
