@@ -17,7 +17,7 @@
         android:text="@string/placeHolderString" />
 
     <EditText
-        android:id="@+id/comment.write.textview.comment"
+        android:id="@+id/comment.write.edittext.comment"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:lines="10"
