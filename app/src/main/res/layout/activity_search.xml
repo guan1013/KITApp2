@@ -9,24 +9,10 @@
     tools:context="kitapp.hska.de.kitapp.SearchActivity"
     android:orientation="vertical">
 
-    <!-- Send Button -->
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="bottom">
-
-        <Button
-            android:id="@+id/search.button.sendsearch"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="sendSearch"
-            android:text="@string/searchSendButton"/>
-
-    </RelativeLayout>
-
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="90">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -308,4 +294,20 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <!-- Send Button -->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/search.button.sendsearch"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="sendSearch"
+            android:text="@string/searchSendButton"/>
+
+    </RelativeLayout>
 </LinearLayout>

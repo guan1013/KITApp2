@@ -1,16 +1,14 @@
 package kitapp.hska.de.kitapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 
@@ -26,7 +24,7 @@ public class SearchActivity extends ActionBarActivity {
     private ToggleButton toggleButtonAge2;
     private ToggleButton toggleButtonAge3;
     private RatingBar ratingBarEvaluation;
-    private Button searchButton;
+//    private Button searchButton;
 
     /*
     <======================= CLASS ATTRUIBUTES =======================>
@@ -150,7 +148,7 @@ public class SearchActivity extends ActionBarActivity {
         this.toggleButtonAge2 = (ToggleButton) findViewById(R.id.search_togglebutton_age_2);
         this.toggleButtonAge3 = (ToggleButton) findViewById(R.id.search_togglebutton_age_3);
         this.ratingBarEvaluation = (RatingBar) findViewById(R.id.search_ratingbar_evaluation);
-        this.searchButton = (Button) findViewById(R.id.search_button_sendsearch);
+        //this.searchButton = (Button) findViewById(R.id.search_button_sendsearch);
 
     }
 
@@ -231,7 +229,7 @@ public class SearchActivity extends ActionBarActivity {
         size = 0;
         closing = 0;
 
-        this.searchButton.bringToFront();
+        //this.searchButton.bringToFront();
     }
 
     @Override
