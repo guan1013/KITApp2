@@ -2,7 +2,6 @@ package kitapp.hska.de.kitapp.adapter;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import kitapp.hska.de.kitapp.KitaDetailsActivity;
 import kitapp.hska.de.kitapp.R;
 import kitapp.hska.de.kitapp.domain.KitaResult;
 
@@ -22,10 +20,6 @@ import kitapp.hska.de.kitapp.domain.KitaResult;
  * Created by bwpc on 20.06.2015.
  */
 public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
-
-    public KitaResultAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
-    }
 
     public KitaResultAdapter(Context context, int resource, List<KitaResult> items) {
         super(context, resource, items);
