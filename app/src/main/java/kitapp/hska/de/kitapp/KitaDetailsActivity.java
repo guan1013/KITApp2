@@ -1,15 +1,29 @@
 package kitapp.hska.de.kitapp;
 
+import android.location.LocationListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import kitapp.hska.de.kitapp.domain.Kita;
 
 public class KitaDetailsActivity extends AppCompatActivity {
+
+
+    TextView kitaDetailsName;
+    TextView kitaDetailsEvaluation;
+    TextView kitaDetailsCosts;
+
+
+
+    RatingBar kitaDetailsRatingbar;
+
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +33,21 @@ public class KitaDetailsActivity extends AppCompatActivity {
         Kita kita = new Kita();
 
         kita.setName("Dunkle Seitenstraße");
-        kita.setConfession(kita.getConfession());
+        kita.setConfession(Kita.Confession.NO_CONFESSION);
         kita.setCost(666.66);
         kita.setMaxAge(99);
         kita.setMinAge(66);
-        kita.setOpeningHours(kita.getOpeningHours());
+        kita.setOpeningHours(Kita.OpeningHours.FULL);
         kita.setId(666L);
+
+        kitaDetailsName = (TextView) findViewById(R.id.KitaDetailsName);
+        kitaDetailsEvaluation = (TextView) findViewById(R.id.KitaDetailsEvaluation);
+        kitaDetailsCosts = (TextView) findViewById(R.id.KitaDetailsCosts);
+
+
+        kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
+
+
     }
 
     @Override

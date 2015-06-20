@@ -21,7 +21,7 @@ public class Kita {
 
     private Confession confession;
 
-    private enum Confession {
+    public enum Confession {
 
         KATHOLIC("Katholisch"), ISLAMIC("Islamisch"), BUDDHISTIC("Buddhistisch"), EVANGELIC(
                 "Evangelisch"), NO_CONFESSION("Keine Konfession");
@@ -40,7 +40,7 @@ public class Kita {
 
     private OpeningHours openingHours;
 
-    private enum OpeningHours {
+    public enum OpeningHours {
 
         HALF("Halbtags"), LONGER("Verlängerte Öffnungszeiten"), FULL("Ganztags");
 
