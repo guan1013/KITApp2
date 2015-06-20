@@ -12,7 +12,10 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.R;
@@ -51,8 +54,24 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
             if (textViewName != null) {
                 textViewName.setText(comment.getName());
             }
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String dateInString = "07/06/2013";
+
+            Date date = null;
+
+            try {
+
+                date = formatter.parse(dateInString);
+                System.out.println(date);
+                System.out.println(formatter.format(date));
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             if (textViewDate != null) {
-                textViewDate.setText(comment.getDate().toString());
+                textViewDate.setText(formatter.format(date));
             }
             if (textViewText != null) {
                 textViewText.setText(comment.getText());
