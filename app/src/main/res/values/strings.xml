@@ -17,6 +17,7 @@
     <string name="buttonSuche">Suchen</string>
     <string name="main_activity_location_field_label">Suchort/Standort</string>
     <string name="title_activity_kita_details">KitaDetailsActivity</string>
+    <string name="title_activity_result">ERGEBNISSE</string>
 
 
     <!-- Search Strings -->
