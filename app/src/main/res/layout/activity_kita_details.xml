@@ -242,7 +242,7 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="300dp"
                 android:layout_weight="30">
 
                 <ListView
@@ -255,8 +255,8 @@
 
             </RelativeLayout>
 
-
         </LinearLayout>
+
     </kitapp.hska.de.kitapp.VerticalScrollview>
 
 
