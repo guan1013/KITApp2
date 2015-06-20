@@ -79,7 +79,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/searchAgeButtonValue1"
                     android:textOff="@string/searchAgeButtonText1"
                     android:textOn="@string/searchAgeButtonText1" />
 
@@ -88,7 +87,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/searchAgeButtonValue2"
                     android:textOff="@string/searchAgeButtonText2"
                     android:textOn="@string/searchAgeButtonText2" />
 
@@ -98,7 +96,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:text="@string/searchAgeButtonValue3"
                     android:textOff="@string/searchAgeButtonText3"
                     android:textOn="@string/searchAgeButtonText3" />
             </LinearLayout>
@@ -123,7 +120,6 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onToggleCost"
-                    android:text="@string/searchCostButtonValue1"
                     android:textOff="@string/searchCostButtonText1"
                     android:textOn="@string/searchCostButtonText1" />
 
@@ -133,7 +129,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onToggleCost"
-                    android:text="@string/searchCostButtonValue2"
                     android:textOff="@string/searchCostButtonText2"
                     android:textOn="@string/searchCostButtonText2" />
 
@@ -143,7 +138,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onToggleCost"
-                    android:text="@string/searchCostButtonValue3"
                     android:textOff="@string/searchCostButtonText3"
                     android:textOn="@string/searchCostButtonText3" />
             </RadioGroup>
@@ -166,7 +160,6 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:onClick="onToggleOpen"
-                    android:text="@string/searchOpenButtonValue1"
                     android:textOff="@string/searchOpenButtonValue1"
                     android:textOn="@string/searchOpenButtonValue1" />
 
@@ -175,7 +168,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onToggleOpen"
-                    android:text="@string/searchOpenButtonValue2"
                     android:textOff="@string/searchOpenButtonValue2"
                     android:textOn="@string/searchOpenButtonValue2" />
 
@@ -184,7 +176,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onToggleOpen"
-                    android:text="@string/searchOpenButtonValue3"
                     android:textOff="@string/searchOpenButtonValue3"
                     android:textOn="@string/searchOpenButtonValue3" />
 
@@ -221,7 +212,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onToggleSize"
-                    android:text="@string/searchSizeButtonValue1"
                     android:textOff="@string/searchSizeButtonText1"
                     android:textOn="@string/searchSizeButtonText1" />
 
@@ -232,7 +222,6 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:onClick="onToggleSize"
-                    android:text="@string/searchSizeButtonValue2"
                     android:textOff="@string/searchSizeButtonText2"
                     android:textOn="@string/searchSizeButtonText2" />
 
@@ -242,7 +231,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="onToggleSize"
-                    android:text="@string/searchSizeButtonValue3"
                     android:textOff="@string/searchSizeButtonText3"
                     android:textOn="@string/searchSizeButtonText3" />
             </RadioGroup>

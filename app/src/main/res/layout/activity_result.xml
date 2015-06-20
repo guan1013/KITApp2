@@ -9,38 +9,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="kitapp.hska.de.kitapp.ResultActivity">
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/result.radiogroup.buttons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Liste" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Karte" />
-        </LinearLayout>
-
-        <Spinner
+        <ToggleButton
+            android:id="@+id/result.togglebutton.list"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:onClick="onToggle"
+            android:textOn="@string/resultToggleButtonList"
+            android:textOff="@string/resultToggleButtonList"/>
+
+        <ToggleButton
+            android:id="@+id/result.togglebutton.map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onToggle"
+            android:text="@string/resultToggleButtonMapValue"
+            android:textOn="@string/resultToggleButtonMap"
+            android:textOff="@string/resultToggleButtonMap" />
+    </RadioGroup>
 
     <LinearLayout
+        android:id="@+id/result.linarlayout.list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/resultSortList"
+            android:prompt="@string/resultSortTitle" />
 
         <ListView
             android:id="@+id/result.listview"
@@ -48,5 +54,17 @@
             android:layout_height="wrap_content"
             android:divider="#0000CC"
             android:dividerHeight="0.1dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/result.linarlayout.map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="MAP"/>
     </LinearLayout>
 </LinearLayout>

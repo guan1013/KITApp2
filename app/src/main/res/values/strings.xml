@@ -19,6 +19,20 @@
     <string name="title_activity_kita_details">KitaDetailsActivity</string>
     <string name="title_activity_result">ERGEBNISSE</string>
 
+    <!-- Placeholder String -->
+    <string name="placeHolderString">PLACEHOLDER</string>
+
+    <!-- Result Strings -->
+        <!-- Toogle Button -->
+    <string name="resultToggleButtonList">Liste</string>
+    <string name="resultToggleButtonListValue">0</string>
+    <string name="resultToggleButtonMap">Karte</string>
+    <string name="resultToggleButtonMapValue">1</string>
+
+        <!-- Sort -->
+    <string name="resultSortTitle">Sortieren nach...</string>
+    <string name="resultSortValue1">Entfernung(Aufsteigend)</string>
+    <string name="resultSortValue2">Entferung(Absteigend)</string>
 
     <!-- Search Strings -->
         <!-- City -->
