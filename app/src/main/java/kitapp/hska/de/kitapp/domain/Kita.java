@@ -6,7 +6,19 @@ import java.util.Date;
 /**
  * Created by Yannick on 20.06.2015.
  */
-public class Kita implements Serializable{
+public class Kita implements Serializable {
+
+    public Kita(String name, Date dateCreated, Double cost, Integer minAge, Integer maxAge, Confession confession, Float evaluation, String management, OpeningHours openingHours) {
+        this.name = name;
+        this.dateCreated = dateCreated;
+        this.cost = cost;
+        this.minAge = minAge;
+        this.maxAge = maxAge;
+        this.confession = confession;
+        this.evaluation = evaluation;
+        this.management = management;
+        this.openingHours = openingHours;
+    }
 
     private Long id;
 
@@ -21,6 +33,18 @@ public class Kita implements Serializable{
     private Integer maxAge;
 
     private Confession confession;
+
+    private Float evaluation;
+
+    private String management;
+
+    public String getManagement() {
+        return management;
+    }
+
+    public void setManagement(String management) {
+        this.management = management;
+    }
 
     public enum Confession {
 
@@ -66,7 +90,6 @@ public class Kita implements Serializable{
                 ", minAge=" + minAge +
                 ", dateCreated=" + dateCreated +
                 ", name='" + name + '\'' +
-                ", id=" + id +
                 '}';
     }
 
@@ -132,5 +155,13 @@ public class Kita implements Serializable{
 
     public void setOpeningHours(OpeningHours openingHours) {
         this.openingHours = openingHours;
+    }
+
+    public Float getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(Float evaluation) {
+        this.evaluation = evaluation;
     }
 }
