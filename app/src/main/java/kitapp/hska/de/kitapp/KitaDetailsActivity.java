@@ -65,9 +65,9 @@ public class KitaDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Comment comment1 = new Comment("Hans Peter", "Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!", date);
-        Comment comment2 = new Comment("Franziska Hart", "Geht mal garnicht. Überall ist es dreckig und es stinkt. Auf keinen Fall würde ich mein Kind in so eine Müllhalde schicken.", date);
-        Comment comment3 = new Comment("Hans Peter", "Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!", date);
+        Comment comment1 = new Comment("Hans Peter", "Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!", date, 4.1f);
+        Comment comment2 = new Comment("Franziska Hart", "Geht mal garnicht. Überall ist es dreckig und es stinkt. Auf keinen Fall würde ich mein Kind in so eine Müllhalde schicken.", date, 2.5f);
+        Comment comment3 = new Comment("Hans Peter", "Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!", date, 0.5f);
 
         List<Comment> comments = new ArrayList<>();
 
