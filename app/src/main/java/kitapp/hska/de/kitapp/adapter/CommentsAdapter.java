@@ -48,6 +48,16 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
             TextView textViewDate = (TextView) view.findViewById(R.id.CommentDate);
             TextView textViewText = (TextView) view.findViewById(R.id.CommentText);
 
+            if (textViewName != null) {
+                textViewName.setText(comment.getName());
+            }
+            if (textViewDate != null) {
+                textViewDate.setText(comment.getDate().toString());
+            }
+            if (textViewText != null) {
+                textViewText.setText(comment.getText());
+            }
+
         }
         return view;
 
