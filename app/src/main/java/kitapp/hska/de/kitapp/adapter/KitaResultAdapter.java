@@ -2,7 +2,7 @@ package kitapp.hska.de.kitapp.adapter;
 
 
 import android.content.Context;
-import android.media.Image;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +12,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import kitapp.hska.de.kitapp.KitaDetailsActivity;
 import kitapp.hska.de.kitapp.R;
-import kitapp.hska.de.kitapp.model.KitaResult;
+import kitapp.hska.de.kitapp.domain.KitaResult;
 
 /**
  * Created by bwpc on 20.06.2015.
@@ -60,9 +60,9 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
                 ratingBarEvaluation.setRating(kita.getEvaluation());
             }
 
-           /* if (imageViewTN != null) {
+            if (imageViewTN != null) {
 
-            }*/
+            }
 
             if (textViewCircuit != null) {
                 String distance = kita.getDistance().toString();
@@ -72,9 +72,22 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
             if (buttonTel != null) {
 
             }
+
+            if(buttonEmail != null) {
+
+            }
+
+            if(buttonFav != null) {
+
+            }
+
+            if(buttonCont != null ) {
+
+            }
         }
         return view;
-
     }
+
+
 
 }

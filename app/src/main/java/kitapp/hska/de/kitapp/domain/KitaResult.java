@@ -1,7 +1,8 @@
-package kitapp.hska.de.kitapp.model;
+package kitapp.hska.de.kitapp.domain;
 
 import android.media.Image;
-import android.provider.ContactsContract;
+
+import kitapp.hska.de.kitapp.domain.KitaContacts;
 
 /**
  * Created by bwpc on 20.06.2015.

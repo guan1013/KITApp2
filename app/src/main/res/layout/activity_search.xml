@@ -291,7 +291,6 @@
         android:gravity="bottom">
 
         <Button
-            android:id="@+id/search.button.sendsearch"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="sendSearch"

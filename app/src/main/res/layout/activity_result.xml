@@ -22,8 +22,8 @@
             android:layout_weight="1"
             android:checked="true"
             android:onClick="onToggle"
-            android:textOn="@string/resultToggleButtonList"
-            android:textOff="@string/resultToggleButtonList"/>
+            android:textOff="@string/resultToggleButtonList"
+            android:textOn="@string/resultToggleButtonList" />
 
         <ToggleButton
             android:id="@+id/result.togglebutton.map"
@@ -32,8 +32,8 @@
             android:layout_weight="1"
             android:onClick="onToggle"
             android:text="@string/resultToggleButtonMapValue"
-            android:textOn="@string/resultToggleButtonMap"
-            android:textOff="@string/resultToggleButtonMap" />
+            android:textOff="@string/resultToggleButtonMap"
+            android:textOn="@string/resultToggleButtonMap" />
     </RadioGroup>
 
     <LinearLayout
@@ -62,9 +62,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="gone">
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="MAP"/>
+            android:text="MAP" />
     </LinearLayout>
 </LinearLayout>

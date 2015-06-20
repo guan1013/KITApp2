@@ -12,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.ToggleButton;
 
+import kitapp.hska.de.kitapp.domain.SearchQuery;
+
 
 public class SearchActivity extends ActionBarActivity {
 
@@ -25,7 +27,6 @@ public class SearchActivity extends ActionBarActivity {
     private ToggleButton toggleButtonAge2;
     private ToggleButton toggleButtonAge3;
     private RatingBar ratingBarEvaluation;
-    // private Button searchButton;
 
     /*
     <======================= CLASS ATTRUIBUTES =======================>
@@ -41,7 +42,15 @@ public class SearchActivity extends ActionBarActivity {
     public void sendSearch(View button) {
         // Get UI input
         String city = editTextCity.getText().toString();
-        String circuit = editTextCircuit.getText().toString();
+        int circuit = 0;
+
+        try {
+
+            circuit = Integer.parseInt(editTextCircuit.getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Integer[] minMaxAge = getMinMaxAge();
         int minAge = minMaxAge[0];
         int maxAge = minMaxAge[1];
@@ -50,6 +59,8 @@ public class SearchActivity extends ActionBarActivity {
         Float evaluation = this.ratingBarEvaluation.getRating();
         int size = this.size;
         int closing = this.closing;
+
+        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, evaluation, size, closing);
 
         Intent myIntent = new Intent(this, ResultActivity.class);
         startActivity(myIntent);
@@ -182,7 +193,6 @@ public class SearchActivity extends ActionBarActivity {
         this.toggleButtonAge2 = (ToggleButton) findViewById(R.id.search_togglebutton_age_2);
         this.toggleButtonAge3 = (ToggleButton) findViewById(R.id.search_togglebutton_age_3);
         this.ratingBarEvaluation = (RatingBar) findViewById(R.id.search_ratingbar_evaluation);
-        //this.searchButton = (Button) findViewById(R.id.search_button_sendsearch);
 
     }
 
@@ -282,7 +292,6 @@ public class SearchActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
-
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
@@ -290,7 +299,6 @@ public class SearchActivity extends ActionBarActivity {
             Intent myIntent = new Intent(this, MainActivity.class);
             startActivity(myIntent);
             return true;
-
         } else if (id == R.id.action_favorites) {
 
         } else if (id == R.id.action_news) {

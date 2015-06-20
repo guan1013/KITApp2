@@ -1,4 +1,4 @@
-package kitapp.hska.de.kitapp.model;
+package kitapp.hska.de.kitapp.domain;
 
 import android.provider.ContactsContract;
 

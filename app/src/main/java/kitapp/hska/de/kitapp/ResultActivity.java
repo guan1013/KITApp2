@@ -1,33 +1,72 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.adapter.KitaResultAdapter;
-import kitapp.hska.de.kitapp.model.KitaResult;
+import kitapp.hska.de.kitapp.domain.KitaResult;
 
 
 public class ResultActivity extends ActionBarActivity {
 
+    /*
+    <======================= VIEW ATTRIBUTES =======================>
+     */
     private ListView resultListView;
     private LinearLayout resultLinearLayoutList;
-    private LinearLayout resultLinaerLayoutMap;
+    private LinearLayout resultLinearLayoutMap;
+
+
+      /*
+    <======================= PUBLIC METHODS =======================>
+     */
+
+    public void onToggle(View button) {
+        ((RadioGroup) button.getParent()).check(button.getId());
+        try {
+            if (((ToggleButton) button).getText().toString().equals(getString(R.string.resultToggleButtonMap))) {
+                resultLinearLayoutMap.setVisibility(View.VISIBLE);
+                resultLinearLayoutList.setVisibility(View.GONE);
+            } else {
+                resultLinearLayoutMap.setVisibility(View.GONE);
+                resultLinearLayoutList.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    <======================= PRIVATE METHODS =======================>
+     */
 
     private void initViews() {
         resultListView = (ListView) findViewById(R.id.result_listview);
         resultLinearLayoutList = (LinearLayout) findViewById(R.id.result_linarlayout_list);
-        resultLinaerLayoutMap = (LinearLayout) findViewById(R.id.result_linarlayout_map);
+        resultLinearLayoutMap = (LinearLayout) findViewById(R.id.result_linarlayout_map);
     }
+
+    private void showDetail() {
+        Intent myIntent = new Intent(this, KitaDetailsActivity.class);
+        startActivity(myIntent);
+    }
+
+    /*
+    <======================= OVERRIDE METHODS =======================>
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +86,13 @@ public class ResultActivity extends ActionBarActivity {
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
         resultListView.setAdapter(resultAdapter);
 
+        resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showDetail();
+            }
+        });
+
 
         ((RadioGroup) findViewById(R.id.result_radiogroup_buttons)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -57,8 +103,6 @@ public class ResultActivity extends ActionBarActivity {
                 }
             }
         });
-
-
     }
 
     @Override
@@ -76,26 +120,23 @@ public class ResultActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
+            Intent myIntent = new Intent(this, LoginActivity.class);
+            startActivity(myIntent);
             return true;
-        }
+        } else if (id == R.id.action_home) {
+            Intent myIntent = new Intent(this, MainActivity.class);
+            startActivity(myIntent);
+            return true;
+        } else if (id == R.id.action_search) {
+            Intent myIntent = new Intent(this, SearchActivity.class);
+            startActivity(myIntent);
+            return true;
+        } else if (id == R.id.action_favorites) {
 
+        } else if (id == R.id.action_news) {
+
+        }
         return super.onOptionsItemSelected(item);
     }
-
-    public void onToggle(View button) {
-        ((RadioGroup) button.getParent()).check(button.getId());
-        try {
-            if (((ToggleButton) button).getText().toString().equals(getString(R.string.resultToggleButtonMap))) {
-                resultLinaerLayoutMap.setVisibility(View.VISIBLE);
-                resultLinearLayoutList.setVisibility(View.GONE);
-            } else {
-                resultLinaerLayoutMap.setVisibility(View.GONE);
-                resultLinearLayoutList.setVisibility(View.VISIBLE);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
