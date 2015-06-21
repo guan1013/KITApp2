@@ -12,9 +12,11 @@ import android.widget.Toast;
 import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.adapter.EvaluationsAdapter;
+import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.domain.Evaluation;
 import kitapp.hska.de.kitapp.domain.Kita;
 
@@ -84,7 +86,17 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
         final Kita kita = getKita();
 
-        EvaluationsAdapter evaluationsAdapter = new EvaluationsAdapter(this, R.layout.evaluation_item_layout, kita.getEvaluations());
+        //////////
+
+        List<Evaluation> evList = new ArrayList<Evaluation>();
+
+        Evaluation e = new Evaluation("aisduhaisdhaidh", new AppUser(null, "Frau Holle", null, null, null), new Date(), 4.0);
+
+        evList.add(e);
+
+        ////////
+
+        EvaluationsAdapter evaluationsAdapter = new EvaluationsAdapter(this, R.layout.evaluation_item_layout, evList); //TODO: change kita.getEvaluations()
 
         evaluationListView.setAdapter(evaluationsAdapter);
 
@@ -116,6 +128,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
             return;
         }
 
+
+
         // Set NAME of kita on ui
         kitaDetailsName.setText(kita.getName());
 
@@ -139,12 +153,12 @@ public class KitaDetailsActivity extends AppCompatActivity {
         }
 
         if (kita.getOpeningHours() != null) {
-            kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
+            // kitaDetailsOpenhours.setText(kita.getOpeningHours().getText()); //TODO: wieder einkommentieren
         }
 
 
         kitaDetailsManagement.setText(kita.getManagement());
-//        kitaDetailsConfessionData.setText(kita.getConfession().getText());
+        // kitaDetailsConfessionData.setText(kita.getConfession().getText());
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
     }
