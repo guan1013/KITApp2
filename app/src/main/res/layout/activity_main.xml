@@ -1,71 +1,83 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <ScrollView
+        android:id="@+id/scrollViewMainActivity"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/scrollViewMainActivity" >
+        android:layout_height="fill_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/mainImageViewLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageViewLogo"
                 android:src="@drawable/logo"
                 android:textAlignment="center" />
 
             <TextView
+                android:id="@+id/mainTextLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/main_activity_location_field_label"
-                android:id="@+id/textView" />
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
+                android:orientation="horizontal"
                 android:weightSum="1">
 
                 <EditText
+                    android:id="@+id/mainEditTextLocation"
                     android:layout_width="295dp"
                     android:layout_height="50dp"
-                    android:id="@+id/editTextLocation"
                     android:layout_above="@+id/button"
                     android:layout_alignParentStart="true"
                     android:layout_marginBottom="71dp"
-                    android:maxLines="1"
                     android:lines="1"
-                    android:singleLine="true" />
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:windowSoftInputMode="stateUnspecified"
+                    />
+
 
                 <ImageButton
+                    android:id="@+id/mainImageButtonLocation"
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageButtonLocation"
                     android:layout_gravity="right"
                     android:src="@drawable/gps" />
 
             </LinearLayout>
 
             <Button
+                android:id="@+id/mainButtonSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/buttonSuche"
-                android:id="@+id/buttonHomeSearch"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="118dp"
-                android:layout_marginTop="50dp"/>
+                android:layout_marginTop="50dp"
+                android:text="@string/buttonSuche" />
 
         </LinearLayout>
+
+
     </ScrollView>
+
+
 
 </RelativeLayout>
