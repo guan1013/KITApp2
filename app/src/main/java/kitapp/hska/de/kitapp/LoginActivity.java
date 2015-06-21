@@ -1,6 +1,9 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.apache.http.StatusLine;
+
+import kitapp.hska.de.kitapp.domain.AppUser;
+import kitapp.hska.de.kitapp.services.AppUserService;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -17,19 +26,63 @@ public class LoginActivity extends ActionBarActivity {
     private Button buttonLogin;
     private Button buttonRegister;
 
+    private AppUserService.AppUserServiceBinder appUserServiceBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            LoginActivity.this.appUserServiceBinder = ((AppUserService.AppUserServiceBinder) service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        Intent i = new Intent(this, AppUserService.class);
+        bindService(i, serviceConnection, BIND_AUTO_CREATE);
+        super.onStart();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        buttonRegister = (Button)findViewById(R.id.buttonLoginRegister);
+        editTextEmail = (EditText) findViewById(R.id.editTextLoginEmail);
+        editTextPassword = (EditText) findViewById(R.id.editTextLoginPassword);
+
+        buttonRegister = (Button) findViewById(R.id.buttonLoginRegister);
+        buttonLogin = (Button) findViewById(R.id.buttonLogin);
+
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppUser userToLogin = new AppUser();
+                userToLogin.setEmail(editTextEmail.getText().toString());
+                userToLogin.setPassword(editTextPassword.getText().toString());
+
+                StatusLine status = appUserServiceBinder.login(userToLogin);
+
+                if(status != null) {
+
+                }
+
+                toast("Login result: " + status.getReasonPhrase() + " (" + status.getStatusCode() + ")");
+
+            }
+        });
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -56,4 +109,9 @@ public class LoginActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void toast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
 }

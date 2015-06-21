@@ -11,6 +11,4 @@
         android:orderInCategory="100" app:showAsAction="collapseActionView"/>
     <item android:id="@+id/action_news" android:title="@string/action_news"
         android:orderInCategory="100" app:showAsAction="collapseActionView"/>
-    <item android:id="@+id/action_kita_detail" android:title="@string/action_kita_detail"
-        android:orderInCategory="100" app:showAsAction="collapseActionView"/>
 </menu>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Base64;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,17 +16,24 @@ import com.google.gson.JsonParseException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -40,6 +48,7 @@ public class AppUserService extends Service {
 
     private final static String BACKEND_URL = "http://ebusiness-kitapp-backend.herokuapp.com/";
     private final static String APP_USER_PARAM = "appuser";
+    private final static String PATH_LOGIN = "/server";
 
     private AppUserServiceBinder binder = new AppUserServiceBinder();
 
@@ -49,6 +58,10 @@ public class AppUserService extends Service {
     }
 
     public class AppUserServiceBinder extends Binder {
+
+        private boolean isLoggedIn = false;
+
+
 
         public void createAppUser(AppUser appUser) throws InterruptedException, ExecutionException, TimeoutException {
 
@@ -84,6 +97,10 @@ public class AppUserService extends Service {
 
                         HttpResponse response = httpClient.execute(postAction);
                         HttpEntity entity = response.getEntity();
+
+                        if(response.getStatusLine().getStatusCode() == 200) {
+
+                        }
                         text = getASCIIContentFromEntity(entity);
 
                         System.out.println(text);
@@ -99,6 +116,66 @@ public class AppUserService extends Service {
             appUserTask.execute(appUser);
             appUserTask.get(5L, TimeUnit.SECONDS);
         }
+
+        public StatusLine login(AppUser appUser) {
+
+            AsyncTask<AppUser, Void, StatusLine> appUserTask = new AsyncTask<AppUser, Void, StatusLine>() {
+                @Override
+                protected StatusLine doInBackground(AppUser... params) {
+
+                    if (params == null || params.length == 0) {
+                        return null;
+                    }
+
+                    AppUser appUser = params[0];
+
+                    System.out.println("Try to login user: " + appUser);
+
+
+                    try {
+                        HttpClient httpClient = new DefaultHttpClient();
+                        HttpContext localContext = new BasicHttpContext();
+
+                        String url = BACKEND_URL + PATH_LOGIN;
+                        HttpGet httpGet = new HttpGet(url);
+
+                        httpGet.setHeader("Authorization", getB64Auth(appUser.getEmail(),appUser.getPassword()));
+                        String text = null;
+
+                        System.out.println(getB64Auth(appUser.getEmail(),appUser.getPassword()));
+
+                        HttpResponse response = httpClient.execute(httpGet, localContext);
+
+                        HttpEntity entity = response.getEntity();
+
+                        System.out.println("RESPONSE:");
+                        System.out.println(response.getStatusLine().getStatusCode() + ": " + response.getStatusLine().getReasonPhrase());
+
+                        return response.getStatusLine();
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }
+            };
+
+            try {
+                appUserTask.execute(appUser);
+                StatusLine result = appUserTask.get(5L, TimeUnit.SECONDS);
+                return result;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        private String getB64Auth (String login, String pass) {
+            String source=login+":"+pass;
+            String ret="Basic "+Base64.encodeToString(source.getBytes(),Base64.URL_SAFE|Base64.NO_WRAP);
+            return ret;
+        }
+
 
         protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
             InputStream in = entity.getContent();

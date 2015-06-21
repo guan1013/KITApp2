@@ -212,14 +212,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
             return true;
         }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_kita_detail) {
-
-            Intent myIntent = new Intent(this, KitaDetailsActivity.class);
-            startActivity(myIntent);
-            return true;
-        }
-
         if(id == R.id.action_news) {
             Intent myIntent = new Intent(this,NewsActivity.class);
             startActivity(myIntent);
