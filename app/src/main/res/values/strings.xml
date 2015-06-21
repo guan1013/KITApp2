@@ -118,6 +118,14 @@
     <!-- Login Strings -->
     <string name="loginAccount">Noch kein Benutzerkonto?</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_news">NewsActivity</string>
+
+    <!-- News Strings -->
+    <string name="newsKitaText">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
+    <string name="newsAuthor1">Kita Regenbogen</string>
+    <string name="newsAuthor2">Kita Sonnenschein</string>
+    <string name="newsAuthor3">Kita Villa Kunterbunt</string>
+    <string name="newsAuthor4">Kita Katholischer Kindergarten Durlach</string>
 
 
 
