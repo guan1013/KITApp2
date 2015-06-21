@@ -139,12 +139,12 @@ public class KitaDetailsActivity extends AppCompatActivity {
         }
 
         if (kita.getOpeningHours() != null) {
-            kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
+            //kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());//TODO
         }
 
 
         kitaDetailsManagement.setText(kita.getManagement());
-        kitaDetailsConfessionData.setText(kita.getConfession().getText());
+        //kitaDetailsConfessionData.setText(kita.getConfession().getText()); //TODO
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
     }
