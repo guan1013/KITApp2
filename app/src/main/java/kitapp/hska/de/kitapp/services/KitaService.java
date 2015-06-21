@@ -210,9 +210,7 @@ public class KitaService extends Service {
         }
 
         protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
-
             InputStream in = entity.getContent();
-
             StringBuffer out = new StringBuffer();
             int n = 1;
             while (n > 0) {
@@ -223,9 +221,7 @@ public class KitaService extends Service {
                 if (n > 0) out.append(new String(b, 0, n));
 
             }
-
             return out.toString();
-
         }
     }
 

@@ -78,8 +78,7 @@ public class ResultActivity extends ActionBarActivity {
         List<Kita> kitas = new ArrayList<>();
         if (bundle != null) {
             try {
-                Kita[] kitaArray = (Kita[]) bundle.get(KITAS_BUNDLE_KEY);
-                kitas = new ArrayList<>(Arrays.asList(kitaArray));
+                kitas = (ArrayList<Kita>) bundle.get(KITAS_BUNDLE_KEY);
 
             } catch (Exception e) {
                 e.printStackTrace();

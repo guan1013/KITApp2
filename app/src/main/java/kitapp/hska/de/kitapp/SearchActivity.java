@@ -16,6 +16,8 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
@@ -100,9 +102,9 @@ public class SearchActivity extends ActionBarActivity {
         try {
             kitas = kitaServiceBinder.getKitaBySearchQuery(query);
 
-            if(kitas != null && kitas.length > 0) {
+            if (kitas != null && kitas.length > 0) {
                 Intent intent = new Intent(this, ResultActivity.class);
-                intent.putExtra(KITAS_BUNDLE_KEY, kitas);
+                intent.putExtra(KITAS_BUNDLE_KEY, new ArrayList<>(Arrays.asList(kitas)));
                 startActivity(intent);
             }
         } catch (InterruptedException e) {
@@ -255,7 +257,7 @@ public class SearchActivity extends ActionBarActivity {
      */
 
     @Override
-    protected  void onStart() {
+    protected void onStart() {
         Intent intent = new Intent(this, KitaService.class);
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
         super.onStart();
