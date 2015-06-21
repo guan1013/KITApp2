@@ -1,18 +1,25 @@
 package kitapp.hska.de.kitapp;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
@@ -20,8 +27,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
@@ -30,7 +40,7 @@ import kitapp.hska.de.kitapp.domain.SearchQuery;
 import kitapp.hska.de.kitapp.services.KitaService;
 
 
-public class SearchActivity extends ActionBarActivity {
+public class SearchActivity extends ActionBarActivity implements LocationListener {
 
     /*
     <======================= CONSTANTS =======================>
@@ -48,6 +58,7 @@ public class SearchActivity extends ActionBarActivity {
     private ToggleButton toggleButtonAge3;
     private RatingBar ratingBarEvaluation;
     private Spinner spinnerConfession;
+    private ImageButton buttonLocation;
 
     /*
     <======================= CLASS ATTRUIBUTES =======================>
@@ -57,6 +68,8 @@ public class SearchActivity extends ActionBarActivity {
     private int size;
     private int closing;
 
+    private LocationManager locationManager;
+    private String provider;
     private KitaService.KitaServiceBinder kitaServiceBinder;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -172,7 +185,7 @@ public class SearchActivity extends ActionBarActivity {
 
     private void sendQuery(SearchQuery query) {
 
-        Kita[] kitas = null;
+        Kita[] kitas;
         try {
             kitas = kitaServiceBinder.getKitaBySearchQuery(query);
 
@@ -230,7 +243,7 @@ public class SearchActivity extends ActionBarActivity {
             confession = 2;
         } else if (confessionString.equals(Kita.Confession.EVANGELIC.toString())) {
             confession = 3;
-        } else if (confessionString.equals(Kita.Confession.NO_CONFESSION)) {
+        } else if (confessionString.equals(Kita.Confession.NO_CONFESSION.toString())) {
             confession = 4;
         }
 
@@ -297,6 +310,7 @@ public class SearchActivity extends ActionBarActivity {
         this.toggleButtonAge3 = (ToggleButton) findViewById(R.id.search_togglebutton_age_3);
         this.ratingBarEvaluation = (RatingBar) findViewById(R.id.search_ratingbar_rating);
         this.spinnerConfession = (Spinner) findViewById(R.id.search_spinner_confession);
+        this.buttonLocation = (ImageButton) findViewById(R.id.search_imagebutton_location);
 
     }
 
@@ -319,7 +333,7 @@ public class SearchActivity extends ActionBarActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                ;
+
             }
 
             @Override
@@ -342,18 +356,81 @@ public class SearchActivity extends ActionBarActivity {
 
     private void setSpinnerConfessionListener() {
         spinnerConfession.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Kita.Confession.values()));
+    }
 
+    private void setButtonLocationListener() {
+        buttonLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+                boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+                // check if enabled and if not send user to the GSP settings
+                // Better solution would be to display a dialog and suggesting to
+                // go to the settings
+                if (!enabled) {
+                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(intent);
+                }
+
+                // Get location mangager
+                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                // Define the criteria how to select the locatioin provider -> use
+                // default
+                Criteria criteria = new Criteria();
+                provider = locationManager.getBestProvider(criteria, false);
+                Location location = locationManager.getLastKnownLocation(provider);
+
+                // Initialze location field
+                if (location != null) {
+                    System.out.println("Provider " + provider + " has been selected.");
+                    onLocationChanged(location);
+                } else {
+                    editTextCity.setText(null);
+                    editTextCity.setHint("Location not available");
+                }
+
+            }
+        });
+    }
+
+    public String getLocationName(double lattitude, double longitude) {
+
+        String cityName = "Not Found";
+        Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+        try {
+
+            List<Address> addresses = gcd.getFromLocation(lattitude, longitude,
+                    10);
+
+            for (Address adrs : addresses) {
+                if (adrs != null) {
+
+                    String city = adrs.getLocality();
+                    if (city != null && !city.equals("")) {
+                        cityName = city;
+                        System.out.println("city ::  " + cityName);
+                    } else {
+
+                    }
+                    // // you should also try with addresses.get(0).toSring();
+
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cityName;
 
     }
 
 
     private void initValues() {
-
         costs = 200;
         open = 0;
         size = 15;
         closing = 0;
-
     }
 
     /*
@@ -380,19 +457,13 @@ public class SearchActivity extends ActionBarActivity {
         setContentView(R.layout.activity_search);
 
         initViews();
-
         setSeekBarCircuitChangeListener();
-
         setOnCheckedListener(R.id.search_radiogroup_cost);
-
         setOnCheckedListener(R.id.search_radiogroup_size);
-
         setOnCheckedListener(R.id.search_radiogroup_closing);
-
         setOnCheckedListener(R.id.search_radiogroup_open);
-
         setSpinnerConfessionListener();
-
+        setButtonLocationListener();
         initValues();
 
     }
@@ -427,4 +498,29 @@ public class SearchActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        double lat = (double) (location.getLatitude());
+        double lng = (double) (location.getLongitude());
+
+        editTextCity.setText(getLocationName(lat, lng));
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+
 }
