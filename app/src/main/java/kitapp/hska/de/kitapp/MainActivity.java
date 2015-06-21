@@ -27,10 +27,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.w3c.dom.Element;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -108,32 +111,38 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
             @Override
             public void onClick(View v) {
 
+                // Get the city entered by the user
                 String city = editTextLocation.getText().toString();
 
+                // Result of the search
                 Kita[] kitas = null;
 
+                // Call the service and perform the search
                 try {
                     kitas = kitaServiceBinder.getKitaByCity(city);
 
-                    if (kitas == null) {
-                        toast("Found 0 Kitas (kitas=null)");
-                    } else
-                    {
-                        toast("Found " + kitas.length + " Kitas");
-                    }
-
-
-                    if(kitas != null && kitas.length > 0) {
-                        Intent i = new Intent(getApplicationContext(), KitaDetailsActivity.class);
-                        i.putExtra("kita",kitas[0]);
-                        startActivity(i);
-                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     toast(e.getClass().getName());
                     return;
                 }
 
+                // If there are no search results, return
+                if (kitas == null) {
+                    toast("Found 0 Kitas (kitas=null)");
+                    return;
+                } else {
+                    toast("Found " + kitas.length + " Kitas");
+
+                    if (kitas.length == 0) {
+                        return;
+                    }
+                }
+
+                // Send search result to ResultActivity
+                Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                intent.putExtra("kitas", new ArrayList<Kita>(Arrays.asList(kitas)));
+                startActivity(intent);
 
             }
         });

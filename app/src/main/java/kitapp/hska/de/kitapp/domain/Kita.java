@@ -1,5 +1,7 @@
 package kitapp.hska.de.kitapp.domain;
 
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Created by Yannick on 20.06.2015.
  */
-public class Kita implements Serializable {
+public class Kita implements Serializable{
 
 
     /*
