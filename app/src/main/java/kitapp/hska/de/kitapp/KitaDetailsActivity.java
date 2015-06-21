@@ -1,5 +1,6 @@
 package kitapp.hska.de.kitapp;
 
+import android.media.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,13 +25,13 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
     TextView kitaDetailsName;
     TextView kitaDetailsAddressData;
-    TextView kitaDetailsEvaluation;
     TextView kitaDetailsCostsData;
     TextView kitaDetailsOpenhours;
     TextView kitaDetailsManagement;
     TextView kitaDetailsConfessionData;
     TextView kitaDetailsAgeData;
     TextView kitaDetailsAboutData;
+    RatingBar kitaRatingBar;
 
     RatingBar kitaDetailsRatingbar;
 
@@ -40,7 +41,6 @@ public class KitaDetailsActivity extends AppCompatActivity {
         resultListView = (ListView) findViewById(R.id.result_listview);
         kitaDetailsAddressData = (TextView) findViewById(R.id.KitaDetailsAddressData);
         kitaDetailsName = (TextView) findViewById(R.id.KitaDetailsName);
-        kitaDetailsEvaluation = (TextView) findViewById(R.id.KitaDetailsEvaluation);
         kitaDetailsCostsData = (TextView) findViewById(R.id.KitaDetailsCostsData);
         kitaDetailsOpenhours = (TextView) findViewById(R.id.KitaDetailsOpenhours);
         kitaDetailsManagement = (TextView) findViewById(R.id.KitaDetailsManagementData);
@@ -49,6 +49,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsAboutData = (TextView) findViewById(R.id.KitaDetailsAboutData);
         kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
         resultListView = (ListView) findViewById(R.id.result_listview);
+        kitaRatingBar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
 
     }
 
@@ -71,12 +72,12 @@ public class KitaDetailsActivity extends AppCompatActivity {
     private void cleanUi() {
         kitaDetailsName.setText("");
         kitaDetailsAddressData.setText("");
-        kitaDetailsEvaluation.setText("");
         kitaDetailsOpenhours.setText("");
         kitaDetailsManagement.setText("");
         kitaDetailsConfessionData.setText("");
         kitaDetailsAgeData.setText("");
         kitaDetailsAboutData.setText("");
+        kitaRatingBar.setRating(0.0f);
     }
 
     private void displayKita(Kita kita) {
@@ -101,7 +102,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
         }
 
         if (kita.getAvgRating() != null) {
-            kitaDetailsEvaluation.setText(kita.getAvgRating().toString());
+            //kitaDetailsEvaluation.setText(kita.getAvgRating().toString());
+            kitaRatingBar.setRating(kita.getAvgRating().floatValue());
         }
 
         if (kita.getCosts() != null) {
