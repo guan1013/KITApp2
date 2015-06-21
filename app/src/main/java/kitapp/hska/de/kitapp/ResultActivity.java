@@ -63,6 +63,14 @@ public class ResultActivity extends ActionBarActivity {
         startActivity(myIntent);
     }
 
+    private List<Kita> getKitaList(){
+
+        Bundle bundle;
+
+        return new ArrayList<>();
+
+    }
+
     /*
     <======================= OVERRIDE METHODS =======================>
      */
@@ -75,13 +83,9 @@ public class ResultActivity extends ActionBarActivity {
 
         resultListView = (ListView) findViewById(R.id.result_listview);
 
-        Kita kita1 = new Kita();
-        Kita kita2 = new Kita();
 
-        List<Kita> kitas = new ArrayList<>();
+        List<Kita> kitas = getKitaList();
 
-        kitas.add(kita1);
-        kitas.add(kita2);
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
         resultListView.setAdapter(resultAdapter);
 

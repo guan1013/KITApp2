@@ -16,6 +16,7 @@ public class AppUser implements Serializable {
     private Long id;
     private String email;
     private String name;
+    private String password;
     private List<Kita> favorits;
     private Date dateCreated;
 
@@ -27,9 +28,10 @@ public class AppUser implements Serializable {
 
     }
 
-    public AppUser(String email, String name, List<Kita> favorits, Date dateCreated) {
+    public AppUser(String email, String name, String password, List<Kita> favorits, Date dateCreated) {
         this.email = email;
         this.name = name;
+        this.name = password;
         this.favorits = favorits;
         this.dateCreated = dateCreated;
     }
@@ -51,6 +53,8 @@ public class AppUser implements Serializable {
             return false;
         if (getName() != null ? !getName().equals(appUser.getName()) : appUser.getName() != null)
             return false;
+        if (getPassword() != null ? !getPassword().equals(appUser.getPassword()) : appUser.getPassword() != null)
+            return false;
         if (getFavorits() != null ? !getFavorits().equals(appUser.getFavorits()) : appUser.getFavorits() != null)
             return false;
         return !(getDateCreated() != null ? !getDateCreated().equals(appUser.getDateCreated()) : appUser.getDateCreated() != null);
@@ -62,6 +66,7 @@ public class AppUser implements Serializable {
         int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
         result = 31 * result + (getFavorits() != null ? getFavorits().hashCode() : 0);
         result = 31 * result + (getDateCreated() != null ? getDateCreated().hashCode() : 0);
         return result;
@@ -73,6 +78,7 @@ public class AppUser implements Serializable {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
                 ", favorits=" + favorits +
                 ", dateCreated=" + dateCreated +
                 '}';
@@ -104,6 +110,14 @@ public class AppUser implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Kita> getFavorits() {

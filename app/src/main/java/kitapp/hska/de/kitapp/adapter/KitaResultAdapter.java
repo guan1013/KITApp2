@@ -59,6 +59,7 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
             }
 
             if (textViewCircuit != null) {
+                // TODO: CALCULATE DISTANCE
                 String distance = "PLACEHOLDER";
                 textViewCircuit.setText(distance + " km");
             }
