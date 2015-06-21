@@ -22,6 +22,9 @@
     <!-- Placeholder String -->
     <string name="placeHolderString">PLACEHOLDER</string>
 
+    <!-- Toasts -->
+    <string name="noKitasFound">0 Kitas gefunden</string>
+
     <!-- Button -->
     <string name="buttonSend">Senden</string>
     <string name="buttonSearch">Suchen</string>

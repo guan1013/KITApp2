@@ -106,6 +106,8 @@ public class SearchActivity extends ActionBarActivity {
                 Intent intent = new Intent(this, ResultActivity.class);
                 intent.putExtra(KITAS_BUNDLE_KEY, new ArrayList<>(Arrays.asList(kitas)));
                 startActivity(intent);
+            } else {
+                toast(getString(R.string.noKitasFound));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
