@@ -21,7 +21,7 @@ import kitapp.hska.de.kitapp.domain.Kita;
  */
 public class KitaResultAdapter extends ArrayAdapter<Kita> {
 
-    public KitaResultAdapter(Context context, int resource, Kita[] items) {
+    public KitaResultAdapter(Context context, int resource, List<Kita> items) {
         super(context, resource, items);
     }
 

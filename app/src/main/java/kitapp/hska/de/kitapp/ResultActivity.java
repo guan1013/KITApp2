@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.ToggleButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.adapter.KitaResultAdapter;
@@ -70,15 +71,16 @@ public class ResultActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    private Kita[] getKitaList() {
+    private List<Kita> getKitaList() {
 
         Bundle bundle = this.getIntent().getExtras();
 
-        Kita[] kitas = null;
+        List<Kita> kitas = new ArrayList<>();
         if (bundle != null) {
-
             try {
-                kitas = (Kita[]) bundle.get(KITAS_BUNDLE_KEY);
+                Kita[] kitaArray = (Kita[]) bundle.get(KITAS_BUNDLE_KEY);
+                kitas = new ArrayList<>(Arrays.asList(kitaArray));
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -101,7 +103,7 @@ public class ResultActivity extends ActionBarActivity {
         resultListView = (ListView) findViewById(R.id.result_listview);
 
 
-        final Kita[] kitas = getKitaList();
+        final List<Kita> kitas = getKitaList();
 
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
 
@@ -110,9 +112,10 @@ public class ResultActivity extends ActionBarActivity {
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDetail(kitas[position]);
+                showDetail(kitas.get(position));
             }
         });
+
 
         ((RadioGroup) findViewById(R.id.result_radiogroup_buttons)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

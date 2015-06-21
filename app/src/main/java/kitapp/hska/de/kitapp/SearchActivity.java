@@ -100,11 +100,6 @@ public class SearchActivity extends ActionBarActivity {
         try {
             kitas = kitaServiceBinder.getKitaBySearchQuery(query);
 
-            if(kitas == null) {
-                toast("Found 0 Kitas (kitas=null)");
-            } else {
-                toast("Found " + kitas.length + " Kitas");
-            }
             if(kitas != null && kitas.length > 0) {
                 Intent intent = new Intent(this, ResultActivity.class);
                 intent.putExtra(KITAS_BUNDLE_KEY, kitas);

@@ -174,8 +174,6 @@ public class KitaService extends Service {
 
                     String request = gson.toJson(params[0]);
 
-                    System.out.println("==========================================request" + request + "==========================================");
-
                     try {
 
                         HttpClient httpClient = new DefaultHttpClient();
@@ -186,16 +184,12 @@ public class KitaService extends Service {
 
                         HttpResponse response = httpClient.execute(postAction);
 
-                        System.out.println("==========================================response" + response.toString() + "==========================================");
-
-
                         HttpEntity entity = response.getEntity();
 
                         text = getASCIIContentFromEntity(entity);
 
                         Kita[] kitas = gson.fromJson(text, Kita[].class);
 
-                        System.out.println("==========================================text" + text + "==========================================");
                         for (Kita k : kitas) {
                             System.out.println(k.toString());
                         }
