@@ -24,7 +24,7 @@ public class WriteCommentActivity extends ActionBarActivity {
         Date date = new Date();
         Double evaluation = (double) ratingBarEvaluation.getRating();
 
-        Evaluation query = new Evaluation(text,new AppUser(null,name,null,null), date, evaluation);
+        Evaluation query = new Evaluation(text,new AppUser(null,name,null,null,null), date, evaluation);
 
         Intent myIntent = new Intent(this, KitaDetailsActivity.class);
         startActivity(myIntent);
