@@ -23,6 +23,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
 
     TextView kitaDetailsName;
+    TextView kitaDetailsAddressData;
     TextView kitaDetailsEvaluation;
     TextView kitaDetailsCostsData;
     TextView kitaDetailsOpenhours;
@@ -37,6 +38,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
     private void initViews() {
         resultListView = (ListView) findViewById(R.id.result_listview);
+        kitaDetailsAddressData = (TextView) findViewById(R.id.KitaDetailsAddressData);
         kitaDetailsName = (TextView) findViewById(R.id.KitaDetailsName);
         kitaDetailsEvaluation = (TextView) findViewById(R.id.KitaDetailsEvaluation);
         kitaDetailsCostsData = (TextView) findViewById(R.id.KitaDetailsCostsData);
@@ -60,39 +62,54 @@ public class KitaDetailsActivity extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
 
         if (b != null) {
-            Kita kita = (Kita)b.get("kita");
+            Kita kita = (Kita) b.get("kita");
+
             displayKita(kita);
         }
     }
 
+    private void cleanUi() {
+        kitaDetailsName.setText("");
+        kitaDetailsAddressData.setText("");
+        kitaDetailsEvaluation.setText("");
+        kitaDetailsOpenhours.setText("");
+        kitaDetailsManagement.setText("");
+        kitaDetailsConfessionData.setText("");
+        kitaDetailsAgeData.setText("");
+        kitaDetailsAboutData.setText("");
+    }
+
     private void displayKita(Kita kita) {
 
+        cleanUi();
 
         if (kita == null) {
             return;
         }
 
+        // Set NAME of kita on ui
         kitaDetailsName.setText(kita.getName());
+
+        // Set ADDRESS of kita on ui
+        if (kita.getAddress() != null) {
+            kitaDetailsAddressData.setText(
+                    kita.getAddress().getStreet() + "\n" +
+                            kita.getAddress().getZipcode() + " " +
+                            kita.getAddress().getCity() + "\n" +
+                            kita.getAddress().getPhone() + "\n" +
+                            kita.getAddress().getEmail());
+        }
 
         if (kita.getAvgRating() != null) {
             kitaDetailsEvaluation.setText(kita.getAvgRating().toString());
-        } else {
-            kitaDetailsEvaluation.setText("");
         }
 
-        if(kita.getCosts() != null) {
+        if (kita.getCosts() != null) {
             kitaDetailsCostsData.setText(kita.getCosts().toString());
-        } else
-        {
-            kitaDetailsCostsData.setText("");
         }
 
-        if(kita.getOpeningHours() != null) {
+        if (kita.getOpeningHours() != null) {
             kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
-        } else
-
-        {
-            kitaDetailsOpenhours.setText("");
         }
 
 
