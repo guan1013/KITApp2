@@ -25,20 +25,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/logo"
-                android:textAlignment="center" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentLeft="false"
+                android:cropToPadding="false"
+                android:focusable="false" />
 
-            <TextView
-                android:id="@+id/mainTextLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/main_activity_location_field_label"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="58dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="1">
+                android:weightSum="1"
+                android:layout_marginTop="50dp">
 
                 <EditText
                     android:id="@+id/mainEditTextLocation"
@@ -46,20 +46,21 @@
                     android:layout_height="50dp"
                     android:layout_above="@+id/button"
                     android:layout_alignParentStart="true"
-                    android:layout_marginBottom="71dp"
+                    android:layout_marginBottom="10dp"
                     android:lines="1"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:windowSoftInputMode="stateUnspecified"
-                    />
+                    android:hint="Stadt/Standort"/>
 
 
                 <ImageButton
                     android:id="@+id/mainImageButtonLocation"
-                    android:layout_width="30dp"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
-                    android:src="@drawable/gps" />
+                    android:src="@drawable/gps"
+                    />
 
             </LinearLayout>
 
@@ -70,7 +71,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="118dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="90dp"
                 android:text="@string/buttonSuche" />
 
         </LinearLayout>
