@@ -144,7 +144,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
 
         kitaDetailsManagement.setText(kita.getManagement());
-        kitaDetailsConfessionData.setText(kita.getConfession().getText());
+//        kitaDetailsConfessionData.setText(kita.getConfession().getText());
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
     }

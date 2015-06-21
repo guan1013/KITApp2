@@ -2,6 +2,8 @@ package kitapp.hska.de.kitapp.domain;
 
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -84,7 +86,14 @@ public class Kita implements Serializable{
 
     public enum OpeningHours {
 
-        HALF("Halbtags"), LONGER("Verlängerte Öffnungszeiten"), FULL("Ganztags");
+        @SerializedName("HALF")
+        HALF("Halbtags"),
+
+        @SerializedName("LONGER")
+        LONGER("Verlängerte Öffnungszeiten"),
+
+        @SerializedName("FULL")
+        FULL("Ganztags");
 
         private String text;
 

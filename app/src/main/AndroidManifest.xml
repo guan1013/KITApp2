@@ -64,6 +64,7 @@
         </activity>
 
         <service android:name=".services.KitaService" />
+        <service android:name=".services.AppUserService" />
 
         <activity
             android:name=".RegisterActivity"
