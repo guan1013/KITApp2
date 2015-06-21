@@ -17,7 +17,7 @@
         android:text="@string/placeHolderString" />
 
     <EditText
-        android:id="@+id/comment.write.edittext.comment"
+        android:id="@+id/comment.write.edittext.text"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:lines="10"
@@ -30,7 +30,7 @@
         android:orientation="horizontal">
 
         <RatingBar
-            android:id="@+id/comment.write.ratingbar.evaluation"
+            android:id="@+id/comment.write.ratingbar.rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"

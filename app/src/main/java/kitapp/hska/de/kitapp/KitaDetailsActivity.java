@@ -1,12 +1,9 @@
 package kitapp.hska.de.kitapp;
 
-import android.location.LocationListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,7 +15,8 @@ import java.util.Date;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.adapter.CommentsAdapter;
-import kitapp.hska.de.kitapp.domain.Comment;
+import kitapp.hska.de.kitapp.domain.AppUser;
+import kitapp.hska.de.kitapp.domain.Evaluation;
 import kitapp.hska.de.kitapp.domain.Kita;
 
 public class KitaDetailsActivity extends AppCompatActivity {
@@ -67,17 +65,17 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
 
 
-        Comment comment1 = new Comment("Hans Peter", "Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!", date, 4.1f);
-        Comment comment2 = new Comment("Franziska Hart", "Geht mal garnicht. Überall ist es dreckig und es stinkt. Auf keinen Fall würde ich mein Kind in so eine Müllhalde schicken.", date, 2.5f);
-        Comment comment3 = new Comment("Hans Peter", "Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!", date, 0.5f);
+        Evaluation evaluation1 = new Evaluation("Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!",new AppUser(null,"Hans Peter",null,null), date, 4.1);
+        Evaluation evaluation2 = new Evaluation("Geht mal garnicht. Überall ist es dreckig und es stinkt. Auf keinen Fall würde ich mein Kind in so eine Müllhalde schicken.",new AppUser(null,"Franziska Hart",null,null), date, 2.5);
+        Evaluation evaluation3 = new Evaluation("Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!",new AppUser(null,"Hans Peter",null,null), date, 0.5);
 
-        List<Comment> comments = new ArrayList<>();
+        List<Evaluation> evaluations = new ArrayList<>();
 
-        comments.add(comment1);
-        comments.add(comment2);
-        comments.add(comment3);
+        evaluations.add(evaluation1);
+        evaluations.add(evaluation2);
+        evaluations.add(evaluation3);
 
-        CommentsAdapter resultAdapter = new CommentsAdapter(this, R.layout.comment_item_layout, comments);
+        CommentsAdapter resultAdapter = new CommentsAdapter(this, R.layout.comment_item_layout, evaluations);
 
         listViewResult.setAdapter(resultAdapter);
 
@@ -87,7 +85,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
         kita.setName("Dunkle Seitenstraße");
         kita.setConfession(Kita.Confession.NO_CONFESSION);
-        kita.setCost(666.66);
+        kita.setCosts(666.66);
         kita.setMaxAge(99);
         kita.setMinAge(66);
         kita.setOpeningHours(Kita.OpeningHours.FULL);
@@ -105,8 +103,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
 
         kitaDetailsName.setText(kita.getName());
-        kitaDetailsEvaluation.setText(kita.getEvaluation().toString());
-        kitaDetailsCostsData.setText(kita.getCost().toString());
+        kitaDetailsEvaluation.setText(kita.getAvgRating().toString());
+        kitaDetailsCostsData.setText(kita.getCosts().toString());
         kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
         kitaDetailsManagement.setText(kita.getManagement());
         kitaDetailsConfessionData.setText(kita.getConfession().getText());

@@ -188,7 +188,7 @@
                 android:text="@string/searchEvaluation" />
 
             <RatingBar
-                android:id="@+id/search.ratingbar.evaluation"
+                android:id="@+id/search.ratingbar.rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:mirrorForRtl="true" />

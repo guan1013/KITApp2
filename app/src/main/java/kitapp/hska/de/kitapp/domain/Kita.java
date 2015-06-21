@@ -9,47 +9,59 @@ import java.util.List;
  */
 public class Kita implements Serializable {
 
+
+    /*
+    <======================= ATTRIBUTES =======================>
+    */
+    private Long id;
+    private String name;
+    private Date dateCreated;
+    private List<News> news;
+    private List<Evaluation> evaluations;
+    private Double longitude;
+    private Double latitude;
+    private Double costs;
+    private Integer minAge;
+    private Integer maxAge;
+    private Integer maxGroupSize;
+    private Integer closingDays;
+    private Confession confession;
+    private OpeningHours openingHours;
+    private String management;
+    private String about;
+    private Address address;
+    private Double avgRating;
+
+    /*
+    <======================= CONSTRUCTORS =======================>
+     */
     public Kita() {
 
     }
 
-    public Kita(String name, Date dateCreated, Double cost, Integer minAge, Integer maxAge, Confession confession, Float evaluation, String management, List<Comment> ratings, String about, OpeningHours openingHours) {
+    public Kita(String name, Date dateCreated, List<News> news, List<Evaluation> evaluations, Double longitude, Double latitude, Double costs, Integer minAge, Integer maxAge, Integer maxGroupSize, Integer closingDays, Confession confession, OpeningHours openingHours, String management, String about, Address address, Double avgRating) {
         this.name = name;
         this.dateCreated = dateCreated;
-        this.cost = cost;
+        this.news = news;
+        this.evaluations = evaluations;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.costs = costs;
         this.minAge = minAge;
         this.maxAge = maxAge;
+        this.maxGroupSize = maxGroupSize;
+        this.closingDays = closingDays;
         this.confession = confession;
-        this.evaluation = evaluation;
-        this.management = management;
-        this.ratings = ratings;
-        this.about = about;
         this.openingHours = openingHours;
+        this.management = management;
+        this.about = about;
+        this.address = address;
+        this.avgRating = avgRating;
     }
 
-    private Long id;
-
-    private String name;
-
-    private Date dateCreated;
-
-    private Double cost;
-
-    private Integer minAge;
-
-    private Integer maxAge;
-
-    private Confession confession;
-
-    private Float evaluation;
-
-    private String management;
-
-    private List<Comment> ratings;
-
-    private String about;
-
-    private OpeningHours openingHours;
+    /*
+    <======================= ENUMERATIONS =======================>
+     */
 
     public enum Confession {
 
@@ -68,7 +80,6 @@ public class Kita implements Serializable {
 
     }
 
-
     public enum OpeningHours {
 
         HALF("Halbtags"), LONGER("Verlängerte Öffnungszeiten"), FULL("Ganztags");
@@ -84,31 +95,102 @@ public class Kita implements Serializable {
         }
     }
 
+    /*
+    <======================= OVERRIDES =======================>
+     */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Kita)) return false;
+
+        Kita kita = (Kita) o;
+
+        if (getId() != null ? !getId().equals(kita.getId()) : kita.getId() != null) return false;
+        if (getName() != null ? !getName().equals(kita.getName()) : kita.getName() != null)
+            return false;
+        if (getDateCreated() != null ? !getDateCreated().equals(kita.getDateCreated()) : kita.getDateCreated() != null)
+            return false;
+        if (getNews() != null ? !getNews().equals(kita.getNews()) : kita.getNews() != null)
+            return false;
+        if (getEvaluations() != null ? !getEvaluations().equals(kita.getEvaluations()) : kita.getEvaluations() != null)
+            return false;
+        if (getLongitude() != null ? !getLongitude().equals(kita.getLongitude()) : kita.getLongitude() != null)
+            return false;
+        if (getLatitude() != null ? !getLatitude().equals(kita.getLatitude()) : kita.getLatitude() != null)
+            return false;
+        if (getCosts() != null ? !getCosts().equals(kita.getCosts()) : kita.getCosts() != null)
+            return false;
+        if (getMinAge() != null ? !getMinAge().equals(kita.getMinAge()) : kita.getMinAge() != null)
+            return false;
+        if (getMaxAge() != null ? !getMaxAge().equals(kita.getMaxAge()) : kita.getMaxAge() != null)
+            return false;
+        if (getMaxGroupSize() != null ? !getMaxGroupSize().equals(kita.getMaxGroupSize()) : kita.getMaxGroupSize() != null)
+            return false;
+        if (getClosingDays() != null ? !getClosingDays().equals(kita.getClosingDays()) : kita.getClosingDays() != null)
+            return false;
+        if (getConfession() != kita.getConfession()) return false;
+        if (getOpeningHours() != kita.getOpeningHours()) return false;
+        if (getManagement() != null ? !getManagement().equals(kita.getManagement()) : kita.getManagement() != null)
+            return false;
+        if (getAbout() != null ? !getAbout().equals(kita.getAbout()) : kita.getAbout() != null)
+            return false;
+        if (getAddress() != null ? !getAddress().equals(kita.getAddress()) : kita.getAddress() != null)
+            return false;
+        return !(getAvgRating() != null ? !getAvgRating().equals(kita.getAvgRating()) : kita.getAvgRating() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getDateCreated() != null ? getDateCreated().hashCode() : 0);
+        result = 31 * result + (getNews() != null ? getNews().hashCode() : 0);
+        result = 31 * result + (getEvaluations() != null ? getEvaluations().hashCode() : 0);
+        result = 31 * result + (getLongitude() != null ? getLongitude().hashCode() : 0);
+        result = 31 * result + (getLatitude() != null ? getLatitude().hashCode() : 0);
+        result = 31 * result + (getCosts() != null ? getCosts().hashCode() : 0);
+        result = 31 * result + (getMinAge() != null ? getMinAge().hashCode() : 0);
+        result = 31 * result + (getMaxAge() != null ? getMaxAge().hashCode() : 0);
+        result = 31 * result + (getMaxGroupSize() != null ? getMaxGroupSize().hashCode() : 0);
+        result = 31 * result + (getClosingDays() != null ? getClosingDays().hashCode() : 0);
+        result = 31 * result + (getConfession() != null ? getConfession().hashCode() : 0);
+        result = 31 * result + (getOpeningHours() != null ? getOpeningHours().hashCode() : 0);
+        result = 31 * result + (getManagement() != null ? getManagement().hashCode() : 0);
+        result = 31 * result + (getAbout() != null ? getAbout().hashCode() : 0);
+        result = 31 * result + (getAddress() != null ? getAddress().hashCode() : 0);
+        result = 31 * result + (getAvgRating() != null ? getAvgRating().hashCode() : 0);
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Kita{" +
-                "cost=" + cost +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", news=" + news +
+                ", evaluations=" + evaluations +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", costs=" + costs +
+                ", minAge=" + minAge +
+                ", maxAge=" + maxAge +
+                ", maxGroupSize=" + maxGroupSize +
+                ", closingDays=" + closingDays +
                 ", confession=" + confession +
                 ", openingHours=" + openingHours +
-                ", maxAge=" + maxAge +
-                ", minAge=" + minAge +
-                ", dateCreated=" + dateCreated +
-                ", name='" + name + '\'' +
+                ", management='" + management + '\'' +
+                ", about='" + about + '\'' +
+                ", address=" + address +
+                ", avgRating=" + avgRating +
                 '}';
     }
 
-    public void addRating(Comment rating) {
-        this.ratings.add(rating);
-    }
-
-    public String getManagement() {
-        return management;
-    }
-
-    public void setManagement(String management) {
-        this.management = management;
-    }
-
+    /*
+    <======================= GETS & SETS =======================>
+    */
     public Long getId() {
         return id;
     }
@@ -133,12 +215,44 @@ public class Kita implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    public Double getCost() {
-        return cost;
+    public List<News> getNews() {
+        return news;
     }
 
-    public void setCost(Double cost) {
-        this.cost = cost;
+    public void setNews(List<News> news) {
+        this.news = news;
+    }
+
+    public List<Evaluation> getEvaluations() {
+        return evaluations;
+    }
+
+    public void setEvaluations(List<Evaluation> evaluations) {
+        this.evaluations = evaluations;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getCosts() {
+        return costs;
+    }
+
+    public void setCosts(Double costs) {
+        this.costs = costs;
     }
 
     public Integer getMinAge() {
@@ -157,6 +271,22 @@ public class Kita implements Serializable {
         this.maxAge = maxAge;
     }
 
+    public Integer getMaxGroupSize() {
+        return maxGroupSize;
+    }
+
+    public void setMaxGroupSize(Integer maxGroupSize) {
+        this.maxGroupSize = maxGroupSize;
+    }
+
+    public Integer getClosingDays() {
+        return closingDays;
+    }
+
+    public void setClosingDays(Integer closingDays) {
+        this.closingDays = closingDays;
+    }
+
     public Confession getConfession() {
         return confession;
     }
@@ -173,20 +303,12 @@ public class Kita implements Serializable {
         this.openingHours = openingHours;
     }
 
-    public Float getEvaluation() {
-        return evaluation;
+    public String getManagement() {
+        return management;
     }
 
-    public void setEvaluation(Float evaluation) {
-        this.evaluation = evaluation;
-    }
-
-    public List<Comment> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Comment> ratings) {
-        this.ratings = ratings;
+    public void setManagement(String management) {
+        this.management = management;
     }
 
     public String getAbout() {
@@ -195,5 +317,21 @@ public class Kita implements Serializable {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(Double avgRating) {
+        this.avgRating = avgRating;
     }
 }

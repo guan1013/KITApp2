@@ -56,11 +56,16 @@ public class SearchActivity extends ActionBarActivity {
         int maxAge = minMaxAge[1];
         int cost = this.cost;
         String open = this.open;
-        Float evaluation = this.ratingBarEvaluation.getRating();
+        Double rating = 0.0;
+        try {
+            rating = (double) this.ratingBarEvaluation.getRating();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         int size = this.size;
         int closing = this.closing;
 
-        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, evaluation, size, closing);
+        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing);
 
         Intent myIntent = new Intent(this, ResultActivity.class);
         startActivity(myIntent);
@@ -192,7 +197,7 @@ public class SearchActivity extends ActionBarActivity {
         this.toggleButtonAge1 = (ToggleButton) findViewById(R.id.search_togglebutton_age_1);
         this.toggleButtonAge2 = (ToggleButton) findViewById(R.id.search_togglebutton_age_2);
         this.toggleButtonAge3 = (ToggleButton) findViewById(R.id.search_togglebutton_age_3);
-        this.ratingBarEvaluation = (RatingBar) findViewById(R.id.search_ratingbar_evaluation);
+        this.ratingBarEvaluation = (RatingBar) findViewById(R.id.search_ratingbar_rating);
 
     }
 

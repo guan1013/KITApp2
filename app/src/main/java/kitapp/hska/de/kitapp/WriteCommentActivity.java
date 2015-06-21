@@ -10,11 +10,10 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Date;
 
-import kitapp.hska.de.kitapp.domain.Comment;
+import kitapp.hska.de.kitapp.domain.AppUser;
+import kitapp.hska.de.kitapp.domain.Evaluation;
 
 
 public class WriteCommentActivity extends ActionBarActivity {
@@ -23,9 +22,9 @@ public class WriteCommentActivity extends ActionBarActivity {
         String name = "user";
         String text = editTextComment.getText().toString();
         Date date = new Date();
-        Float evaluation = ratingBarEvaluation.getRating();
+        Double evaluation = (double) ratingBarEvaluation.getRating();
 
-        Comment query = new Comment(name, text, date, evaluation);
+        Evaluation query = new Evaluation(text,new AppUser(null,name,null,null), date, evaluation);
 
         Intent myIntent = new Intent(this, KitaDetailsActivity.class);
         startActivity(myIntent);
@@ -38,8 +37,8 @@ public class WriteCommentActivity extends ActionBarActivity {
     private void initViews() {
 
         this.textViewName = (TextView) findViewById(R.id.comment_write_textview_name);
-        this.editTextComment = (EditText) findViewById(R.id.comment_write_edittext_comment);
-        this.ratingBarEvaluation = (RatingBar) findViewById(R.id.comment_write_ratingbar_evaluation);
+        this.editTextComment = (EditText) findViewById(R.id.comment_write_edittext_text);
+        this.ratingBarEvaluation = (RatingBar) findViewById(R.id.comment_write_ratingbar_rating);
     }
 
     @Override

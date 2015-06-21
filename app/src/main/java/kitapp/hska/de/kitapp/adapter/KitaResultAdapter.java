@@ -14,14 +14,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.R;
-import kitapp.hska.de.kitapp.domain.KitaResult;
+import kitapp.hska.de.kitapp.domain.Kita;
 
 /**
  * Created by bwpc on 20.06.2015.
  */
-public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
+public class KitaResultAdapter extends ArrayAdapter<Kita> {
 
-    public KitaResultAdapter(Context context, int resource, List<KitaResult> items) {
+    public KitaResultAdapter(Context context, int resource, List<Kita> items) {
         super(context, resource, items);
     }
 
@@ -34,11 +34,11 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
             inflater = LayoutInflater.from(getContext());
             view = inflater.inflate(R.layout.kita_result_item_layout, null);
         }
-        KitaResult kita = getItem(position);
+        Kita kita = getItem(position);
 
         if (kita != null) {
             TextView textViewName = (TextView) view.findViewById(R.id.result_textview_name);
-            RatingBar ratingBarEvaluation = (RatingBar) view.findViewById(R.id.result_ratingbar_evaluation);
+            RatingBar ratingBarEvaluation = (RatingBar) view.findViewById(R.id.result_ratingbar_rating);
             ImageView imageViewTN = (ImageView) view.findViewById(R.id.result_imageview_thumbnail);
             TextView textViewCircuit = (TextView) view.findViewById(R.id.result_textview_circuit);
             ImageButton buttonTel = (ImageButton) view.findViewById(R.id.result_imagebutton_tel);
@@ -51,7 +51,7 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
             }
 
             if (ratingBarEvaluation != null) {
-                ratingBarEvaluation.setRating(kita.getEvaluation());
+                ratingBarEvaluation.setRating(kita.getAvgRating().floatValue());
             }
 
             if (imageViewTN != null) {
@@ -59,7 +59,7 @@ public class KitaResultAdapter extends ArrayAdapter<KitaResult> {
             }
 
             if (textViewCircuit != null) {
-                String distance = kita.getDistance().toString();
+                String distance = "PLACEHOLDER";
                 textViewCircuit.setText(distance + " km");
             }
 
