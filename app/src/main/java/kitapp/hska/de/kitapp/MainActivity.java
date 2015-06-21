@@ -103,9 +103,9 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
 
         // Set references for ui objects
-        buttonLocation = (ImageButton) findViewById(R.id.imageButtonLocation);
-        editTextLocation = (EditText) findViewById(R.id.editTextLocation);
-        buttonSuche = (Button) findViewById(R.id.buttonHomeSearch);
+        buttonLocation = (ImageButton) findViewById(R.id.mainImageButtonLocation);
+        editTextLocation = (EditText) findViewById(R.id.mainEditTextLocation);
+        buttonSuche = (Button) findViewById(R.id.mainButtonSearch);
 
         buttonSuche.setOnClickListener(new View.OnClickListener() {
             @Override

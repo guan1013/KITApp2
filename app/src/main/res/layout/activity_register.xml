@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
-        android:id="@+id/imageView"
+        android:id="@+id/registerImageViewLogo"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="false"
@@ -24,9 +24,9 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/registerEditTextEmail"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/registerImageViewLogo"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/imageView"
+        android:layout_alignEnd="@+id/registerImageViewLogo"
         android:hint="E-Mail" />
 
     <EditText

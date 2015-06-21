@@ -18,7 +18,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageViewLogo"
+                android:id="@+id/mainImageViewLogo"
                 android:src="@drawable/logo"
                 android:textAlignment="center" />
 
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/main_activity_location_field_label"
-                android:id="@+id/textView" />
+                android:id="@+id/mainTextLocation" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -38,7 +38,7 @@
                 <EditText
                     android:layout_width="295dp"
                     android:layout_height="50dp"
-                    android:id="@+id/editTextLocation"
+                    android:id="@+id/mainEditTextLocation"
                     android:layout_above="@+id/button"
                     android:layout_alignParentStart="true"
                     android:layout_marginBottom="71dp"
@@ -49,7 +49,7 @@
                 <ImageButton
                     android:layout_width="30dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/imageButtonLocation"
+                    android:id="@+id/mainImageButtonLocation"
                     android:layout_gravity="right"
                     android:src="@drawable/gps" />
 
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/buttonSuche"
-                android:id="@+id/buttonHomeSearch"
+                android:id="@+id/mainButtonSearch"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="118dp"
