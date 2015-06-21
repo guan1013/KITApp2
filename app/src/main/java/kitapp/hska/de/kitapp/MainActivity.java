@@ -220,6 +220,12 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
             return true;
         }
 
+        if(id == R.id.action_news) {
+            Intent myIntent = new Intent(this,NewsActivity.class);
+            startActivity(myIntent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
