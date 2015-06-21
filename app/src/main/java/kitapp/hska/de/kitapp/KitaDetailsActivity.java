@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Comment;
 
@@ -20,7 +21,7 @@ import kitapp.hska.de.kitapp.domain.Kita;
 public class KitaDetailsActivity extends AppCompatActivity {
 
 
-    private final static String EVALUATIONS_BUNDLE_KEY = "evaluations";
+    private final static String KITA_BUNDLE_KEY = "kita";
 
     TextView kitaDetailsName;
     TextView kitaDetailsAddressData;
@@ -51,22 +52,25 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
     }
 
+    private void toast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
 
-    private List<Evaluation> getEvaluationList() {
+    private Kita getKita() {
+
 
         Bundle bundle = this.getIntent().getExtras();
 
-        List<Evaluation> evaluations = new ArrayList<>();
+        Kita kita = null;
         if (bundle != null) {
             try {
-                evaluations = (ArrayList<Evaluation>) bundle.get(EVALUATIONS_BUNDLE_KEY);
+                kita = (Kita) bundle.get(KITA_BUNDLE_KEY);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-        return evaluations;
+        return kita;
 
     }
 
@@ -78,19 +82,19 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
         evaluationListView = (ListView) findViewById(R.id.evaluation_ListView);
 
-        final List<Evaluation> evaluations = getEvaluationList();
+        final Kita kita = getKita();
 
-        EvaluationsAdapter evaluationsAdapter = new EvaluationsAdapter(this,R.layout.evaluation_item_layout, evaluations);
+        EvaluationsAdapter evaluationsAdapter = new EvaluationsAdapter(this, R.layout.evaluation_item_layout, kita.getEvaluations());
 
         evaluationListView.setAdapter(evaluationsAdapter);
 
-        Bundle b = this.getIntent().getExtras();
-
-        if (b != null) {
-            Kita kita = (Kita) b.get("kita");
+        if(kita != null) {
 
             displayKita(kita);
+        } else {
+            toast(getString(R.string.noKitaFound));
         }
+
     }
 
     private void cleanUi() {

@@ -24,30 +24,31 @@
 
     <!-- Toasts -->
     <string name="noKitasFound">0 Kitas gefunden</string>
+    <string name="noKitaFound">Kita wurde nicht gefunden</string>
 
     <!-- Button -->
     <string name="buttonSend">Senden</string>
     <string name="buttonSearch">Suchen</string>
 
     <!-- Result Strings -->
-        <!-- Toogle Button -->
+    <!-- Toogle Button -->
     <string name="resultToggleButtonList">Liste</string>
     <string name="resultToggleButtonListValue">0</string>
     <string name="resultToggleButtonMap">Karte</string>
     <string name="resultToggleButtonMapValue">1</string>
 
-        <!-- Sort -->
+    <!-- Sort -->
     <string name="resultSortTitle">Sortieren nach...</string>
     <string name="resultSortValue1">Entfernung(Aufsteigend)</string>
     <string name="resultSortValue2">Entferung(Absteigend)</string>
 
     <!-- Search Strings -->
-        <!-- City -->
+    <!-- City -->
     <string name="searchCity">Stadt/Standort</string>
-        <!-- Circuit -->
+    <!-- Circuit -->
     <string name="searchCircuit">Umkreis in km</string>
     <string name="searchTextViewCircuite">km</string>
-        <!-- Age -->
+    <!-- Age -->
     <string name="searchAge">Alter des Kindes</string>
     <string name="searchAgeButtonValue1">0,1</string>
     <string name="searchAgeButtonText1">0-1</string>
@@ -55,7 +56,7 @@
     <string name="searchAgeButtonText2">1-3</string>
     <string name="searchAgeButtonValue3">3,99</string>
     <string name="searchAgeButtonText3">3+</string>
-        <!-- Cost -->
+    <!-- Cost -->
     <string name="searchCost">Kosten</string>
     <string name="searchCostButtonValue1">200</string>
     <string name="searchCostButtonText1">weniger 200€</string>
@@ -63,14 +64,14 @@
     <string name="searchCostButtonText2">weniger 350€</string>
     <string name="searchCostButtonValue3">0</string>
     <string name="searchCostButtonText3">egal</string>
-        <!-- Open -->
+    <!-- Open -->
     <string name="searchOpen">Öffnungszeiten</string>
     <string name="searchOpenButtonValue1">Halbtags</string>
     <string name="searchOpenButtonValue2">Verlängert</string>
     <string name="searchOpenButtonValue3">Ganztags</string>
-        <!-- Evaluation -->
+    <!-- Evaluation -->
     <string name="searchEvaluation">Bewertung</string>
-        <!-- Size -->
+    <!-- Size -->
     <string name="searchSize">Anzahl der Kinder pro Gruppe</string>
     <string name="searchSizeButtonValue1">10</string>
     <string name="searchSizeButtonText1">bis 10</string>
@@ -78,13 +79,13 @@
     <string name="searchSizeButtonText2">bis 15</string>
     <string name="searchSizeButtonValue3">25</string>
     <string name="searchSizeButtonText3">bis 25</string>
-        <!-- Closing -->
+    <!-- Closing -->
     <string name="searchClosing">Anzahl der Schließtage pro Jahr</string>
     <string name="searchClosingButtonValue1">10</string>
     <string name="searchClosingButtonText1">weniger 10</string>
     <string name="searchClosingButtonValue2">20</string>
     <string name="searchClosingButtonText2">weniger 20</string>
-        <!-- Confession -->
+    <!-- Confession -->
     <string name="searchConfessionTitle">Confession</string>
     <string name="searchConfessionValue1">Flying Spaghetti Monster</string>
     <string name="searchConfessionValue2">All other</string>
@@ -129,8 +130,6 @@
     <string name="newsAuthor2">Kita Sonnenschein</string>
     <string name="newsAuthor3">Kita Villa Kunterbunt</string>
     <string name="newsAuthor4">Kita Katholischer Kindergarten Durlach</string>
-
-
 
 
 </resources>

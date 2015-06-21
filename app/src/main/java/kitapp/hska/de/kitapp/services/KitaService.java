@@ -91,12 +91,9 @@ public class KitaService extends Service {
 
                     String city = params[0];
 
-
                     System.out.print("Search for city: " + city);
 
-
                     try {
-
                         HttpClient httpClient = new DefaultHttpClient();
                         HttpContext localContext = new BasicHttpContext();
                         String url = BACKEND_URL + KITAS_PARAM + "?" + CITY_PARAM + "=" + URLEncoder.encode(city, "UTF-8");
@@ -117,13 +114,9 @@ public class KitaService extends Service {
                         });
 
                         Gson gson = builder.create();
-
                         text = getASCIIContentFromEntity(entity);
-
                         Kita[] kitas = gson.fromJson(text, Kita[].class);
-
                         System.out.println(text);
-
                         return kitas;
 
                     } catch (Exception e) {
@@ -183,11 +176,8 @@ public class KitaService extends Service {
                         String text = null;
 
                         HttpResponse response = httpClient.execute(postAction);
-
                         HttpEntity entity = response.getEntity();
-
                         text = getASCIIContentFromEntity(entity);
-
                         Kita[] kitas = gson.fromJson(text, Kita[].class);
 
                         for (Kita k : kitas) {

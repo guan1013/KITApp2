@@ -50,7 +50,7 @@ public class NewsActivity extends AppCompatActivity {
 
         final List<News> news = getNewsList();
 
-        NewsAdapter newsAdapter = new NewsAdapter(this, R.layout.news_item_layout,news);
+        NewsAdapter newsAdapter = new NewsAdapter(this, R.layout.news_item_layout, news);
 
         newsListView.setAdapter(newsAdapter);
 

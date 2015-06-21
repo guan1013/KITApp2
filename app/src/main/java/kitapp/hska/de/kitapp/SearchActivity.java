@@ -282,18 +282,16 @@ public class SearchActivity extends ActionBarActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progresValue = progress;
-                //Toast.makeText(getApplicationContext(), "Changing seekBarCircuit's progress", Toast.LENGTH_SHORT).show();
+                editTextCircuit.setText(progresValue.toString());
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                //Toast.makeText(getApplicationContext(), "Started tracking seekBarCircuit", Toast.LENGTH_SHORT).show();
+                ;
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                editTextCircuit.setText(progresValue.toString());
-                //Toast.makeText(getApplicationContext(), "Stopped tracking seekBarCircuit", Toast.LENGTH_SHORT).show();
             }
         });
 
