@@ -4,6 +4,7 @@ package kitapp.hska.de.kitapp.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import kitapp.hska.de.kitapp.domain.Kita;
  * Created by bwpc on 20.06.2015.
  */
 public class KitaResultAdapter extends ArrayAdapter<Kita> {
+
 
     public KitaResultAdapter(Context context, int resource, List<Kita> items) {
         super(context, resource, items);
@@ -68,14 +70,13 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
             }
 
             if (buttonTel != null) {
-
                 final String phone = "tel:" + kita.getAddress().getPhone();
                 buttonTel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
                         dialIntent.setData(Uri.parse(phone));
-             //           startActivity(dialIntent);
+                        getContext().startActivity(dialIntent);
                     }
                 });
 
@@ -90,7 +91,7 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
                         Intent mailIntent = new Intent(Intent.ACTION_SEND);
                         mailIntent.setType("plain/text");
                         mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
-                //        startActivity(Intent.createChooser(mailIntent,""));
+                        getContext().startActivity(Intent.createChooser(mailIntent, ""));
                     }
                 });
 
@@ -101,6 +102,24 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
             }
 
             if (buttonCont != null) {
+
+                final String email = kita.getAddress().getEmail();
+                final String phone = kita.getAddress().getEmail();
+
+                buttonCont.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent contIntent = new Intent(ContactsContract.Intents.Insert.ACTION);
+                        contIntent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
+
+                        contIntent.putExtra(ContactsContract.Intents.Insert.EMAIL, email)
+                                .putExtra(ContactsContract.Intents.Insert.PHONE, phone)
+                                .putExtra("finishActivityOnSaveCompleted", true);
+
+                        getContext().startActivity(contIntent);
+                    }
+                });
 
             }
         }
