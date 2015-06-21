@@ -51,7 +51,6 @@ public class EvaluationsAdapter extends ArrayAdapter<Evaluation> {
             }
 
 
-
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String dateInString = "07/06/2013";
 
