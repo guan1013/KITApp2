@@ -53,14 +53,14 @@
         android:id="@+id/buttonLogin"
         android:layout_below="@+id/editTextLoginPassword"
         android:layout_marginTop="23dp"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_alignStart="@+id/loginTextViewAccount"
+        android:layout_alignEnd="@+id/loginTextViewAccount" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loginAccount"
-        android:id="@+id/textView2"
+        android:id="@+id/loginTextViewAccount"
         android:layout_below="@+id/buttonLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp" />
