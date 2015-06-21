@@ -9,10 +9,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -43,12 +47,13 @@ public class SearchActivity extends ActionBarActivity {
     private ToggleButton toggleButtonAge2;
     private ToggleButton toggleButtonAge3;
     private RatingBar ratingBarEvaluation;
+    private Spinner spinnerConfession;
 
     /*
     <======================= CLASS ATTRUIBUTES =======================>
      */
-    private int cost;
-    private String open;
+    private int costs;
+    private int open;
     private int size;
     private int closing;
 
@@ -72,54 +77,25 @@ public class SearchActivity extends ActionBarActivity {
     public void sendSearch(View button) {
         // Get UI input
         String city = editTextCity.getText().toString();
-        int circuit = 0;
-
-        try {
-
-            circuit = Integer.parseInt(editTextCircuit.getText().toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        int circuit = getCircuit();
         Integer[] minMaxAge = getMinMaxAge();
         int minAge = minMaxAge[0];
         int maxAge = minMaxAge[1];
-        int cost = this.cost;
-        String open = this.open;
-        Double rating = 0.0;
-        try {
-            rating = (double) this.ratingBarEvaluation.getRating();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        int cost = this.costs;
+        int open = this.open;
+        Double rating = getRating();
         int size = this.size;
         int closing = this.closing;
+        int confession = getConfessionValue();
 
-        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing);
+        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing, confession);
 
-        Kita[] kitas = null;
-
-        try {
-            kitas = kitaServiceBinder.getKitaBySearchQuery(query);
-
-            if (kitas != null && kitas.length > 0) {
-                Intent intent = new Intent(this, ResultActivity.class);
-                intent.putExtra(KITAS_BUNDLE_KEY, new ArrayList<>(Arrays.asList(kitas)));
-                startActivity(intent);
-            } else {
-                toast(getString(R.string.noKitasFound));
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        }
+        sendQuery(query);
 
     }
 
     public void onToggleCost(View button) {
+
         ((RadioGroup) button.getParent()).check(button.getId());
 
         String costString = "0";
@@ -131,12 +107,12 @@ public class SearchActivity extends ActionBarActivity {
             costString = getString(R.string.searchCostButtonValue3);
         }
 
-
         try {
-            cost = Integer.parseInt(costString);
+            costs = Integer.parseInt(costString);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public void onToggleSize(View button) {
@@ -179,12 +155,88 @@ public class SearchActivity extends ActionBarActivity {
 
     public void onToggleOpen(View button) {
         ((RadioGroup) button.getParent()).check(button.getId());
-        open = ((ToggleButton) button).getText().toString();
+
+        if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchOpenButtonValue1))) {
+            open = 0;
+        } else if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchOpenButtonValue2))) {
+            open = 1;
+        } else if (((ToggleButton) button).getText().toString().equals(getString(R.string.searchOpenButtonValue3))) {
+            open = 2;
+        }
+
     }
 
     /*
     <======================= PRIVATE METHODS =======================>
      */
+
+    private void sendQuery(SearchQuery query) {
+
+        Kita[] kitas = null;
+        try {
+            kitas = kitaServiceBinder.getKitaBySearchQuery(query);
+
+            if (kitas != null && kitas.length > 0) {
+                Intent intent = new Intent(this, ResultActivity.class);
+                intent.putExtra(KITAS_BUNDLE_KEY, new ArrayList<>(Arrays.asList(kitas)));
+                startActivity(intent);
+            } else {
+                toast(getString(R.string.noKitasFound));
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private Integer getCircuit() {
+        int circuit = 0;
+
+        try {
+            circuit = Integer.parseInt(editTextCircuit.getText().toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return circuit;
+    }
+
+    private Double getRating() {
+        Double rating = 0.0;
+
+        try {
+            rating = (double) this.ratingBarEvaluation.getRating();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rating;
+    }
+
+    private int getConfessionValue() {
+
+        String confessionString = spinnerConfession.getSelectedItem().toString();
+        int confession = 0;
+
+        if (confessionString.equals(Kita.Confession.KATHOLIC.toString())) {
+            confession = 0;
+        } else if (confessionString.equals(Kita.Confession.ISLAMIC.toString())) {
+            confession = 1;
+        } else if (confessionString.equals(Kita.Confession.BUDDHISTIC.toString())) {
+            confession = 2;
+        } else if (confessionString.equals(Kita.Confession.EVANGELIC.toString())) {
+            confession = 3;
+        } else if (confessionString.equals(Kita.Confession.NO_CONFESSION)) {
+            confession = 4;
+        }
+
+        return confession;
+    }
+
     private Integer[] getMinMaxAge() {
 
         Integer[] minMaxAge = new Integer[2];
@@ -244,36 +296,16 @@ public class SearchActivity extends ActionBarActivity {
         this.toggleButtonAge2 = (ToggleButton) findViewById(R.id.search_togglebutton_age_2);
         this.toggleButtonAge3 = (ToggleButton) findViewById(R.id.search_togglebutton_age_3);
         this.ratingBarEvaluation = (RatingBar) findViewById(R.id.search_ratingbar_rating);
+        this.spinnerConfession = (Spinner) findViewById(R.id.search_spinner_confession);
 
     }
+
 
     private void toast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    /*
-    <======================= OVERRIDE METHODS =======================>
-     */
-
-    @Override
-    protected void onStart() {
-        Intent intent = new Intent(this, KitaService.class);
-        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        unbindService(serviceConnection);
-        super.onStop();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-
-        initViews();
+    private void setSeekBarCircuitChangeListener() {
 
         editTextCircuit.setText("0");
         seekBarCircuit.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -294,8 +326,10 @@ public class SearchActivity extends ActionBarActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+    }
 
-        ((RadioGroup) findViewById(R.id.search_radiogroup_cost)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    private void setOnCheckedListener(int id) {
+        ((RadioGroup) findViewById(id)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
                 for (int j = 0; j < radioGroup.getChildCount(); j++) {
@@ -304,42 +338,63 @@ public class SearchActivity extends ActionBarActivity {
                 }
             }
         });
+    }
 
-        ((RadioGroup) findViewById(R.id.search_radiogroup_size)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
-                for (int j = 0; j < radioGroup.getChildCount(); j++) {
-                    final ToggleButton view = (ToggleButton) radioGroup.getChildAt(j);
-                    view.setChecked(view.getId() == i);
-                }
-            }
-        });
+    private void setSpinnerConfessionListener() {
+        spinnerConfession.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Kita.Confession.values()));
 
-        ((RadioGroup) findViewById(R.id.search_radiogroup_closing)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
-                for (int j = 0; j < radioGroup.getChildCount(); j++) {
-                    final ToggleButton view = (ToggleButton) radioGroup.getChildAt(j);
-                    view.setChecked(view.getId() == i);
-                }
-            }
-        });
 
-        ((RadioGroup) findViewById(R.id.search_radiogroup_open)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
-                for (int j = 0; j < radioGroup.getChildCount(); j++) {
-                    final ToggleButton view = (ToggleButton) radioGroup.getChildAt(j);
-                    view.setChecked(view.getId() == i);
-                }
-            }
-        });
-        cost = 0;
-        open = "";
-        size = 0;
+    }
+
+
+    private void initValues() {
+
+        costs = 200;
+        open = 0;
+        size = 15;
         closing = 0;
 
-        //this.searchButton.bringToFront();
+    }
+
+    /*
+    <======================= OVERRIDE METHODS =======================>
+     */
+
+    @Override
+    protected void onStart() {
+        Intent intent = new Intent(this, KitaService.class);
+        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unbindService(serviceConnection);
+        super.onStop();
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+
+        initViews();
+
+        setSeekBarCircuitChangeListener();
+
+        setOnCheckedListener(R.id.search_radiogroup_cost);
+
+        setOnCheckedListener(R.id.search_radiogroup_size);
+
+        setOnCheckedListener(R.id.search_radiogroup_closing);
+
+        setOnCheckedListener(R.id.search_radiogroup_open);
+
+        setSpinnerConfessionListener();
+
+        initValues();
+
     }
 
     @Override
@@ -370,8 +425,6 @@ public class SearchActivity extends ActionBarActivity {
         } else if (id == R.id.action_news) {
 
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

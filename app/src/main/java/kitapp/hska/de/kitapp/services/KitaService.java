@@ -178,6 +178,8 @@ public class KitaService extends Service {
                         HttpResponse response = httpClient.execute(postAction);
                         HttpEntity entity = response.getEntity();
                         text = getASCIIContentFromEntity(entity);
+
+                        System.out.println(text);
                         Kita[] kitas = gson.fromJson(text, Kita[].class);
 
                         for (Kita k : kitas) {

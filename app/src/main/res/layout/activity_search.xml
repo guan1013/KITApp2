@@ -30,8 +30,8 @@
                 android:id="@+id/search.edittext.city"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:hint="@string/searchCity" />
+                android:hint="@string/searchCity"
+                android:singleLine="true" />
 
             <!-- Search in Circuit of City -->
             <TextView
@@ -276,9 +276,7 @@
             <Spinner
                 android:id="@+id/search.spinner.confession"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:entries="@array/searchConfessionList"
-                android:prompt="@string/searchConfessionTitle" />
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>

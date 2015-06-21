@@ -16,10 +16,11 @@ public class SearchQuery implements Serializable {
     private int minAge;
     private int maxAge;
     private int cost;
-    private String open;
+    private int open;
     private Double rating;
     private int size;
     private int closing;
+    private int confession;
 
     /*
     <======================= CONSTRUCTORS =======================>
@@ -28,7 +29,7 @@ public class SearchQuery implements Serializable {
 
     }
 
-    public SearchQuery(String city, int circuit, int minAge, int maxAge, int cost, String open, Double rating, int size, int closing) {
+    public SearchQuery(String city, int circuit, int minAge, int maxAge, int cost, int open, Double rating, int size, int closing, int confession) {
         this.city = city;
         this.circuit = circuit;
         this.minAge = minAge;
@@ -38,11 +39,13 @@ public class SearchQuery implements Serializable {
         this.rating = rating;
         this.size = size;
         this.closing = closing;
+        this.confession = confession;
     }
 
     /*
     <======================= OVERRIDES =======================>
      */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,12 +57,12 @@ public class SearchQuery implements Serializable {
         if (getMinAge() != that.getMinAge()) return false;
         if (getMaxAge() != that.getMaxAge()) return false;
         if (getCost() != that.getCost()) return false;
+        if (getOpen() != that.getOpen()) return false;
         if (getSize() != that.getSize()) return false;
         if (getClosing() != that.getClosing()) return false;
+        if (getConfession() != that.getConfession()) return false;
         if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
         if (getCity() != null ? !getCity().equals(that.getCity()) : that.getCity() != null)
-            return false;
-        if (getOpen() != null ? !getOpen().equals(that.getOpen()) : that.getOpen() != null)
             return false;
         return !(getRating() != null ? !getRating().equals(that.getRating()) : that.getRating() != null);
 
@@ -73,10 +76,11 @@ public class SearchQuery implements Serializable {
         result = 31 * result + getMinAge();
         result = 31 * result + getMaxAge();
         result = 31 * result + getCost();
-        result = 31 * result + (getOpen() != null ? getOpen().hashCode() : 0);
+        result = 31 * result + getOpen();
         result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
         result = 31 * result + getSize();
         result = 31 * result + getClosing();
+        result = 31 * result + getConfession();
         return result;
     }
 
@@ -89,17 +93,18 @@ public class SearchQuery implements Serializable {
                 ", minAge=" + minAge +
                 ", maxAge=" + maxAge +
                 ", cost=" + cost +
-                ", open='" + open + '\'' +
+                ", open=" + open +
                 ", rating=" + rating +
                 ", size=" + size +
                 ", closing=" + closing +
+                ", confession=" + confession +
                 '}';
     }
 
-
     /*
-        <======================= GETS & SETS =======================>
-        */
+    <======================= GETS & SETS =======================>
+    */
+
     public Long getId() {
         return id;
     }
@@ -148,11 +153,11 @@ public class SearchQuery implements Serializable {
         this.cost = cost;
     }
 
-    public String getOpen() {
+    public int getOpen() {
         return open;
     }
 
-    public void setOpen(String open) {
+    public void setOpen(int open) {
         this.open = open;
     }
 
@@ -178,5 +183,13 @@ public class SearchQuery implements Serializable {
 
     public void setClosing(int closing) {
         this.closing = closing;
+    }
+
+    public int getConfession() {
+        return confession;
+    }
+
+    public void setConfession(int confession) {
+        this.confession = confession;
     }
 }

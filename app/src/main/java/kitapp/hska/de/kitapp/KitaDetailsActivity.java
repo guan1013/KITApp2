@@ -111,7 +111,6 @@ public class KitaDetailsActivity extends AppCompatActivity {
     private void displayKita(Kita kita) {
 
         cleanUi();
-
         if (kita == null) {
             return;
         }
@@ -139,12 +138,12 @@ public class KitaDetailsActivity extends AppCompatActivity {
         }
 
         if (kita.getOpeningHours() != null) {
-            kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
+            //kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
         }
 
 
         kitaDetailsManagement.setText(kita.getManagement());
-        kitaDetailsConfessionData.setText(kita.getConfession().getText());
+        //kitaDetailsConfessionData.setText(kita.getConfession().getText());
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
     }
