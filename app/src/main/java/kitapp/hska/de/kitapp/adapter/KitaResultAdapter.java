@@ -21,7 +21,7 @@ import kitapp.hska.de.kitapp.domain.Kita;
  */
 public class KitaResultAdapter extends ArrayAdapter<Kita> {
 
-    public KitaResultAdapter(Context context, int resource, List<Kita> items) {
+    public KitaResultAdapter(Context context, int resource, Kita[] items) {
         super(context, resource, items);
     }
 
@@ -68,21 +68,20 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
 
             }
 
-            if(buttonEmail != null) {
+            if (buttonEmail != null) {
 
             }
 
-            if(buttonFav != null) {
+            if (buttonFav != null) {
 
             }
 
-            if(buttonCont != null ) {
+            if (buttonCont != null) {
 
             }
         }
         return view;
     }
-
 
 
 }

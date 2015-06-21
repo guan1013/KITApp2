@@ -70,13 +70,18 @@ public class ResultActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    private List<Kita> getKitaList() {
+    private Kita[] getKitaList() {
 
         Bundle bundle = this.getIntent().getExtras();
 
-        List<Kita> kitas = new ArrayList<>();
+        Kita[] kitas = null;
         if (bundle != null) {
-            kitas = (List<Kita>) bundle.get(KITAS_BUNDLE_KEY);
+
+            try {
+                kitas = (Kita[]) bundle.get(KITAS_BUNDLE_KEY);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return kitas;
@@ -96,7 +101,7 @@ public class ResultActivity extends ActionBarActivity {
         resultListView = (ListView) findViewById(R.id.result_listview);
 
 
-        final List<Kita> kitas = getKitaList();
+        final Kita[] kitas = getKitaList();
 
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
 
@@ -105,10 +110,9 @@ public class ResultActivity extends ActionBarActivity {
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDetail(kitas.get(position));
+                showDetail(kitas[position]);
             }
         });
-
 
         ((RadioGroup) findViewById(R.id.result_radiogroup_buttons)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
