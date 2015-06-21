@@ -1,5 +1,9 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import kitapp.hska.de.kitapp.domain.AppUser;
+import kitapp.hska.de.kitapp.services.AppUserService;
+import kitapp.hska.de.kitapp.services.KitaService;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -19,6 +25,28 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editPasswordRepeat;
 
     private Button buttonRegister;
+
+    private AppUserService.AppUserServiceBinder appUserServiceBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            RegisterActivity.this.appUserServiceBinder = ((AppUserService.AppUserServiceBinder) service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        Intent i = new Intent(this, AppUserService.class);
+        bindService(i, serviceConnection, BIND_AUTO_CREATE);
+        super.onStart();
+    }
 
 
     @Override
@@ -37,19 +65,49 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (!editPassword.getText().equals(editPasswordRepeat.getText())) {
-                    toast("Passwörter stimmen nicht überein!");
+
+                // Validate user input
+                if(editTextName.getText().toString().equals(""))
+                {
+                    toast("Bitte Namen angeben!");
+                    return;
                 }
-                else {
-                    AppUser user = new AppUser();
 
-                    user.setEmail(editTextEmail.getText().toString());
-                    user.setName(editTextName.getText().toString());
-                    user.setPassword(editPassword.getText().toString());
+                if(editTextEmail.getText().toString().equals("")) {
+                    toast("Bitte E-Mail angeben!");
+                    return;
+                }
 
-                    //TODO: User Objekt an backend schicken
+                if (!editPassword.getText().toString().equals(editPasswordRepeat.getText().toString())) {
+                    System.out.println(editPassword.getText());
+                    System.out.println(editPasswordRepeat.getText());
+                    toast("Passwörter stimmen nicht überein!");
+                    return;
+                }
+
+                if(editPassword.getText().toString().length() < 8) {
+                    toast("Passwort muss mindestens 8 Zeichen haben!");
+                }
+
+
+                AppUser user = new AppUser();
+
+                user.setEmail(editTextEmail.getText().toString());
+                user.setName(editTextName.getText().toString());
+                user.setPassword(editPassword.getText().toString());
+
+                try
+                {
+                    appUserServiceBinder.createAppUser(user);
+
+                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(i);
+                }catch (Exception e)
+                {
+                    toast(e.getClass().getName());
                 }
             }
+
         });
 
 

@@ -1,5 +1,7 @@
 package kitapp.hska.de.kitapp.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Created by Yannick on 20.06.2015.
  */
-public class Kita implements Serializable {
+public class Kita implements Serializable{
 
 
     /*
@@ -74,8 +76,7 @@ public class Kita implements Serializable {
             this.text = text;
         }
 
-        @Override
-        public String toString() {
+        public String getText() {
             return text;
         }
 
@@ -83,7 +84,14 @@ public class Kita implements Serializable {
 
     public enum OpeningHours {
 
-        HALF("Halbtags"), LONGER("Verlängerte Öffnungszeiten"), FULL("Ganztags");
+        @SerializedName("HALF")
+        HALF("Halbtags"),
+
+        @SerializedName("LONGER")
+        LONGER("Verlängerte Öffnungszeiten"),
+
+        @SerializedName("FULL")
+        FULL("Ganztags");
 
         private String text;
 
@@ -91,8 +99,7 @@ public class Kita implements Serializable {
             this.text = text;
         }
 
-        @Override
-        public String toString() {
+        public String getText() {
             return text;
         }
     }

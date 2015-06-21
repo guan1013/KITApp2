@@ -7,9 +7,11 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.adapter.NewsAdapter;
+import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.domain.News;
 
 public class NewsActivity extends AppCompatActivity {
@@ -48,9 +50,18 @@ public class NewsActivity extends AppCompatActivity {
 
         newsListView = (ListView) findViewById(R.id.news_ListView);
 
-        final List<News> news = getNewsList();
+        //  final List<News> news = getNewsList();
 
-        NewsAdapter newsAdapter = new NewsAdapter(this, R.layout.news_item_layout, news);
+        List<News> newsList = new ArrayList<News>();
+
+        News e = new News("newstext", new Date(), new AppUser(null, "Frau Holle", null, null, null));
+        News e1 = new News("newstext2", new Date(), new AppUser(null, "Frau Holle", null, null, null));
+
+        newsList.add(e);
+        newsList.add(e1);
+
+
+        NewsAdapter newsAdapter = new NewsAdapter(this, R.layout.news_item_layout, newsList); //TODO Change to news
 
         newsListView.setAdapter(newsAdapter);
 

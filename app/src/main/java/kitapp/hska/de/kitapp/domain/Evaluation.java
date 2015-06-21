@@ -30,6 +30,7 @@ public class Evaluation implements Serializable {
         this.author = author;
         this.date = date;
         this.rating = rating;
+
     }
 
     /*
