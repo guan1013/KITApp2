@@ -24,7 +24,6 @@ public class SearchQuery implements Serializable {
     /*
     <======================= CONSTRUCTORS =======================>
      */
-
     public SearchQuery() {
 
     }

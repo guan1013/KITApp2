@@ -22,6 +22,12 @@ import kitapp.hska.de.kitapp.domain.Kita;
 public class ResultActivity extends ActionBarActivity {
 
     /*
+    <======================= CONSTANTS =======================>
+     */
+    private final static String KITAS_BUNDLE_KEY = "kitas";
+    private final static String KITA_BUNDLE_KEY = "kita";
+
+    /*
     <======================= VIEW ATTRIBUTES =======================>
      */
     private ListView resultListView;
@@ -58,16 +64,22 @@ public class ResultActivity extends ActionBarActivity {
         resultLinearLayoutMap = (LinearLayout) findViewById(R.id.result_linarlayout_map);
     }
 
-    private void showDetail() {
-        Intent myIntent = new Intent(this, KitaDetailsActivity.class);
-        startActivity(myIntent);
+    private void showDetail(Kita kita) {
+        Intent intent = new Intent(this, KitaDetailsActivity.class);
+        intent.putExtra(KITA_BUNDLE_KEY, kita);
+        startActivity(intent);
     }
 
-    private List<Kita> getKitaList(){
+    private List<Kita> getKitaList() {
 
-        Bundle bundle;
+        Bundle bundle = this.getIntent().getExtras();
 
-        return new ArrayList<>();
+        List<Kita> kitas = new ArrayList<>();
+        if (bundle != null) {
+            kitas = (List<Kita>) bundle.get(KITAS_BUNDLE_KEY);
+        }
+
+        return kitas;
 
     }
 
@@ -84,15 +96,16 @@ public class ResultActivity extends ActionBarActivity {
         resultListView = (ListView) findViewById(R.id.result_listview);
 
 
-        List<Kita> kitas = getKitaList();
+        final List<Kita> kitas = getKitaList();
 
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
+
         resultListView.setAdapter(resultAdapter);
 
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDetail();
+                showDetail(kitas.get(position));
             }
         });
 

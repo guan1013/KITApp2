@@ -1,7 +1,10 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,12 +13,23 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
+import kitapp.hska.de.kitapp.domain.Kita;
 import kitapp.hska.de.kitapp.domain.SearchQuery;
+import kitapp.hska.de.kitapp.services.KitaService;
 
 
 public class SearchActivity extends ActionBarActivity {
+
+    /*
+    <======================= CONSTANTS =======================>
+     */
+    private final static String KITAS_BUNDLE_KEY = "kitas";
 
     /*
     <======================= VIEW ATTRIBUTES =======================>
@@ -35,6 +49,20 @@ public class SearchActivity extends ActionBarActivity {
     private String open;
     private int size;
     private int closing;
+
+    private KitaService.KitaServiceBinder kitaServiceBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            SearchActivity.this.kitaServiceBinder = ((KitaService.KitaServiceBinder) service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
     /*
     <======================= PUBLIC METHODS =======================>
@@ -67,6 +95,29 @@ public class SearchActivity extends ActionBarActivity {
 
         SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing);
 
+        Kita[] kitas = null;
+
+        try {
+            kitas = kitaServiceBinder.getKitaBySearchQuery(query);
+
+            if(kitas == null) {
+                toast("Found 0 Kitas (kitas=null)");
+            } else {
+                toast("Found " + kitas.length + " Kitas");
+            }
+            if(kitas != null && kitas.length > 0) {
+                Intent intent = new Intent(this, ResultActivity.class);
+                intent.putExtra(KITAS_BUNDLE_KEY, kitas);
+                startActivity(intent);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+
         Intent myIntent = new Intent(this, ResultActivity.class);
         startActivity(myIntent);
 
@@ -86,7 +137,6 @@ public class SearchActivity extends ActionBarActivity {
 
 
         try {
-
             cost = Integer.parseInt(costString);
         } catch (Exception e) {
             e.printStackTrace();
@@ -201,9 +251,26 @@ public class SearchActivity extends ActionBarActivity {
 
     }
 
+    private void toast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
     /*
     <======================= OVERRIDE METHODS =======================>
      */
+
+    @Override
+    protected  void onStart() {
+        Intent intent = new Intent(this, KitaService.class);
+        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unbindService(serviceConnection);
+        super.onStop();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -313,5 +380,4 @@ public class SearchActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

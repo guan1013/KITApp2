@@ -22,8 +22,12 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 
 import java.io.BufferedInputStream;
@@ -44,6 +48,7 @@ import java.util.concurrent.TimeoutException;
 
 import kitapp.hska.de.kitapp.MainActivity;
 import kitapp.hska.de.kitapp.domain.Kita;
+import kitapp.hska.de.kitapp.domain.SearchQuery;
 
 /**
  *
@@ -52,6 +57,11 @@ import kitapp.hska.de.kitapp.domain.Kita;
 public class KitaService extends Service {
 
     private final KitaServiceBinder binder = new KitaServiceBinder();
+
+    private final static String BACKEND_URL = "http://ebusiness-kitapp-backend.herokuapp.com/";
+    private final static String KITAS_PARAM = "kitas";
+    private final static String CITY_PARAM = "city";
+    private final static String SEARCH_PARAM = "search";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -75,21 +85,21 @@ public class KitaService extends Service {
                 @Override
                 protected Kita[] doInBackground(String... params) {
 
-                    if(params == null || params.length == 0) {
+                    if (params == null || params.length == 0) {
                         return null;
                     }
 
                     String city = params[0];
 
 
-                    System.out.print("Search for city: " +city);
+                    System.out.print("Search for city: " + city);
 
 
                     try {
 
                         HttpClient httpClient = new DefaultHttpClient();
                         HttpContext localContext = new BasicHttpContext();
-                        String url = "http://ebusiness-kitapp-backend.herokuapp.com/kitas?city=" + URLEncoder.encode(city, "UTF-8");
+                        String url = BACKEND_URL + KITAS_PARAM + "?" + CITY_PARAM + "=" + URLEncoder.encode(city, "UTF-8");
                         HttpGet httpGet = new HttpGet(url);
                         String text = null;
 
@@ -126,7 +136,82 @@ public class KitaService extends Service {
             kitaFinderTask.execute(city);
             Kita[] kitas = kitaFinderTask.get(5L, TimeUnit.SECONDS);
 
-            // Do the shit here
+            // Shit is done here
+            return kitas;
+        }
+
+        public Kita[] getKitaBySearchQuery(SearchQuery query) throws InterruptedException, ExecutionException, TimeoutException {
+
+            AsyncTask<SearchQuery, Void, Kita[]> kitaFinderTask = new AsyncTask<SearchQuery, Void, Kita[]>() {
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
+                }
+
+                @Override
+                protected void onPostExecute(Kita[] kitas) {
+                    super.onPostExecute(kitas);
+                }
+
+                @Override
+                protected Kita[] doInBackground(SearchQuery... params) {
+
+                    if (params == null || params.length == 0) {
+                        return null;
+                    }
+
+                    // Creates the json object which will manage the information received
+                    GsonBuilder builder = new GsonBuilder();
+
+                    // Register an adapter to manage the date types as long values
+                    builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+                        public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                            return new Date(json.getAsJsonPrimitive().getAsLong());
+                        }
+                    });
+
+                    Gson gson = builder.create();
+
+                    String request = gson.toJson(params[0]);
+
+                    System.out.println("==========================================request" + request + "==========================================");
+
+                    try {
+
+                        HttpClient httpClient = new DefaultHttpClient();
+                        HttpPost postAction = new HttpPost(BACKEND_URL + KITAS_PARAM + "/" + SEARCH_PARAM);
+                        postAction.addHeader(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+                        postAction.setEntity(new StringEntity(request));
+                        String text = null;
+
+                        HttpResponse response = httpClient.execute(postAction);
+
+                        System.out.println("==========================================response" + response.toString() + "==========================================");
+
+
+                        HttpEntity entity = response.getEntity();
+
+                        text = getASCIIContentFromEntity(entity);
+
+                        Kita[] kitas = gson.fromJson(text, Kita[].class);
+
+                        System.out.println("==========================================text" + text + "==========================================");
+                        for (Kita k : kitas) {
+                            System.out.println(k.toString());
+                        }
+                        return kitas;
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }
+            };
+
+            kitaFinderTask.execute(query);
+            Kita[] kitas = kitaFinderTask.get(5L, TimeUnit.SECONDS);
+
+            // Shit is done here
             return kitas;
         }
 
