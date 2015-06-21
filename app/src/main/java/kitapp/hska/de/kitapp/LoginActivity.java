@@ -13,6 +13,7 @@ public class LoginActivity extends ActionBarActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
+    private Button buttonRegister;
 
 
     @Override
