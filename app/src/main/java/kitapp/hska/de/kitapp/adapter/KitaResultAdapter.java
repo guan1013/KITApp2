@@ -2,6 +2,8 @@ package kitapp.hska.de.kitapp.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +48,7 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
             ImageButton buttonFav = (ImageButton) view.findViewById(R.id.result_imagebutton_fav);
             ImageButton buttonCont = (ImageButton) view.findViewById(R.id.result_imagebutton_cont);
 
+
             if (textViewName != null) {
                 textViewName.setText(kita.getName());
             }
@@ -66,9 +69,30 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
 
             if (buttonTel != null) {
 
+                final String phone = "tel:" + kita.getAddress().getPhone();
+                buttonTel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+                        dialIntent.setData(Uri.parse(phone));
+             //           startActivity(dialIntent);
+                    }
+                });
+
+
             }
 
             if (buttonEmail != null) {
+                final String email = kita.getAddress().getEmail();
+                buttonEmail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent mailIntent = new Intent(Intent.ACTION_SEND);
+                        mailIntent.setType("plain/text");
+                        mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+                //        startActivity(Intent.createChooser(mailIntent,""));
+                    }
+                });
 
             }
 
@@ -82,6 +106,5 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
         }
         return view;
     }
-
 
 }

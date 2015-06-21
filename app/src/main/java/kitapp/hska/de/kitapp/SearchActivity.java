@@ -115,9 +115,6 @@ public class SearchActivity extends ActionBarActivity {
             e.printStackTrace();
         }
 
-        Intent myIntent = new Intent(this, ResultActivity.class);
-        startActivity(myIntent);
-
     }
 
     public void onToggleCost(View button) {
