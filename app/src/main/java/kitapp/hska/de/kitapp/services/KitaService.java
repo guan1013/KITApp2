@@ -32,7 +32,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -73,14 +75,23 @@ public class KitaService extends Service {
                 @Override
                 protected Kita[] doInBackground(String... params) {
 
+                    if(params == null || params.length == 0) {
+                        return null;
+                    }
 
-                    System.out.print("Search for city: " + params[0]);
+                    String city = params[0];
 
-                    HttpClient httpClient = new DefaultHttpClient();
-                    HttpContext localContext = new BasicHttpContext();
-                    HttpGet httpGet = new HttpGet("http://ebusiness-kitapp-backend.herokuapp.com/kitas?city=" + params[0]);
-                    String text = null;
+
+                    System.out.print("Search for city: " +city);
+
+
                     try {
+
+                        HttpClient httpClient = new DefaultHttpClient();
+                        HttpContext localContext = new BasicHttpContext();
+                        String url = "http://ebusiness-kitapp-backend.herokuapp.com/kitas?city=" + URLEncoder.encode(city, "UTF-8");
+                        HttpGet httpGet = new HttpGet(url);
+                        String text = null;
 
                         HttpResponse response = httpClient.execute(httpGet, localContext);
 

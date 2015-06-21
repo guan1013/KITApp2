@@ -37,6 +37,17 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
     private void initViews() {
         resultListView = (ListView) findViewById(R.id.result_listview);
+        kitaDetailsName = (TextView) findViewById(R.id.KitaDetailsName);
+        kitaDetailsEvaluation = (TextView) findViewById(R.id.KitaDetailsEvaluation);
+        kitaDetailsCostsData = (TextView) findViewById(R.id.KitaDetailsCostsData);
+        kitaDetailsOpenhours = (TextView) findViewById(R.id.KitaDetailsOpenhours);
+        kitaDetailsManagement = (TextView) findViewById(R.id.KitaDetailsManagementData);
+        kitaDetailsConfessionData = (TextView) findViewById(R.id.KitaDetailsConfessionData);
+        kitaDetailsAgeData = (TextView) findViewById(R.id.KitaDetailsAgeData);
+        kitaDetailsAboutData = (TextView) findViewById(R.id.KitaDetailsAboutData);
+        kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
+        resultListView = (ListView) findViewById(R.id.result_listview);
+
     }
 
 
@@ -46,72 +57,49 @@ public class KitaDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kita_details);
         initViews();
 
-        ListView listViewResult = (ListView) findViewById(R.id.result_listview);
+        Bundle b = this.getIntent().getExtras();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dateInString = "07/06/2013";
+        if (b != null) {
+            Kita kita = (Kita)b.get("kita");
+            displayKita(kita);
+        }
+    }
 
-        Date date = null;
+    private void displayKita(Kita kita) {
 
-        try {
 
-            date = formatter.parse(dateInString);
-            System.out.println(date);
-            System.out.println(formatter.format(date));
+        if (kita == null) {
+            return;
+        }
 
-        } catch (ParseException e) {
-            e.printStackTrace();
+        kitaDetailsName.setText(kita.getName());
+
+        if (kita.getAvgRating() != null) {
+            kitaDetailsEvaluation.setText(kita.getAvgRating().toString());
+        } else {
+            kitaDetailsEvaluation.setText("");
+        }
+
+        if(kita.getCosts() != null) {
+            kitaDetailsCostsData.setText(kita.getCosts().toString());
+        } else
+        {
+            kitaDetailsCostsData.setText("");
+        }
+
+        if(kita.getOpeningHours() != null) {
+            kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
+        } else
+
+        {
+            kitaDetailsOpenhours.setText("");
         }
 
 
-
-        Evaluation evaluation1 = new Evaluation("Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!",new AppUser(null,"Hans Peter",null,null), date, 4.1);
-        Evaluation evaluation2 = new Evaluation("Geht mal garnicht. Überall ist es dreckig und es stinkt. Auf keinen Fall würde ich mein Kind in so eine Müllhalde schicken.",new AppUser(null,"Franziska Hart",null,null), date, 2.5);
-        Evaluation evaluation3 = new Evaluation("Diese Kita is definitiv zu empfehlen! Super freundliche Erzieherinnen mit kurzen Miniröcken. Da holt Mann sein Kind gerne ab!",new AppUser(null,"Hans Peter",null,null), date, 0.5);
-
-        List<Evaluation> evaluations = new ArrayList<>();
-
-        evaluations.add(evaluation1);
-        evaluations.add(evaluation2);
-        evaluations.add(evaluation3);
-
-        CommentsAdapter resultAdapter = new CommentsAdapter(this, R.layout.comment_item_layout, evaluations);
-
-        listViewResult.setAdapter(resultAdapter);
-
-        //////////////////////////////////////////////////
-
-        Kita kita = new Kita();
-
-        kita.setName("Dunkle Seitenstraße");
-        kita.setConfession(Kita.Confession.NO_CONFESSION);
-        kita.setCosts(666.66);
-        kita.setMaxAge(99);
-        kita.setMinAge(66);
-        kita.setOpeningHours(Kita.OpeningHours.FULL);
-        kita.setId(666L);
-
-        kitaDetailsName = (TextView) findViewById(R.id.KitaDetailsName);
-        kitaDetailsEvaluation = (TextView) findViewById(R.id.KitaDetailsEvaluation);
-        kitaDetailsCostsData = (TextView) findViewById(R.id.KitaDetailsCostsData);
-        kitaDetailsOpenhours = (TextView) findViewById(R.id.KitaDetailsOpenhours);
-        kitaDetailsManagement = (TextView) findViewById(R.id.KitaDetailsManagementData);
-        kitaDetailsConfessionData = (TextView) findViewById(R.id.KitaDetailsConfessionData);
-        kitaDetailsAgeData = (TextView) findViewById(R.id.KitaDetailsAgeData);
-        kitaDetailsAboutData = (TextView) findViewById(R.id.KitaDetailsAboutData);
-
-        kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
-
-        kitaDetailsName.setText(kita.getName());
-        kitaDetailsEvaluation.setText(kita.getAvgRating().toString());
-        kitaDetailsCostsData.setText(kita.getCosts().toString());
-        kitaDetailsOpenhours.setText(kita.getOpeningHours().getText());
         kitaDetailsManagement.setText(kita.getManagement());
         kitaDetailsConfessionData.setText(kita.getConfession().getText());
-        kitaDetailsAgeData.setText(kita.getMinAge()+" - "+kita.getMaxAge());
+        kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
-
-
     }
 
     //////////////////////////////////////////////////
