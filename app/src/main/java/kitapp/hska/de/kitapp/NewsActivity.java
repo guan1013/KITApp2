@@ -4,13 +4,56 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import kitapp.hska.de.kitapp.adapter.NewsAdapter;
+import kitapp.hska.de.kitapp.domain.News;
 
 public class NewsActivity extends AppCompatActivity {
+
+    private final static String NEWS_BUNDLE_KEY = "news";
+
+
+    private ListView newsListView;
+
+    private List<News> getNewsList() {
+
+        Bundle bundle = this.getIntent().getExtras();
+
+        List<News> news = new ArrayList<>();
+        if (bundle != null) {
+            try {
+                news = (ArrayList<News>) bundle.get(NEWS_BUNDLE_KEY);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return news;
+    }
+
+    private void initViews() {
+
+        newsListView = (ListView) findViewById(R.id.news_ListView);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        initViews();
+
+        newsListView = (ListView) findViewById(R.id.news_ListView);
+
+        final List<News> news = getNewsList();
+
+        NewsAdapter newsAdapter = new NewsAdapter(this, R.layout.news_item_layout,news);
+
+        newsListView.setAdapter(newsAdapter);
+
     }
 
     @Override

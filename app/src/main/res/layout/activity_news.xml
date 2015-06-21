@@ -9,7 +9,7 @@
     tools:context="kitapp.hska.de.kitapp.NewsActivity">
 
     <ListView
-        android:id="@+id/result.listview"
+        android:id="@+id/news_ListView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:divider="#0000CC"

@@ -112,7 +112,8 @@
                 android:layout_marginTop="10dp"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:rating="4" />
+                android:rating="4"
+                android:stepSize="0.5" />
 
             <Button
                 android:id="@+id/KitaDetailsButtonNews"
@@ -246,7 +247,7 @@
                 android:layout_weight="30">
 
                 <ListView
-                    android:id="@+id/result.listview"
+                    android:id="@+id/evaluation_ListView"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginTop="10dp"

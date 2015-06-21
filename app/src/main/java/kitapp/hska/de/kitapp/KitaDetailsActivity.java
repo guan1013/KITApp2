@@ -1,6 +1,5 @@
 package kitapp.hska.de.kitapp;
 
-import android.media.Rating;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,19 +8,19 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import org.w3c.dom.Comment;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import kitapp.hska.de.kitapp.adapter.CommentsAdapter;
-import kitapp.hska.de.kitapp.domain.AppUser;
+import kitapp.hska.de.kitapp.adapter.EvaluationsAdapter;
 import kitapp.hska.de.kitapp.domain.Evaluation;
 import kitapp.hska.de.kitapp.domain.Kita;
 
 public class KitaDetailsActivity extends AppCompatActivity {
 
+
+    private final static String EVALUATIONS_BUNDLE_KEY = "evaluations";
 
     TextView kitaDetailsName;
     TextView kitaDetailsAddressData;
@@ -35,10 +34,10 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
     RatingBar kitaDetailsRatingbar;
 
-    private ListView resultListView;
+    private ListView evaluationListView;
 
     private void initViews() {
-        resultListView = (ListView) findViewById(R.id.result_listview);
+        evaluationListView = (ListView) findViewById(R.id.evaluation_ListView);
         kitaDetailsAddressData = (TextView) findViewById(R.id.KitaDetailsAddressData);
         kitaDetailsName = (TextView) findViewById(R.id.KitaDetailsName);
         kitaDetailsCostsData = (TextView) findViewById(R.id.KitaDetailsCostsData);
@@ -48,17 +47,42 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsAgeData = (TextView) findViewById(R.id.KitaDetailsAgeData);
         kitaDetailsAboutData = (TextView) findViewById(R.id.KitaDetailsAboutData);
         kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
-        resultListView = (ListView) findViewById(R.id.result_listview);
         kitaRatingBar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
 
     }
 
+
+    private List<Evaluation> getEvaluationList() {
+
+        Bundle bundle = this.getIntent().getExtras();
+
+        List<Evaluation> evaluations = new ArrayList<>();
+        if (bundle != null) {
+            try {
+                evaluations = (ArrayList<Evaluation>) bundle.get(EVALUATIONS_BUNDLE_KEY);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return evaluations;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kita_details);
         initViews();
+
+        evaluationListView = (ListView) findViewById(R.id.evaluation_ListView);
+
+        final List<Evaluation> evaluations = getEvaluationList();
+
+        EvaluationsAdapter evaluationsAdapter = new EvaluationsAdapter(this,R.layout.evaluation_item_layout, evaluations);
+
+        evaluationListView.setAdapter(evaluationsAdapter);
 
         Bundle b = this.getIntent().getExtras();
 
