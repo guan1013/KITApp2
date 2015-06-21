@@ -17,6 +17,7 @@ import org.apache.http.StatusLine;
 
 import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.services.AppUserService;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -67,14 +68,20 @@ public class LoginActivity extends ActionBarActivity {
                 userToLogin.setEmail(editTextEmail.getText().toString());
                 userToLogin.setPassword(editTextPassword.getText().toString());
 
-                StatusLine status = appUserServiceBinder.login(userToLogin);
+                LoginResult status = appUserServiceBinder.login(userToLogin);
 
                 if(status != null) {
+                    toast("Login result: " + status.getStatusLine().getReasonPhrase() + " (" + status.getStatusLine().getStatusCode() + ")");
 
+                    System.out.println(status.getAppUser());
+
+                    if(status.getStatusLine().getStatusCode() == 200) {
+                        if(status.getAppUser() != null)
+                        toast("Hallo, " + status.getAppUser().getName() + "!");
+                        Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(i);
+                    }
                 }
-
-                toast("Login result: " + status.getReasonPhrase() + " (" + status.getStatusCode() + ")");
-
             }
         });
 
