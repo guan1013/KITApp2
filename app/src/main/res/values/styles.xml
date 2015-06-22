@@ -10,7 +10,6 @@
     <!-- Actionbar Style -->
     <style name="AppTheme.CustomActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:background">#ce1e9c</item>
-
     </style>
 
 
@@ -62,6 +61,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:paddingBottom">3dp</item>
         <item name="android:paddingTop">3dp</item>
+        <item name="android:background">#ffffff</item>
     </style>
 
     <style name="editTextHint">

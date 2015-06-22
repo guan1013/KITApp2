@@ -22,7 +22,8 @@
         android:layout_alignParentStart="false"
         android:layout_alignParentLeft="false"
         android:cropToPadding="false"
-        android:focusable="false" />
+        android:focusable="false"
+        style="@style/FontBGColor.White"/>
 
     <EditText
         android:layout_width="wrap_content"

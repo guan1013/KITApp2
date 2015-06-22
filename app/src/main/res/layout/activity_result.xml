@@ -14,7 +14,8 @@
         android:id="@+id/result.radiogroup.buttons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        style="@style/FontBGColor.White">
 
         <ToggleButton
             android:id="@+id/result.togglebutton.list"
@@ -43,7 +44,8 @@
         android:id="@+id/result.linarlayout.list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        style="@style/FontBGColor.White">
 
         <Spinner
             android:layout_width="fill_parent"
