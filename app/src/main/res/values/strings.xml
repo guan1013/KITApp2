@@ -2,11 +2,16 @@
     <string name="app_name">KITApp</string>
 
     <string name="hello_world">Hello world!</string>
+
     <string name="action_login">Anmelden</string>
     <string name="action_home">Startseite</string>
     <string name="action_favorites">Favoriten</string>
     <string name="action_search">Suche</string>
     <string name="action_news">News</string>
+    <string name="action_kita_details">Details</string>
+    <string name="action_register">Registrieren</string>
+    <string name="action_comment">Bewertung</string>
+
     <string name="title_activity_login">LoginActivity</string>
     <string name="main_activity_title">STARTSEITE</string>
     <string name="login_activity_title">LOGIN</string>
@@ -17,7 +22,7 @@
     <string name="buttonSuche">Suchen</string>
     <string name="main_activity_location_field_label">Suchort/Standort</string>
     <string name="title_activity_kita_details">KitaDetailsActivity</string>
-    <string name="title_activity_result">ERGEBNISSE</string>
+    <string name="title_activity_result">Ergebnisse</string>
 
     <!-- Placeholder String -->
     <string name="placeHolderString">PLACEHOLDER</string>
