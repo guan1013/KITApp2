@@ -86,9 +86,9 @@
             android:name=".NewsActivity"
             android:label="@string/action_news"></activity>
 
-        <meta-data
+        <!--<meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD-8fgW90ML24rWhyTaXVb31YLFfIkK83M" />
+            android:value="AIzaSyD-8fgW90ML24rWhyTaXVb31YLFfIkK83M" />-->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyD-8fgW90ML24rWhyTaXVb31YLFfIkK83M" />
