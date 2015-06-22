@@ -27,8 +27,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.google.android.gms.maps.GoogleMap;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
