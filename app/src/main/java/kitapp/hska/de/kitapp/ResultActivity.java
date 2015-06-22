@@ -22,6 +22,9 @@ import android.widget.ToggleButton;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +82,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         resultListView = (ListView) findViewById(R.id.result_listview);
         resultLinearLayoutList = (LinearLayout) findViewById(R.id.result_linarlayout_list);
         resultLinearLayoutMap = (LinearLayout) findViewById(R.id.result_linarlayout_map);
+        resultListView = (ListView) findViewById(R.id.result_listview);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.result_fragment_map);
         mapFragment.getMapAsync(this);
     }
@@ -99,7 +103,6 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
                 e.printStackTrace();
             }
         }
-
 
         Intent intent = new Intent(this, KitaDetailsActivity.class);
         if (loggedInUser != null) {
@@ -160,6 +163,15 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setZoomGesturesEnabled(true);
         map.setMyLocationEnabled(true);
+        for (Kita kita : kitas) {
+            map.addMarker(
+                    new MarkerOptions()
+                            .position(
+                                    new LatLng(kita.getLatitude(), kita.getLongitude()))
+                            .title(kita.getName())
+
+            );
+        }
     }
 
     @Override
@@ -167,7 +179,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         initViews();
-        resultListView = (ListView) findViewById(R.id.result_listview);
+
         getExtras();
         addResultListAdapter();
         setOnCheckedListener(R.id.result_radiogroup_buttons);
