@@ -180,7 +180,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         }
 
         CameraUpdate cu = null;
-        if (markerKitaMap.size() > 1) {
+        /*if (markerKitaMap.size() > 1) {
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             for (Marker marker : markerKitaMap.keySet()) {
                 builder.include(marker.getPosition());
@@ -199,7 +199,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         }
         if (cu != null) {
             map.moveCamera(cu);
-        }
+        }*/
 
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
