@@ -18,4 +18,6 @@ public class Constants {
     public final static String PARAM_APP_USER_ID = "email=";
 
     public  final static String EXTRAS_KEY_LOGIN = "login";
+
+    public  final static Long TIME_OUT = 20L;
 }

@@ -47,7 +47,7 @@ public class CommentsAdapter extends ArrayAdapter<Evaluation> {
             TextView textViewText = (TextView) view.findViewById(R.id.CommentText);
 
             if (textViewName != null) {
-                textViewName.setText(evaluation.getAuthor().getName());
+                textViewName.setText(evaluation.getAuthorIdx().toString());
             }
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

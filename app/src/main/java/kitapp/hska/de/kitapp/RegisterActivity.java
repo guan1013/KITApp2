@@ -16,6 +16,8 @@ import android.widget.Toast;
 import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.services.AppUserService;
 import kitapp.hska.de.kitapp.services.KitaService;
+import kitapp.hska.de.kitapp.util.Constants;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -67,13 +69,12 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Validate user input
-                if(editTextName.getText().toString().equals(""))
-                {
+                if (editTextName.getText().toString().equals("")) {
                     toast("Bitte Namen angeben!");
                     return;
                 }
 
-                if(editTextEmail.getText().toString().equals("")) {
+                if (editTextEmail.getText().toString().equals("")) {
                     toast("Bitte E-Mail angeben!");
                     return;
                 }
@@ -85,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(editPassword.getText().toString().length() < 8) {
+                if (editPassword.getText().toString().length() < 8) {
                     toast("Passwort muss mindestens 8 Zeichen haben!");
                 }
 
@@ -96,15 +97,15 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setName(editTextName.getText().toString());
                 user.setPassword(editPassword.getText().toString());
 
-                try
-                {
+                try {
                     appUserServiceBinder.createAppUser(user);
 
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(i);
-                }catch (Exception e)
-                {
+
+                } catch (Exception e) {
                     toast(e.getClass().getName());
+                    e.printStackTrace();
                 }
             }
 

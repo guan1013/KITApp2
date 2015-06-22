@@ -16,6 +16,9 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import kitapp.hska.de.kitapp.client.WebserviceClient;
 import kitapp.hska.de.kitapp.domain.Evaluation;
@@ -36,7 +39,7 @@ public class EvaluationService extends Service {
 
     public class EvaluationServiceBinder extends Binder {
 
-        public  void createEvaluation(Evaluation evaluation) {
+        public  void createEvaluation(Evaluation evaluation) throws InterruptedException, ExecutionException, TimeoutException {
 
             AsyncTask<Evaluation,Void,Void> evaluationTask = new AsyncTask<Evaluation, Void, Void>() {
                 @Override
@@ -50,6 +53,8 @@ public class EvaluationService extends Service {
                     Evaluation evaluation1 = params[0];
                     Gson gson = new Gson();
                     String evaluationJson = gson.toJson(evaluation1);
+
+
 
                     // Build URL for webservice call
                     String url = Constants.BACKEND_URL + Constants.EVALUATION;
@@ -70,6 +75,9 @@ public class EvaluationService extends Service {
                     return null;
                 }
             };
+
+            evaluationTask.execute(evaluation);
+            evaluationTask.get(Constants.TIME_OUT, TimeUnit.SECONDS);
         }
     }
 }
