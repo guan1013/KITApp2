@@ -27,8 +27,8 @@ public class Kita implements Serializable{
     private Integer maxAge;
     private Integer maxGroupSize;
     private Integer closingDays;
-    private Confession confession;
-    private OpeningHours openingHours;
+    private Integer confession;
+    private Integer openingHours;
     private String management;
     private String about;
     private Address address;
@@ -41,7 +41,7 @@ public class Kita implements Serializable{
 
     }
 
-    public Kita(String name, Date dateCreated, List<News> news, List<Evaluation> evaluations, Double longitude, Double latitude, Double costs, Integer minAge, Integer maxAge, Integer maxGroupSize, Integer closingDays, Confession confession, OpeningHours openingHours, String management, String about, Address address, Double avgRating) {
+    public Kita(String name, Date dateCreated, List<News> news, List<Evaluation> evaluations, Double longitude, Double latitude, Double costs, Integer minAge, Integer maxAge, Integer maxGroupSize, Integer closingDays, Integer confession, Integer openingHours, String management, String about, Address address, Double avgRating) {
         this.name = name;
         this.dateCreated = dateCreated;
         this.news = news;
@@ -296,21 +296,7 @@ public class Kita implements Serializable{
         this.closingDays = closingDays;
     }
 
-    public Confession getConfession() {
-        return confession;
-    }
 
-    public void setConfession(Confession confession) {
-        this.confession = confession;
-    }
-
-    public OpeningHours getOpeningHours() {
-        return openingHours;
-    }
-
-    public void setOpeningHours(OpeningHours openingHours) {
-        this.openingHours = openingHours;
-    }
 
     public String getManagement() {
         return management;
@@ -326,6 +312,22 @@ public class Kita implements Serializable{
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public Integer getConfession() {
+        return confession;
+    }
+
+    public void setConfession(Integer confession) {
+        this.confession = confession;
+    }
+
+    public Integer getOpeningHours() {
+        return openingHours;
+    }
+
+    public void setOpeningHours(Integer openingHours) {
+        this.openingHours = openingHours;
     }
 
     public Address getAddress() {
