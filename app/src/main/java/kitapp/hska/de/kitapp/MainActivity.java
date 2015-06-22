@@ -38,8 +38,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.domain.Kita;
 import kitapp.hska.de.kitapp.services.KitaService;
+import kitapp.hska.de.kitapp.util.Constants;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 
 /**
@@ -47,21 +50,6 @@ import kitapp.hska.de.kitapp.services.KitaService;
  * search by entering a city.
  */
 public class MainActivity extends ActionBarActivity implements LocationListener {
-
-    private KitaService.KitaServiceBinder kitaServiceBinder;
-
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-
-            MainActivity.this.kitaServiceBinder = ((KitaService.KitaServiceBinder) service);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
 
     /**
      * Textfield for entering location for search
@@ -81,6 +69,25 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     private LocationManager locationManager;
 
     private String provider;
+
+    private LoginResult loggedInUser;
+
+
+    private KitaService.KitaServiceBinder kitaServiceBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            MainActivity.this.kitaServiceBinder = ((KitaService.KitaServiceBinder) service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
 
     @Override
     protected void onStart() {
@@ -102,12 +109,19 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         setContentView(R.layout.activity_main);
 
 
-
-
         // Set references for ui objects
         buttonLocation = (ImageButton) findViewById(R.id.mainImageButtonLocation);
         editTextLocation = (EditText) findViewById(R.id.mainEditTextLocation);
         buttonSuche = (Button) findViewById(R.id.mainButtonSearch);
+
+
+        if (this.getIntent().getExtras() != null) {
+            LoginResult login = (LoginResult) this.getIntent().getExtras().get(Constants.EXTRAS_KEY_LOGIN);
+
+            if (login != null) {
+                this.loggedInUser = login;
+            }
+        }
 
 
         buttonSuche.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +159,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
                 // Send search result to ResultActivity
                 Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                 intent.putExtra("kitas", new ArrayList<Kita>(Arrays.asList(kitas)));
+                intent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
                 startActivity(intent);
 
             }
@@ -203,7 +218,9 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         if (id == R.id.action_login) {
 
             Intent myIntent = new Intent(this, LoginActivity.class);
+            myIntent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
             startActivity(myIntent);
+
             return true;
         }
 
@@ -211,12 +228,14 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         if (id == R.id.action_search) {
 
             Intent myIntent = new Intent(this, SearchActivity.class);
+            myIntent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
             startActivity(myIntent);
             return true;
         }
 
-        if(id == R.id.action_news) {
-            Intent myIntent = new Intent(this,NewsActivity.class);
+        if (id == R.id.action_news) {
+            Intent myIntent = new Intent(this, NewsActivity.class);
+            myIntent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
             startActivity(myIntent);
             return true;
         }

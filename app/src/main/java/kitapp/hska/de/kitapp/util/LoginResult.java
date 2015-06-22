@@ -2,12 +2,14 @@ package kitapp.hska.de.kitapp.util;
 
 import org.apache.http.StatusLine;
 
+import java.io.Serializable;
+
 import kitapp.hska.de.kitapp.domain.AppUser;
 
 /**
  * Created by Amin on 21.06.2015.
  */
-public class LoginResult {
+public class LoginResult implements Serializable {
 
     private StatusLine statusLine;
 

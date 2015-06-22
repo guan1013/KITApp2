@@ -1,11 +1,15 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -16,17 +20,49 @@ import java.util.Date;
 import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.domain.Evaluation;
 import kitapp.hska.de.kitapp.domain.Kita;
+import kitapp.hska.de.kitapp.services.EvaluationService;
+import kitapp.hska.de.kitapp.services.KitaService;
 
 
 public class WriteCommentActivity extends ActionBarActivity {
 
-    public void sendComment(View button) {
-        String name = "user";
-        String text = editTextComment.getText().toString();
-        Date date = new Date();
-        Double evaluation = (double) ratingBarEvaluation.getRating();
+    private EvaluationService.EvaluationServiceBinder evaluationServiceBinder;
 
-        Evaluation query = new Evaluation(text,new AppUser(null,name,null,null,null), date, evaluation);
+    private Kita kitaToEvaluate = null;
+
+    private AppUser loggedInUser = null;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            WriteCommentActivity.this.evaluationServiceBinder = ((EvaluationService.EvaluationServiceBinder) service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        Intent i = new Intent(this, EvaluationService.class);
+        bindService(i, serviceConnection, BIND_AUTO_CREATE);
+        super.onStart();
+    }
+
+    public void sendComment(View button) {
+
+        String text = editTextComment.getText().toString();
+        Double rating = (double) ratingBarEvaluation.getRating();
+
+        Evaluation query = new Evaluation();
+        query.setAuthor(loggedInUser);
+        query.setKita(kitaToEvaluate);
+        query.setText(text);
+        query.setRating(rating);
 
         Intent myIntent = new Intent(this, KitaDetailsActivity.class);
         startActivity(myIntent);
@@ -35,12 +71,14 @@ public class WriteCommentActivity extends ActionBarActivity {
     private TextView textViewName;
     private EditText editTextComment;
     private RatingBar ratingBarEvaluation;
+    private Button send;
 
     private void initViews() {
 
         this.textViewName = (TextView) findViewById(R.id.comment_write_textview_name);
         this.editTextComment = (EditText) findViewById(R.id.comment_write_edittext_text);
         this.ratingBarEvaluation = (RatingBar) findViewById(R.id.comment_write_ratingbar_rating);
+        this.send = (Button) findViewById(R.id.commentWriteButton);
     }
 
     @Override
@@ -50,15 +88,22 @@ public class WriteCommentActivity extends ActionBarActivity {
 
         initViews();
 
-        Kita kita = (Kita) this.getIntent().getExtras().get("kita");
+        kitaToEvaluate = (Kita) this.getIntent().getExtras().get("kita");
+        loggedInUser = (AppUser) this.getIntent().getExtras().get("appuser");
 
-        if(kita == null) {
+        if (kitaToEvaluate == null) {
             toast("No KITA to evaluate");
-            Intent i= new Intent(getApplicationContext(),MainActivity.class);
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
         }
 
-        this.textViewName.setText(kita.getName());
+        if (loggedInUser == null) {
+            toast("You are not logged in");
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
+
+        this.textViewName.setText(kitaToEvaluate.getName());
     }
 
     @Override
@@ -95,6 +140,7 @@ public class WriteCommentActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void toast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }

@@ -38,7 +38,9 @@ import java.util.concurrent.TimeoutException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import kitapp.hska.de.kitapp.client.WebserviceClient;
 import kitapp.hska.de.kitapp.domain.AppUser;
+import kitapp.hska.de.kitapp.util.Constants;
 import kitapp.hska.de.kitapp.util.LoginResult;
 
 /**
@@ -46,11 +48,6 @@ import kitapp.hska.de.kitapp.util.LoginResult;
  */
 public class AppUserService extends Service {
 
-    private final static String BACKEND_URL = "http://ebusiness-kitapp-backend.herokuapp.com/";
-    private final static String PATH_APP_USER = "appuser";
-    private final static String PATH_LOGIN = "/server";
-    private final static String PATH_APP_USER_ID = "/id";
-    private final static String PARAM_APP_USER_ID = "email=";
 
     private AppUserServiceBinder binder = new AppUserServiceBinder();
 
@@ -90,21 +87,15 @@ public class AppUserService extends Service {
 
                     try {
 
-                        HttpClient httpClient = new DefaultHttpClient();
-                        HttpPost postAction = new HttpPost(BACKEND_URL + PATH_APP_USER);
-                        postAction.addHeader(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-                        postAction.setEntity(new StringEntity(request));
-                        String text = null;
+                        String url = Constants.BACKEND_URL + Constants.PATH_APP_USER;
+                        HttpResponse response = WebserviceClient
+                                .create()
+                                .setEntity(request)
+                                .callWebservice(url, WebserviceClient.HttpMethod.POST);
 
-                        HttpResponse response = httpClient.execute(postAction);
+
                         HttpEntity entity = response.getEntity();
 
-                        if (response.getStatusLine().getStatusCode() == 200) {
-
-                        }
-                        text = getASCIIContentFromEntity(entity);
-
-                        System.out.println(text);
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -135,22 +126,19 @@ public class AppUserService extends Service {
 
                     try {
 
-                        // Prepare login for login
-                        String url = BACKEND_URL + PATH_LOGIN;
+                        // Prepare url for login
+                        String url = Constants.BACKEND_URL + Constants.PATH_LOGIN;
 
-                        // Initialize http client and prepare GET-Request
-                        HttpClient httpClient = new DefaultHttpClient();
-                        HttpContext localContext = new BasicHttpContext();
-                        HttpGet httpGet = new HttpGet(url);
-
-                        // Set seader for authorization. The value is base64-encoded email and password
-                        httpGet.setHeader("Authorization", getB64Auth(appUser.getEmail(), appUser.getPassword()));
-
-                        // Execute GET-request
-                        HttpResponse response = httpClient.execute(httpGet, localContext);
-
+                        // Prepare login result
                         LoginResult loginResult = new LoginResult();
                         loginResult.setCookie("");
+                        loginResult.setAppUser(appUser);
+
+                        // Call the webservice to login
+                        HttpResponse response = WebserviceClient
+                                .create()
+                                .setLoginResult(loginResult)
+                                .callWebservice(url, WebserviceClient.HttpMethod.GET, WebserviceClient.Authentication.BASIC);
 
                         // Expected HTTP Code 200 (OK) if the authentication was successfull
                         if (response.getStatusLine().getStatusCode() == 200) {
@@ -167,30 +155,13 @@ public class AppUserService extends Service {
                                 }
                             }
 
-                            /*
-                            // Test login
-                            HttpClient httpClientTest = new DefaultHttpClient();
-                            HttpContext localContextTest = new BasicHttpContext();
-                            HttpGet httpGetTest = new HttpGet(url);
-                            HttpResponse responseTest = httpClientTest.execute(httpGetTest, localContextTest);
-                            System.out.println("TEST LOGIN 1: " + responseTest.getStatusLine().getStatusCode() + " (Should be 403)");
-
-                            HttpClient httpClientTest2 = new DefaultHttpClient();
-                            HttpContext localContextTest2 = new BasicHttpContext();
-                            HttpGet httpGetTest2 = new HttpGet(url);
-                            httpGetTest2.setHeader("Cookie","JSESSIONID=" + loginResult.getCookie());
-                            HttpResponse responseTest2 = httpClientTest2.execute(httpGetTest2, localContextTest2);
-                            System.out.println("TEST LOGIN 2: " + responseTest2.getStatusLine().getStatusCode() + " (Should be 200)");
-
-                            */
 
                             // Get the logged in user from the server
-                            HttpClient httpClient2 = new DefaultHttpClient();
-                            HttpContext httpContext = new BasicHttpContext();
-                            String url2 = BACKEND_URL + PATH_APP_USER + PATH_APP_USER_ID + "?" + PARAM_APP_USER_ID + appUser.getEmail();
-                            HttpGet httpGetAppUser = new HttpGet(url2);
-                            httpGetAppUser.setHeader("Cookie", "JSESSIONID=" + loginResult.getCookie());
-                            HttpResponse responseAppUser = httpClient2.execute(httpGetAppUser, httpContext);
+                            String url2 = Constants.BACKEND_URL + Constants.PATH_APP_USER + Constants.PATH_APP_USER_ID + "?" + Constants.PARAM_APP_USER_ID + appUser.getEmail();
+                            HttpResponse responseAppUser = WebserviceClient
+                                    .create()
+                                    .setLoginResult(loginResult)
+                                    .callWebservice(url2, WebserviceClient.HttpMethod.GET, WebserviceClient.Authentication.COOKIE);
 
                             // Creates the json object which will manage the information received
                             GsonBuilder builder = new GsonBuilder();

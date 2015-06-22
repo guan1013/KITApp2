@@ -17,12 +17,21 @@ public class Evaluation implements Serializable {
     private AppUser author;
     private Date date;
     private Double rating;
+    private Kita kita;
 
     /*
     <======================= CONSTRUCTORS =======================>
      */
     public Evaluation() {
 
+    }
+
+    public Kita getKita() {
+        return kita;
+    }
+
+    public void setKita(Kita kita) {
+        this.kita = kita;
     }
 
     public Evaluation(String text, AppUser author, Date date, Double rating) {

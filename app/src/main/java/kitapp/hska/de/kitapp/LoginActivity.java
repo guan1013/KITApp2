@@ -79,6 +79,7 @@ public class LoginActivity extends ActionBarActivity {
                         if(status.getAppUser() != null)
                         toast("Hallo, " + status.getAppUser().getName() + "!");
                         Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                        i.putExtra("login",status);
                         startActivity(i);
                     }
                 }
