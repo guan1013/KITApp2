@@ -38,6 +38,8 @@ import java.util.concurrent.TimeoutException;
 import kitapp.hska.de.kitapp.domain.Kita;
 import kitapp.hska.de.kitapp.domain.SearchQuery;
 import kitapp.hska.de.kitapp.services.KitaService;
+import kitapp.hska.de.kitapp.util.Constants;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 
 public class SearchActivity extends ActionBarActivity implements LocationListener {
@@ -188,7 +190,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
 
     }
 
-    private void getLastLocation() {
+    private void getCurrentLocation() {
 
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
         boolean enabled = service
@@ -234,6 +236,20 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
                 Intent intent = new Intent(this, ResultActivity.class);
                 intent.putExtra(KITAS_BUNDLE_KEY, new ArrayList<>(Arrays.asList(kitas)));
                 intent.putExtra(CURRENT_LOCATION_KEY, currentLocation);
+
+                Bundle bundle = this.getIntent().getExtras();
+                LoginResult loggedInUser = null;
+                if (bundle != null) {
+                    try {
+                        loggedInUser = (LoginResult) bundle.get(Constants.EXTRAS_KEY_LOGIN);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (loggedInUser != null) {
+                    intent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
+                }
+
                 startActivity(intent);
             } else {
                 toast(getString(R.string.noKitasFound));
@@ -405,10 +421,12 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
             @Override
             public void onClick(View v) {
 
+
                 // Initialze location field
                 if (currentLocation != null) {
                     System.out.println("Provider " + provider + " has been selected.");
-                    onLocationChanged(currentLocation);
+                    String city = getLocationName(currentLocation.getLatitude(), currentLocation.getLongitude());
+                    editTextCity.setText(city);
                 } else {
                     editTextCity.setText(null);
                     editTextCity.setHint("Location not available");
@@ -488,7 +506,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
         setOnCheckedListener(R.id.search_radiogroup_open);
         setSpinnerConfessionListener();
         setButtonLocationListener();
-        getLastLocation();
+        getCurrentLocation();
         initValues();
 
     }

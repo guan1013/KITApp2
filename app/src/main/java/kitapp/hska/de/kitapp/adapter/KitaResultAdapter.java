@@ -124,7 +124,7 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
             if (buttonCont != null) {
 
                 final String email = kita.getAddress().getEmail();
-                final String phone = kita.getAddress().getEmail();
+                final String phone = kita.getAddress().getPhone();
 
                 buttonCont.setOnClickListener(new View.OnClickListener() {
                     @Override

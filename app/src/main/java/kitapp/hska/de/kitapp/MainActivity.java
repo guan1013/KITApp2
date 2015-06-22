@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,6 +73,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
     private LoginResult loggedInUser;
 
+    private Location currentLocation;
+
 
     private KitaService.KitaServiceBinder kitaServiceBinder;
 
@@ -113,6 +116,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         buttonLocation = (ImageButton) findViewById(R.id.mainImageButtonLocation);
         editTextLocation = (EditText) findViewById(R.id.mainEditTextLocation);
         buttonSuche = (Button) findViewById(R.id.mainButtonSearch);
+
+        getCurrentLocation();
 
 
         if (this.getIntent().getExtras() != null) {
@@ -160,6 +165,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
                 Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                 intent.putExtra("kitas", new ArrayList<Kita>(Arrays.asList(kitas)));
                 intent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
+                intent.putExtra("location", currentLocation);
                 startActivity(intent);
 
             }
@@ -170,31 +176,14 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
             @Override
             public void onClick(View v) {
 
-                LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-                boolean enabled = service
-                        .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-                // check if enabled and if not send user to the GSP settings
-                // Better solution would be to display a dialog and suggesting to
-                // go to the settings
-                if (!enabled) {
-                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(intent);
-                }
-                // Get the location manager
-                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                // Define the criteria how to select the locatioin provider -> use
-                // default
-                Criteria criteria = new Criteria();
-                provider = locationManager.getBestProvider(criteria, false);
-                Location location = locationManager.getLastKnownLocation(provider);
-
-                // Initialize the location fields
-                if (location != null) {
+                // Initialze location field
+                if (currentLocation != null) {
                     System.out.println("Provider " + provider + " has been selected.");
-                    onLocationChanged(location);
+                    String city = getLocationName(currentLocation.getLatitude(), currentLocation.getLongitude());
+                    editTextLocation.setText(city);
                 } else {
-                    editTextLocation.setText("Location not available");
+                    editTextLocation.setText(null);
+                    editTextLocation.setHint("Location not available");
                 }
             }
         });
@@ -251,10 +240,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(Location location) {
-        double lat = (double) (location.getLatitude());
-        double lng = (double) (location.getLongitude());
-
-        editTextLocation.setText(getLocationName(lat, lng));
+        this.currentLocation = location;
     }
 
     @Override
@@ -274,6 +260,38 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
     public void onProviderDisabled(String provider) {
         Toast.makeText(this, "Disabled provider " + provider,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    private void getCurrentLocation() {
+
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        boolean enabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        // check if enabled and if not send user to the GSP settings
+        // Better solution would be to display a dialog and suggesting to
+        // go to the settings
+        if (!enabled) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
+        }
+        // Get the location manager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // Define the criteria how to select the locatioin provider -> use
+        // default
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        // Initialize the location fields
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            onLocationChanged(location);
+        } else {
+            System.out.println("Location not available");
+            toast("Location not available");
+        }
+
     }
 
 
