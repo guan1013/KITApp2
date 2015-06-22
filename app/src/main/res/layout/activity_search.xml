@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/searchCircuit"
-                    style="@style/FontBGColor.White"/>
+                    style="@style/textData"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,7 +74,7 @@
 
                     <SeekBar
                         android:id="@+id/search.seekbar.circuit"
-                        android:layout_width="207dp"
+                        android:layout_width="270dp"
                         android:layout_height="wrap_content"
                         android:max="50"
                         style="@style/FontBGColor.White"/>
@@ -84,6 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:layout_marginLeft="10dp"
                         style="@style/FontBGColor.White"/>
 
                     <TextView
@@ -91,7 +92,8 @@
                         android:layout_height="wrap_content"
                         android:labelFor="@+id/search.edittext.circuit"
                         android:text="@string/searchTextViewCircuite"
-                        style="@style/FontBGColor.White"/>
+                        android:layout_marginLeft="10dp"
+                        style="@style/textData"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -109,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/searchAge"
-                    style="@style/FontBGColor.White"/>
+                    style="@style/textData"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -162,7 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/searchCost"
-                    style="@style/FontBGColor.White"/>
+                    style="@style/textData"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.cost"
@@ -214,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/searchOpen"
-                    style="@style/FontBGColor.White"/>
+                    style="@style/textData"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.open"
@@ -264,7 +266,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/searchEvaluation"
-                    style="@style/FontBGColor.White"/>
+                    style="@style/textData"/>
 
                 <RatingBar
                     android:id="@+id/search.ratingbar.rating"
@@ -289,7 +291,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/searchSize"
-                    style="@style/FontBGColor.White"/>
+                    style="@style/textData"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.size"
@@ -343,7 +345,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/searchClosing"
-                    style="@style/FontBGColor.White"/>
+                    style="@style/textData"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.closing"
