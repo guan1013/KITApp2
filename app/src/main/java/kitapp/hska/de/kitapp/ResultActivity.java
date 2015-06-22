@@ -179,23 +179,26 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
             ), kita);
         }
 
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (Marker marker : markerKitaMap.keySet()) {
-            builder.include(marker.getPosition());
-        }
-        LatLngBounds bounds = builder.build();
+        /*if(markerKitaMap.size() >= 1) {
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            for (Marker marker : markerKitaMap.keySet()) {
+                builder.include(marker.getPosition());
+            }
+            LatLngBounds bounds = builder.build();
 
-        int padding = 0;
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        map.moveCamera(cu);
+            int padding = 0;
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+            map.moveCamera(cu);
+        }*/
 
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-
-                showDetail(markerKitaMap.get(marker));
-
+                Kita kita = markerKitaMap.get(marker);
+                if (kita != null) {
+                    showDetail(kita);
+                }
                 return true;
             }
         });
