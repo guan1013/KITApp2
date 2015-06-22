@@ -12,6 +12,9 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +37,7 @@ public class ResultActivity extends ActionBarActivity {
     private ListView resultListView;
     private LinearLayout resultLinearLayoutList;
     private LinearLayout resultLinearLayoutMap;
-
-
+    private GoogleMap map;
       /*
     <======================= PUBLIC METHODS =======================>
      */
@@ -63,6 +65,7 @@ public class ResultActivity extends ActionBarActivity {
         resultListView = (ListView) findViewById(R.id.result_listview);
         resultLinearLayoutList = (LinearLayout) findViewById(R.id.result_linarlayout_list);
         resultLinearLayoutMap = (LinearLayout) findViewById(R.id.result_linarlayout_map);
+        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.result_fragment_map)).getMap();
     }
 
     private void showDetail(Kita kita) {
@@ -89,6 +92,36 @@ public class ResultActivity extends ActionBarActivity {
 
     }
 
+    private void addResultListAdapter() {
+
+        final List<Kita> kitas = getKitaList();
+        KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
+        resultListView.setAdapter(resultAdapter);
+        resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showDetail(kitas.get(position));
+            }
+        });
+    }
+
+    private void setOnCheckedListener(int id) {
+        ((RadioGroup) findViewById(id)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
+                for (int j = 0; j < radioGroup.getChildCount(); j++) {
+                    final ToggleButton view = (ToggleButton) radioGroup.getChildAt(j);
+                    view.setChecked(view.getId() == i);
+                }
+            }
+        });
+    }
+
+    private void configGoogleMaps() {
+        map.getUiSettings().setZoomControlsEnabled(true);
+        map.getUiSettings().setZoomGesturesEnabled(true);
+
+    }
     /*
     <======================= OVERRIDE METHODS =======================>
      */
@@ -98,33 +131,12 @@ public class ResultActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         initViews();
-
         resultListView = (ListView) findViewById(R.id.result_listview);
+        addResultListAdapter();
+        setOnCheckedListener(R.id.result_radiogroup_buttons);
 
+        configGoogleMaps();
 
-        final List<Kita> kitas = getKitaList();
-
-        KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
-
-        resultListView.setAdapter(resultAdapter);
-
-        resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDetail(kitas.get(position));
-            }
-        });
-
-
-        ((RadioGroup) findViewById(R.id.result_radiogroup_buttons)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final RadioGroup radioGroup, final int i) {
-                for (int j = 0; j < radioGroup.getChildCount(); j++) {
-                    final ToggleButton view = (ToggleButton) radioGroup.getChildAt(j);
-                    view.setChecked(view.getId() == i);
-                }
-            }
-        });
     }
 
     @Override

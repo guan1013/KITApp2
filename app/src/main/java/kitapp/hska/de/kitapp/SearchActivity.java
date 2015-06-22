@@ -61,7 +61,6 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
     private RatingBar ratingBarEvaluation;
     private Spinner spinnerConfession;
     private ImageButton buttonLocation;
-    private GoogleMap map;
 
     /*
     <======================= CLASS ATTRUIBUTES =======================>
