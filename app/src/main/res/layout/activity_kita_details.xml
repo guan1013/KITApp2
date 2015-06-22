@@ -83,9 +83,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="30dp"
-                android:text="@string/kitaDetailsKitaName" />
-
-
+                android:text="@string/kitaDetailsKitaName"
+                style="@style/header1"/>
 
 
             <TextView
@@ -96,7 +95,8 @@
                 android:layout_marginTop="10dp"
                 android:lines="4"
                 android:maxLines="4"
-                android:text="@string/kitaDetailsAddressData" />
+                android:text="@string/kitaDetailsAddressData"
+                style="@style/textData"/>
 
 
             <TextView
@@ -106,7 +106,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="50dp"
-                android:text="@string/kitaDetailsEvaluation" />
+                android:text="@string/kitaDetailsEvaluation"
+                style="@style/header2"/>
 
             <RatingBar
                 android:id="@+id/KitaDetailsRatingBar"
@@ -138,7 +139,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsCosts" />
+                android:text="@string/kitaDetailsCosts"
+                style="@style/header2"/>
 
             <TextView
                 android:id="@+id/KitaDetailsCostsData"
@@ -147,7 +149,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsCostsData" />
+                android:text="@string/kitaDetailsCostsData"
+                style="@style/textData"/>
 
             <TextView
                 android:id="@+id/KitaDetailsOpen"
@@ -156,7 +159,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="50dp"
-                android:text="@string/kitaDetailsOpen" />
+                android:text="@string/kitaDetailsOpen"
+                style="@style/header2"/>
 
             <TextView
                 android:id="@+id/KitaDetailsOpenhours"
@@ -166,7 +170,8 @@
                 android:layout_marginTop="10dp"
                 android:lines="1"
                 android:maxLines="1"
-                android:text="@string/kitaDetailsOpenData" />
+                android:text="@string/kitaDetailsOpenData"
+                style="@style/textData"/>
 
             <TextView
                 android:id="@+id/KitaDetailsManagement"
@@ -175,7 +180,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsManagement" />
+                android:text="@string/kitaDetailsManagement"
+                style="@style/header2"/>
 
             <TextView
                 android:id="@+id/KitaDetailsManagementData"
@@ -184,7 +190,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsManagementData" />
+                android:text="@string/kitaDetailsManagementData"
+                style="@style/textData"/>
 
             <TextView
                 android:id="@+id/KitaDetailsConfession"
@@ -193,7 +200,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsConfession" />
+                android:text="@string/kitaDetailsConfession"
+                style="@style/header2"/>
 
             <TextView
                 android:id="@+id/KitaDetailsConfessionData"
@@ -202,7 +210,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsConfessionData" />
+                android:text="@string/kitaDetailsConfessionData"
+                style="@style/textData"/>
 
             <TextView
                 android:id="@+id/KitaDetailsAge"
@@ -211,7 +220,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsAge" />
+                android:text="@string/kitaDetailsAge"
+                style="@style/header2"/>
 
             <TextView
                 android:id="@+id/KitaDetailsAgeData"
@@ -220,7 +230,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsAgeData" />
+                android:text="@string/kitaDetailsAgeData"
+                style="@style/textData"/>
 
             <TextView
                 android:id="@+id/KitaDetailsAbout"
@@ -229,7 +240,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsAbout" />
+                android:text="@string/kitaDetailsAbout"
+                style="@style/header2"/>
 
             <TextView
                 android:id="@+id/KitaDetailsAboutData"
@@ -238,7 +250,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsAboutData" />
+                android:text="@string/kitaDetailsAboutData"
+                style="@style/textData"/>
 
             <TextView
                 android:id="@+id/KitaDetailsComments"
@@ -247,7 +260,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsComments" />
+                android:text="@string/kitaDetailsComments"
+                style="@style/header2"/>
 
 
             <RelativeLayout

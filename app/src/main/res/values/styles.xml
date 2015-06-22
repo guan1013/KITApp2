@@ -2,16 +2,31 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
 
-    <style name="FontBGColor">
+    <style name="FontBGColor"></style>
 
-    </style>
-
+    <!-- Background White -->
     <style name="FontBGColor.White">
         <item name="android:background">#ffffff</item>
+    </style>
+
+    <style name="header1">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="header2">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="textData">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="editTextHint">
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>
