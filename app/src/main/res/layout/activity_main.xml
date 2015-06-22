@@ -19,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            style="@style/FontBGColor.White">
 
             <ImageView
                 android:id="@+id/mainImageViewLogo"
@@ -31,7 +32,8 @@
                 android:layout_alignParentStart="false"
                 android:layout_alignParentLeft="false"
                 android:cropToPadding="false"
-                android:focusable="false" />
+                android:focusable="false"
+                style="@style/FontBGColor.White"/>
 
 
             <LinearLayout
@@ -39,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="50dp"
+                style="@style/FontBGColor.White">
 
                 <EditText
                     android:id="@+id/mainEditTextLocation"

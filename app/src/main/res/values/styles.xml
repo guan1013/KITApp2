@@ -6,8 +6,10 @@
         <item name="android:actionBarStyle">@style/AppTheme.CustomActionBar</item>
     </style>
 
+
+    <!-- Actionbar Style -->
     <style name="AppTheme.CustomActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:background">#91d187</item>
+        <item name="android:background">#ce1e9c</item>
 
     </style>
 
