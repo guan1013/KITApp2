@@ -27,6 +27,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.maps.GoogleMap;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +61,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
     private RatingBar ratingBarEvaluation;
     private Spinner spinnerConfession;
     private ImageButton buttonLocation;
+    private GoogleMap map;
 
     /*
     <======================= CLASS ATTRUIBUTES =======================>

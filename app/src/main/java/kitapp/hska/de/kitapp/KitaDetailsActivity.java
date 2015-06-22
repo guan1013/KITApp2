@@ -93,23 +93,23 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
         evaluationListView.setAdapter(evaluationsAdapter);
 
-        if(kita != null) {
+        if (kita != null) {
 
             displayKita(kita);
         } else {
             toast(getString(R.string.noKitaFound));
         }
 
-        Button buttonWriteEvaluation = (Button)findViewById(R.id.KitaDetailsButtonEvaluate);
+        Button buttonWriteEvaluation = (Button) findViewById(R.id.KitaDetailsButtonEvaluate);
 
         buttonWriteEvaluation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(displayedKita == null) {
+                if (displayedKita == null) {
                     return;
                 }
-                Intent i = new Intent(getApplicationContext(),WriteCommentActivity.class);
-                i.putExtra("kita",displayedKita);
+                Intent i = new Intent(getApplicationContext(), WriteCommentActivity.class);
+                i.putExtra("kita", displayedKita);
                 startActivity(i);
             }
         });
@@ -158,12 +158,12 @@ public class KitaDetailsActivity extends AppCompatActivity {
         }
 
         if (kita.getOpeningHours() != null) {
-            kitaDetailsOpenhours.setText(""+kita.getOpeningHours());
+            kitaDetailsOpenhours.setText("" + kita.getOpeningHours());
         }
 
 
         kitaDetailsManagement.setText(kita.getManagement());
-        kitaDetailsConfessionData.setText(""+kita.getConfession());
+        kitaDetailsConfessionData.setText("" + kita.getConfession());
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
 
