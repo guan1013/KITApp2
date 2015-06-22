@@ -178,6 +178,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
             System.out.println("Provider " + provider + " has been selected.");
             onLocationChanged(location);
         } else {
+            System.out.println("Location not available");
             toast("Location not available");
         }
 
@@ -201,6 +202,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         resultListView = (ListView) findViewById(R.id.result_listview);
         addResultListAdapter();
         setOnCheckedListener(R.id.result_radiogroup_buttons);
+        getLastLocation();
     }
 
     @Override
