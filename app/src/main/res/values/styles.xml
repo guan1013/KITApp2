@@ -3,6 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:actionBarStyle">@style/AppTheme.CustomActionBar</item>
+    </style>
+
+    <style name="AppTheme.CustomActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">#91d187</item>
+
     </style>
 
 
@@ -47,8 +53,13 @@
         <item name="android:paddingTop">10dp</item>
     </style>
 
+
+
+
     <style name="textData">
         <item name="android:textSize">15sp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:paddingTop">3dp</item>
     </style>
 
     <style name="editTextHint">
