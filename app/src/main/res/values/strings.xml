@@ -42,6 +42,7 @@
     <string name="resultToggleButtonListValue">0</string>
     <string name="resultToggleButtonMap">Karte</string>
     <string name="resultToggleButtonMapValue">1</string>
+    <string name="about">ca</string>
 
     <!-- Sort -->
     <string name="resultSortTitle">Sortieren nach...</string>

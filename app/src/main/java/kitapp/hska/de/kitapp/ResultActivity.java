@@ -32,13 +32,14 @@ import kitapp.hska.de.kitapp.util.Constants;
 import kitapp.hska.de.kitapp.util.LoginResult;
 
 
-public class ResultActivity extends ActionBarActivity implements OnMapReadyCallback, LocationListener {
+public class ResultActivity extends ActionBarActivity implements OnMapReadyCallback {
 
     /*
     <======================= CONSTANTS =======================>
      */
     private final static String KITAS_BUNDLE_KEY = "kitas";
     private final static String KITA_BUNDLE_KEY = "kita";
+    private final static String CURRENT_LOCATION_KEY = "location";
 
     /*
     <======================= VIEW ATTRIBUTES =======================>
@@ -47,9 +48,8 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     private LinearLayout resultLinearLayoutList;
     private LinearLayout resultLinearLayoutMap;
     private MapFragment mapFragment;
-    private LocationManager locationManager;
-    private String provider;
     private Location currentLocation;
+    private List<Kita> kitas;
 
       /*
     <======================= PUBLIC METHODS =======================>
@@ -109,27 +109,25 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         startActivity(intent);
     }
 
-    private List<Kita> getKitaList() {
+    private void getExtras() {
 
         Bundle bundle = this.getIntent().getExtras();
 
-        List<Kita> kitas = new ArrayList<>();
         if (bundle != null) {
             try {
-                kitas = (ArrayList<Kita>) bundle.get(KITAS_BUNDLE_KEY);
+                this.kitas = (ArrayList<Kita>) bundle.get(KITAS_BUNDLE_KEY);
+                this.currentLocation = (Location) bundle.get(CURRENT_LOCATION_KEY);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        return kitas;
-
     }
 
     private void addResultListAdapter() {
 
-        final List<Kita> kitas = getKitaList();
+        final List<Kita> kitas = this.kitas;
         KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
         resultListView.setAdapter(resultAdapter);
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -152,37 +150,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         });
     }
 
-    private void getLastLocation() {
 
-        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-        boolean enabled = service
-                .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-        // check if enabled and if not send user to the GSP settings
-        // Better solution would be to display a dialog and suggesting to
-        // go to the settings
-        if (!enabled) {
-            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            startActivity(intent);
-        }
-        // Get the location manager
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        // Define the criteria how to select the locatioin provider -> use
-        // default
-        Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria, false);
-        Location location = locationManager.getLastKnownLocation(provider);
-
-        // Initialize the location fields
-        if (location != null) {
-            System.out.println("Provider " + provider + " has been selected.");
-            onLocationChanged(location);
-        } else {
-            System.out.println("Location not available");
-            toast("Location not available");
-        }
-
-    }
     /*
     <======================= OVERRIDE METHODS =======================>
      */
@@ -200,9 +168,9 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         setContentView(R.layout.activity_result);
         initViews();
         resultListView = (ListView) findViewById(R.id.result_listview);
+        getExtras();
         addResultListAdapter();
         setOnCheckedListener(R.id.result_radiogroup_buttons);
-        getLastLocation();
     }
 
     @Override
@@ -238,26 +206,6 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
 
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        currentLocation = location;
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
     }
 
      /*

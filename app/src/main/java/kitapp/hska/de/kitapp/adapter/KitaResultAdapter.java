@@ -81,12 +81,12 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
                     kitaLocation.setLongitude(kita.getLongitude());
 
                     Float distanceFloat = currentLocation.distanceTo(kitaLocation);
-                    Integer distanceInt = distanceFloat.intValue();
+                    Integer distanceInt = distanceFloat.intValue() / 1000;
                     distance = distanceInt.toString();
                 }
 
 
-                textViewCircuit.setText(distance + " km");
+                textViewCircuit.setText(getContext().getString(R.string.about) + " " + distance + " km");
             }
 
             if (buttonTel != null) {

@@ -48,6 +48,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
     <======================= CONSTANTS =======================>
      */
     private final static String KITAS_BUNDLE_KEY = "kitas";
+    private final static String CURRENT_LOCATION_KEY = "location";
 
     /*
     <======================= VIEW ATTRIBUTES =======================>
@@ -70,6 +71,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
     private int size;
     private int closing;
 
+    private Location currentLocation;
     private LocationManager locationManager;
     private String provider;
     private KitaService.KitaServiceBinder kitaServiceBinder;
@@ -103,7 +105,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
         int closing = this.closing;
         int confession = getConfessionValue();
 
-        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing, confession);
+        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing, confession, currentLocation.getLatitude(), currentLocation.getLongitude());
 
         sendQuery(query);
 
@@ -181,6 +183,38 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
 
     }
 
+    private void getLastLocation() {
+
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        boolean enabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        // check if enabled and if not send user to the GSP settings
+        // Better solution would be to display a dialog and suggesting to
+        // go to the settings
+        if (!enabled) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
+        }
+        // Get the location manager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // Define the criteria how to select the locatioin provider -> use
+        // default
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        // Initialize the location fields
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            onLocationChanged(location);
+        } else {
+            System.out.println("Location not available");
+            toast("Location not available");
+        }
+
+    }
+
     /*
     <======================= PRIVATE METHODS =======================>
      */
@@ -194,6 +228,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
             if (kitas != null && kitas.length > 0) {
                 Intent intent = new Intent(this, ResultActivity.class);
                 intent.putExtra(KITAS_BUNDLE_KEY, new ArrayList<>(Arrays.asList(kitas)));
+                intent.putExtra(CURRENT_LOCATION_KEY, currentLocation);
                 startActivity(intent);
             } else {
                 toast(getString(R.string.noKitasFound));
@@ -466,6 +501,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
         setOnCheckedListener(R.id.search_radiogroup_open);
         setSpinnerConfessionListener();
         setButtonLocationListener();
+        getLastLocation();
         initValues();
 
     }
@@ -503,8 +539,11 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
 
     @Override
     public void onLocationChanged(Location location) {
-        double lat = (double) (location.getLatitude());
-        double lng = (double) (location.getLongitude());
+
+        currentLocation = location;
+
+        double lat = location.getLatitude();
+        double lng = location.getLongitude();
 
         editTextCity.setText(getLocationName(lat, lng));
     }

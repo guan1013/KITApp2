@@ -21,6 +21,8 @@ public class SearchQuery implements Serializable {
     private int size;
     private int closing;
     private int confession;
+    private Double longitude;
+    private Double latitude;
 
     /*
     <======================= CONSTRUCTORS =======================>
@@ -29,7 +31,7 @@ public class SearchQuery implements Serializable {
 
     }
 
-    public SearchQuery(String city, int circuit, int minAge, int maxAge, int cost, int open, Double rating, int size, int closing, int confession) {
+    public SearchQuery(String city, int circuit, int minAge, int maxAge, int cost, int open, Double rating, int size, int closing, int confession, Double latitude, Double longitude) {
         this.city = city;
         this.circuit = circuit;
         this.minAge = minAge;
@@ -40,11 +42,32 @@ public class SearchQuery implements Serializable {
         this.size = size;
         this.closing = closing;
         this.confession = confession;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     /*
     <======================= OVERRIDES =======================>
      */
+
+    @Override
+    public String toString() {
+        return "SearchQuery{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", circuit=" + circuit +
+                ", minAge=" + minAge +
+                ", maxAge=" + maxAge +
+                ", cost=" + cost +
+                ", open=" + open +
+                ", rating=" + rating +
+                ", size=" + size +
+                ", closing=" + closing +
+                ", confession=" + confession +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -64,7 +87,11 @@ public class SearchQuery implements Serializable {
         if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
         if (getCity() != null ? !getCity().equals(that.getCity()) : that.getCity() != null)
             return false;
-        return !(getRating() != null ? !getRating().equals(that.getRating()) : that.getRating() != null);
+        if (getRating() != null ? !getRating().equals(that.getRating()) : that.getRating() != null)
+            return false;
+        if (getLongitude() != null ? !getLongitude().equals(that.getLongitude()) : that.getLongitude() != null)
+            return false;
+        return !(getLatitude() != null ? !getLatitude().equals(that.getLatitude()) : that.getLatitude() != null);
 
     }
 
@@ -81,26 +108,10 @@ public class SearchQuery implements Serializable {
         result = 31 * result + getSize();
         result = 31 * result + getClosing();
         result = 31 * result + getConfession();
+        result = 31 * result + (getLongitude() != null ? getLongitude().hashCode() : 0);
+        result = 31 * result + (getLatitude() != null ? getLatitude().hashCode() : 0);
         return result;
     }
-
-    @Override
-    public String toString() {
-        return "SearchQuery{" +
-                "id=" + id +
-                ", city='" + city + '\'' +
-                ", circuit=" + circuit +
-                ", minAge=" + minAge +
-                ", maxAge=" + maxAge +
-                ", cost=" + cost +
-                ", open=" + open +
-                ", rating=" + rating +
-                ", size=" + size +
-                ", closing=" + closing +
-                ", confession=" + confession +
-                '}';
-    }
-
     /*
     <======================= GETS & SETS =======================>
     */
@@ -191,5 +202,21 @@ public class SearchQuery implements Serializable {
 
     public void setConfession(int confession) {
         this.confession = confession;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 }
