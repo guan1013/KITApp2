@@ -14,6 +14,7 @@ import android.widget.ToggleButton;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +24,7 @@ import kitapp.hska.de.kitapp.adapter.KitaResultAdapter;
 import kitapp.hska.de.kitapp.domain.Kita;
 
 
-public class ResultActivity extends ActionBarActivity {
+public class ResultActivity extends ActionBarActivity  {
 
     /*
     <======================= CONSTANTS =======================>
@@ -48,6 +49,7 @@ public class ResultActivity extends ActionBarActivity {
             if (((ToggleButton) button).getText().toString().equals(getString(R.string.resultToggleButtonMap))) {
                 resultLinearLayoutMap.setVisibility(View.VISIBLE);
                 resultLinearLayoutList.setVisibility(View.GONE);
+
             } else {
                 resultLinearLayoutMap.setVisibility(View.GONE);
                 resultLinearLayoutList.setVisibility(View.VISIBLE);
@@ -118,9 +120,8 @@ public class ResultActivity extends ActionBarActivity {
     }
 
     private void configGoogleMaps() {
-        map.getUiSettings().setZoomControlsEnabled(true);
-        map.getUiSettings().setZoomGesturesEnabled(true);
-
+            //map.getUiSettings().setZoomControlsEnabled(true);
+            //map.getUiSettings().setZoomGesturesEnabled(true);
     }
     /*
     <======================= OVERRIDE METHODS =======================>
@@ -134,9 +135,7 @@ public class ResultActivity extends ActionBarActivity {
         resultListView = (ListView) findViewById(R.id.result_listview);
         addResultListAdapter();
         setOnCheckedListener(R.id.result_radiogroup_buttons);
-
-        configGoogleMaps();
-
+        //configGoogleMaps();
     }
 
     @Override
