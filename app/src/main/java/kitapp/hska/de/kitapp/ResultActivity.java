@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -17,11 +18,12 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.adapter.KitaResultAdapter;
 import kitapp.hska.de.kitapp.domain.Kita;
+import kitapp.hska.de.kitapp.util.Constants;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 
 public class ResultActivity extends ActionBarActivity implements OnMapReadyCallback {
@@ -71,8 +73,28 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         mapFragment.getMapAsync(this);
     }
 
+    private void toast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
     private void showDetail(Kita kita) {
+
+        Bundle bundle = this.getIntent().getExtras();
+
+        LoginResult loggedInUser = null;
+        if (bundle != null) {
+            try {
+                loggedInUser = (LoginResult) bundle.get(Constants.EXTRAS_KEY_LOGIN);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
         Intent intent = new Intent(this, KitaDetailsActivity.class);
+        if (loggedInUser == null) {
+            intent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
+        }
         intent.putExtra(KITA_BUNDLE_KEY, kita);
         startActivity(intent);
     }
@@ -130,6 +152,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap map) {
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setZoomGesturesEnabled(true);
+        map.setMyLocationEnabled(true);
     }
 
     @Override

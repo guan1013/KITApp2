@@ -30,6 +30,7 @@
     <!-- Toasts -->
     <string name="noKitasFound">0 Kitas gefunden</string>
     <string name="noKitaFound">Kita wurde nicht gefunden</string>
+    <string name="notLoggedIn">Sie sind nicht eingelogged</string>
 
     <!-- Button -->
     <string name="buttonSend">Senden</string>
