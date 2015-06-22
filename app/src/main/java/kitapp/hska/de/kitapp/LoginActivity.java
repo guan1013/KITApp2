@@ -71,11 +71,11 @@ public class LoginActivity extends ActionBarActivity {
                 LoginResult status = appUserServiceBinder.login(userToLogin);
 
                 if(status != null) {
-                    toast("Login result: " + status.getStatusLine().getReasonPhrase() + " (" + status.getStatusLine().getStatusCode() + ")");
+                    toast("Login result: " + status.getReasonPhrase() + " (" + status.getStatusCode() + ")");
 
                     System.out.println(status.getAppUser());
 
-                    if(status.getStatusLine().getStatusCode() == 200) {
+                    if(status.getStatusCode() == 200) {
                         if(status.getAppUser() != null)
                         toast("Hallo, " + status.getAppUser().getName() + "!");
                         Intent i = new Intent(getApplicationContext(),MainActivity.class);

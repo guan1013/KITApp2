@@ -22,6 +22,8 @@ import kitapp.hska.de.kitapp.domain.Evaluation;
 import kitapp.hska.de.kitapp.domain.Kita;
 import kitapp.hska.de.kitapp.services.EvaluationService;
 import kitapp.hska.de.kitapp.services.KitaService;
+import kitapp.hska.de.kitapp.util.Constants;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 
 public class WriteCommentActivity extends ActionBarActivity {
@@ -30,7 +32,7 @@ public class WriteCommentActivity extends ActionBarActivity {
 
     private Kita kitaToEvaluate = null;
 
-    private AppUser loggedInUser = null;
+    private LoginResult loggedInUser = null;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
 
@@ -59,8 +61,8 @@ public class WriteCommentActivity extends ActionBarActivity {
         Double rating = (double) ratingBarEvaluation.getRating();
 
         Evaluation query = new Evaluation();
-        query.setAuthor(loggedInUser);
-        query.setKita(kitaToEvaluate);
+        query.setAuthorIdx(loggedInUser.getAppUser().getId());
+        query.setKitaIdx(kitaToEvaluate.getId());
         query.setText(text);
         query.setRating(rating);
 
@@ -88,8 +90,38 @@ public class WriteCommentActivity extends ActionBarActivity {
 
         initViews();
 
+
         kitaToEvaluate = (Kita) this.getIntent().getExtras().get("kita");
-        loggedInUser = (AppUser) this.getIntent().getExtras().get("appuser");
+        loggedInUser = (LoginResult) this.getIntent().getExtras().get(Constants.EXTRAS_KEY_LOGIN);
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = editTextComment.getText().toString();
+                Double rating = (double) ratingBarEvaluation.getRating();
+
+                Evaluation query = new Evaluation();
+
+                query.setAuthorIdx(loggedInUser.getAppUser().getId());
+                query.setKitaIdx(kitaToEvaluate.getId());
+                query.setText(text);
+                query.setRating(rating);
+
+                try
+                {
+                    evaluationServiceBinder.createEvaluation(query);
+
+                    Intent myIntent = new Intent(getApplicationContext(), KitaDetailsActivity.class);
+                    myIntent.putExtra("kita",kitaToEvaluate);
+                    myIntent.putExtra(Constants.EXTRAS_KEY_LOGIN,loggedInUser);
+                    startActivity(myIntent);
+                }catch(Exception e){
+                    e.printStackTrace();
+                    toast(e.getClass().getName());
+                }
+            }
+        });
+
 
         if (kitaToEvaluate == null) {
             toast("No KITA to evaluate");

@@ -47,7 +47,7 @@ public class EvaluationsAdapter extends ArrayAdapter<Evaluation> {
             TextView textViewText = (TextView) view.findViewById(R.id.EvaluationText);
 
             if (textViewName != null) {
-                textViewName.setText(evaluation.getAuthor().getName());
+                textViewName.setText(evaluation.getAuthorIdx().toString());
             }
 
 

@@ -14,10 +14,10 @@ public class Evaluation implements Serializable {
     */
     private Long id;
     private String text;
-    private AppUser author;
+    private Long authorIdx;
     private Date date;
     private Double rating;
-    private Kita kita;
+    private Long kitaIdx;
 
     /*
     <======================= CONSTRUCTORS =======================>
@@ -26,59 +26,18 @@ public class Evaluation implements Serializable {
 
     }
 
-    public Kita getKita() {
-        return kita;
-    }
-
-    public void setKita(Kita kita) {
-        this.kita = kita;
-    }
-
-    public Evaluation(String text, AppUser author, Date date, Double rating) {
-        this.text = text;
-        this.author = author;
-        this.date = date;
-        this.rating = rating;
-
-    }
 
     /*
     <======================= OVERRIDES =======================>
      */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Evaluation)) return false;
 
-        Evaluation that = (Evaluation) o;
-
-        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
-        if (getText() != null ? !getText().equals(that.getText()) : that.getText() != null)
-            return false;
-        if (getAuthor() != null ? !getAuthor().equals(that.getAuthor()) : that.getAuthor() != null)
-            return false;
-        if (getDate() != null ? !getDate().equals(that.getDate()) : that.getDate() != null)
-            return false;
-        return !(getRating() != null ? !getRating().equals(that.getRating()) : that.getRating() != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getText() != null ? getText().hashCode() : 0);
-        result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
-        result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
-        result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
-        return result;
-    }
 
     @Override
     public String toString() {
         return "Evaluation{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
-                ", author=" + author +
+                ", authorId=" + authorIdx +
                 ", date=" + date +
                 ", rating=" + rating +
                 '}';
@@ -103,12 +62,21 @@ public class Evaluation implements Serializable {
         this.text = text;
     }
 
-    public AppUser getAuthor() {
-        return author;
+    public Long getAuthorIdx() {
+        return authorIdx;
     }
 
-    public void setAuthor(AppUser author) {
-        this.author = author;
+    public void setAuthorIdx(Long authorId) {
+        this.authorIdx = authorId;
+    }
+
+
+    public Long getKitaIdx() {
+        return kitaIdx;
+    }
+
+    public void setKitaIdx(Long kitaId) {
+        this.kitaIdx = kitaId;
     }
 
     public Date getDate() {

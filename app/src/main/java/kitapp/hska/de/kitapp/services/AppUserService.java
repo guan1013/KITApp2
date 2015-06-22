@@ -61,11 +61,11 @@ public class AppUserService extends Service {
         private LoginResult currentLoginResult = null;
 
 
-        public void createAppUser(AppUser appUser) throws InterruptedException, ExecutionException, TimeoutException {
+        public LoginResult createAppUser(final AppUser appUser) throws InterruptedException, ExecutionException, TimeoutException {
 
-            AsyncTask<AppUser, Void, String> appUserTask = new AsyncTask<AppUser, Void, String>() {
+            AsyncTask<AppUser, Void, LoginResult> appUserTask = new AsyncTask<AppUser, Void, LoginResult>() {
                 @Override
-                protected String doInBackground(AppUser... params) {
+                protected LoginResult doInBackground(AppUser... params) {
 
                     if (params == null || params.length == 0) {
                         return null;
@@ -106,7 +106,7 @@ public class AppUserService extends Service {
             };
 
             appUserTask.execute(appUser);
-            appUserTask.get(5L, TimeUnit.SECONDS);
+            return appUserTask.get(10L, TimeUnit.SECONDS);
         }
 
         public LoginResult login(AppUser appUser) {
@@ -180,7 +180,8 @@ public class AppUserService extends Service {
                             currentLoginResult = loginResult;
                         }
 
-                        loginResult.setStatusLine(response.getStatusLine());
+                        loginResult.setStatusCode(response.getStatusLine().getStatusCode());
+                        loginResult.setReasonPhrase(response.getStatusLine().getReasonPhrase());
 
                         return loginResult;
 
@@ -193,7 +194,7 @@ public class AppUserService extends Service {
 
             try {
                 appUserTask.execute(appUser);
-                LoginResult result = appUserTask.get(5L, TimeUnit.SECONDS);
+                LoginResult result = appUserTask.get(20L, TimeUnit.SECONDS);
                 return result;
             } catch (Exception e) {
                 e.printStackTrace();

@@ -11,24 +11,13 @@ import kitapp.hska.de.kitapp.domain.AppUser;
  */
 public class LoginResult implements Serializable {
 
-    private StatusLine statusLine;
-
     private String cookie;
 
     private AppUser appUser;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    private int statusCode;
 
-        LoginResult that = (LoginResult) o;
-
-        if (statusLine != null ? !statusLine.equals(that.statusLine) : that.statusLine != null)
-            return false;
-        return !(cookie != null ? !cookie.equals(that.cookie) : that.cookie != null);
-
-    }
+    private String reasonPhrase;
 
     public AppUser getAppUser() {
         return appUser;
@@ -38,20 +27,20 @@ public class LoginResult implements Serializable {
         this.appUser = appUser;
     }
 
-    @Override
-    public int hashCode() {
-        int result = statusLine != null ? statusLine.hashCode() : 0;
-        result = 31 * result + (cookie != null ? cookie.hashCode() : 0);
-        return result;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public StatusLine getStatusLine() {
-
-        return statusLine;
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
-    public void setStatusLine(StatusLine statusLine) {
-        this.statusLine = statusLine;
+    public String getReasonPhrase() {
+        return reasonPhrase;
+    }
+
+    public void setReasonPhrase(String reasonPhrase) {
+        this.reasonPhrase = reasonPhrase;
     }
 
     public String getCookie() {

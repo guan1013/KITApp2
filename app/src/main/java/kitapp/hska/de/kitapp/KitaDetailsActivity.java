@@ -18,8 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.adapter.EvaluationsAdapter;
+import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.domain.Evaluation;
 import kitapp.hska.de.kitapp.domain.Kita;
+import kitapp.hska.de.kitapp.util.Constants;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 public class KitaDetailsActivity extends AppCompatActivity {
 
@@ -89,9 +92,17 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
         final Kita kita = getKita();
 
-        EvaluationsAdapter evaluationsAdapter = new EvaluationsAdapter(this, R.layout.evaluation_item_layout, kita.getEvaluations());
 
-        evaluationListView.setAdapter(evaluationsAdapter);
+        LoginResult loggedInUser = null;
+        if (this.getIntent().getExtras() != null) {
+            try {
+                loggedInUser = (LoginResult) this.getIntent().getExtras().get(Constants.EXTRAS_KEY_LOGIN);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        final LoginResult loginResult = loggedInUser;
 
         if (kita != null) {
 
@@ -110,6 +121,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
                 }
                 Intent i = new Intent(getApplicationContext(), WriteCommentActivity.class);
                 i.putExtra("kita", displayedKita);
+                i.putExtra(Constants.EXTRAS_KEY_LOGIN, loginResult);
                 startActivity(i);
             }
         });
