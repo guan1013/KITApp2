@@ -8,13 +8,15 @@
         android:id="@+id/newsAuthor"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/newsAuthor1" />
+        android:text="@string/newsAuthor1"
+        style="@style/header2"/>
 
     <TextView
         android:id="@+id/newsText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/newsKitaText"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        style="@style/textData"/>
 
 </LinearLayout>
