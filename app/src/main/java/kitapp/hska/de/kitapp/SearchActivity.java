@@ -104,8 +104,15 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
         int size = this.size;
         int closing = this.closing;
         int confession = getConfessionValue();
+        Double latitude = null;
+        Double longitude = null;
 
-        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing, confession, currentLocation.getLatitude(), currentLocation.getLongitude());
+        if (currentLocation != null) {
+            latitude = currentLocation.getLatitude();
+            longitude = currentLocation.getLongitude();
+        }
+
+        SearchQuery query = new SearchQuery(city, circuit, minAge, maxAge, cost, open, rating, size, closing, confession, latitude, longitude);
 
         sendQuery(query);
 
@@ -399,29 +406,11 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
         buttonLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-                boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
-
-                // check if enabled and if not send user to the GSP settings
-                // Better solution would be to display a dialog and suggesting to
-                // go to the settings
-                if (!enabled) {
-                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(intent);
-                }
-
-                // Get location mangager
-                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                // Define the criteria how to select the locatioin provider -> use
-                // default
-                Criteria criteria = new Criteria();
-                provider = locationManager.getBestProvider(criteria, false);
-                Location location = locationManager.getLastKnownLocation(provider);
 
                 // Initialze location field
-                if (location != null) {
+                if (currentLocation != null) {
                     System.out.println("Provider " + provider + " has been selected.");
-                    onLocationChanged(location);
+                    onLocationChanged(currentLocation);
                 } else {
                     editTextCity.setText(null);
                     editTextCity.setHint("Location not available");
@@ -539,13 +528,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
 
     @Override
     public void onLocationChanged(Location location) {
-
         currentLocation = location;
-
-        double lat = location.getLatitude();
-        double lng = location.getLongitude();
-
-        editTextCity.setText(getLocationName(lat, lng));
     }
 
     @Override
