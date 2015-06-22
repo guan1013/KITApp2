@@ -1,17 +1,20 @@
 package kitapp.hska.de.kitapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -57,6 +60,8 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     private LinearLayout resultLinearLayoutMap;
     private MapFragment mapFragment;
     private Location currentLocation;
+
+
     private List<Kita> kitas;
 
       /*
@@ -164,7 +169,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
      */
 
     @Override
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady(final GoogleMap map) {
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setZoomGesturesEnabled(true);
         map.setMyLocationEnabled(true);
@@ -180,17 +185,15 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         }
 
         CameraUpdate cu = null;
-        /*if (markerKitaMap.size() > 1) {
+        if (markerKitaMap.size() > 1) {
             LatLngBounds.Builder builder = new LatLngBounds.Builder();
             for (Marker marker : markerKitaMap.keySet()) {
                 builder.include(marker.getPosition());
             }
             LatLngBounds bounds = builder.build();
-
             int padding = 0;
-            int width = 0;
-            int height = 0;
-            cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+            cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
 
         } else {
             for (Marker marker : markerKitaMap.keySet()) {
@@ -198,8 +201,33 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
             }
         }
         if (cu != null) {
-            map.moveCamera(cu);
-        }*/
+            try {
+
+                map.moveCamera(cu);
+            } catch (IllegalStateException e) {
+                final View mapView = mapFragment.getView();
+                if (mapView.getViewTreeObserver().isAlive()) {
+                    final CameraUpdate finalCu = cu;
+                    mapView.getViewTreeObserver().addOnGlobalLayoutListener(
+                            new ViewTreeObserver.OnGlobalLayoutListener() {
+                                @SuppressWarnings("deprecation")
+                                @SuppressLint("NewApi")
+                                // We check which build version we are using.
+                                @Override
+                                public void onGlobalLayout() {
+                                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                                        mapView.getViewTreeObserver()
+                                                .removeGlobalOnLayoutListener(this);
+                                    } else {
+                                        mapView.getViewTreeObserver()
+                                                .removeOnGlobalLayoutListener(this);
+                                    }
+                                    map.moveCamera(finalCu);
+                                }
+                            });
+                }
+            }
+        }
 
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
