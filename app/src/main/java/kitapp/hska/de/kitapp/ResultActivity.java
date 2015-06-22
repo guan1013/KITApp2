@@ -19,15 +19,20 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kitapp.hska.de.kitapp.adapter.KitaResultAdapter;
 import kitapp.hska.de.kitapp.domain.Kita;
@@ -163,15 +168,37 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setZoomGesturesEnabled(true);
         map.setMyLocationEnabled(true);
+        final Map<Marker, Kita> markerKitaMap = new HashMap<>();
         for (Kita kita : kitas) {
-            map.addMarker(
+            markerKitaMap.put(map.addMarker(
                     new MarkerOptions()
                             .position(
                                     new LatLng(kita.getLatitude(), kita.getLongitude()))
                             .title(kita.getName())
 
-            );
+            ), kita);
         }
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Marker marker : markerKitaMap.keySet()) {
+            builder.include(marker.getPosition());
+        }
+        LatLngBounds bounds = builder.build();
+
+        int padding = 0;
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        map.moveCamera(cu);
+
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+
+                showDetail(markerKitaMap.get(marker));
+
+                return true;
+            }
+        });
     }
 
     @Override
