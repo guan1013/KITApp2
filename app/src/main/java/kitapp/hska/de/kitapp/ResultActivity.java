@@ -1,7 +1,13 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +32,7 @@ import kitapp.hska.de.kitapp.util.Constants;
 import kitapp.hska.de.kitapp.util.LoginResult;
 
 
-public class ResultActivity extends ActionBarActivity implements OnMapReadyCallback {
+public class ResultActivity extends ActionBarActivity implements OnMapReadyCallback, LocationListener {
 
     /*
     <======================= CONSTANTS =======================>
@@ -41,6 +47,10 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     private LinearLayout resultLinearLayoutList;
     private LinearLayout resultLinearLayoutMap;
     private MapFragment mapFragment;
+    private LocationManager locationManager;
+    private String provider;
+    private Location currentLocation;
+
       /*
     <======================= PUBLIC METHODS =======================>
      */
@@ -92,7 +102,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
 
 
         Intent intent = new Intent(this, KitaDetailsActivity.class);
-        if (loggedInUser == null) {
+        if (loggedInUser != null) {
             intent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
         }
         intent.putExtra(KITA_BUNDLE_KEY, kita);
@@ -142,7 +152,35 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         });
     }
 
-    private void configGoogleMaps() {
+    private void getLastLocation() {
+
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        boolean enabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        // check if enabled and if not send user to the GSP settings
+        // Better solution would be to display a dialog and suggesting to
+        // go to the settings
+        if (!enabled) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
+        }
+        // Get the location manager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // Define the criteria how to select the locatioin provider -> use
+        // default
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        Location location = locationManager.getLastKnownLocation(provider);
+
+        // Initialize the location fields
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            onLocationChanged(location);
+        } else {
+            toast("Location not available");
+        }
+
     }
     /*
     <======================= OVERRIDE METHODS =======================>
@@ -199,4 +237,34 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        currentLocation = location;
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+     /*
+    <======================= GETS & SETS =======================>
+    */
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+
 }

@@ -3,6 +3,7 @@ package kitapp.hska.de.kitapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import kitapp.hska.de.kitapp.R;
+import kitapp.hska.de.kitapp.ResultActivity;
 import kitapp.hska.de.kitapp.domain.Kita;
 
 /**
@@ -64,8 +66,26 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
             }
 
             if (textViewCircuit != null) {
-                // TODO: CALCULATE DISTANCE
-                String distance = "PLACEHOLDER";
+                Location currentLocation = null;
+                try {
+                    currentLocation = ((ResultActivity) getContext()).getCurrentLocation();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                String distance = "n/a";
+
+                if (currentLocation != null) {
+                    Location kitaLocation = new Location(kita.getName());
+                    kitaLocation.setLatitude(kita.getLatitude());
+                    kitaLocation.setLongitude(kita.getLongitude());
+
+                    Float distanceFloat = currentLocation.distanceTo(kitaLocation);
+                    Integer distanceInt = distanceFloat.intValue();
+                    distance = distanceInt.toString();
+                }
+
+
                 textViewCircuit.setText(distance + " km");
             }
 
