@@ -15,28 +15,33 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="90">
+        android:layout_weight="90"
+        >
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/divider"
             android:orientation="vertical"
-            android:showDividers="middle">
+            android:showDividers="middle"
+            style="@style/FontBGColor.White">
 
             <!-- Search for City-->
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                style="@style/FontBGColor.White"
+                android:weightSum="1">
 
                 <EditText
                     android:id="@+id/search.edittext.city"
-                    android:layout_width="200dp"
+                    android:layout_width="292dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/searchCity"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    style="@style/editTextHint"/>
 
                 <ImageButton
                     android:id="@+id/search.imagebutton.location"
@@ -52,35 +57,41 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchCircuit" />
+                    android:text="@string/searchCircuit"
+                    style="@style/FontBGColor.White"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    style="@style/FontBGColor.White">
 
                     <SeekBar
                         android:id="@+id/search.seekbar.circuit"
                         android:layout_width="207dp"
                         android:layout_height="wrap_content"
-                        android:max="50" />
+                        android:max="50"
+                        style="@style/FontBGColor.White"/>
 
                     <EditText
                         android:id="@+id/search.edittext.circuit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        style="@style/FontBGColor.White"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:labelFor="@+id/search.edittext.circuit"
-                        android:text="@string/searchTextViewCircuite" />
+                        android:text="@string/searchTextViewCircuite"
+                        style="@style/FontBGColor.White"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -91,17 +102,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchAge" />
+                    android:text="@string/searchAge"
+                    style="@style/FontBGColor.White"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    style="@style/FontBGColor.White">
 
 
                     <ToggleButton
@@ -140,19 +154,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <TextView
                     android:id="@+id/search.textview.cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchCost" />
+                    android:text="@string/searchCost"
+                    style="@style/FontBGColor.White"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    style="@style/FontBGColor.White">
 
                     <ToggleButton
                         android:id="@+id/search.togglebutton.cost.1"
@@ -190,18 +207,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchOpen" />
+                    android:text="@string/searchOpen"
+                    style="@style/FontBGColor.White"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.open"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    style="@style/FontBGColor.White">
 
                     <ToggleButton
                         android:id="@+id/search.togglebutton.open.1"
@@ -237,18 +257,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchEvaluation" />
+                    android:text="@string/searchEvaluation"
+                    style="@style/FontBGColor.White"/>
 
                 <RatingBar
                     android:id="@+id/search.ratingbar.rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:mirrorForRtl="true" />
+                    android:mirrorForRtl="true"
+                    style="@style/FontBGColor.White"/>
             </LinearLayout>
 
             <!-- Search for Group Size -->
@@ -258,19 +281,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <TextView
                     android:id="@+id/search.textview.size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchSize" />
+                    android:text="@string/searchSize"
+                    style="@style/FontBGColor.White"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.size"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    style="@style/FontBGColor.White">
 
                     <ToggleButton
                         android:id="@+id/size.togglebutton.size.1"
@@ -309,19 +335,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <TextView
                     android:id="@+id/search.textview.closing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchClosing" />
+                    android:text="@string/searchClosing"
+                    style="@style/FontBGColor.White"/>
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.closing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    style="@style/FontBGColor.White">
 
                     <ToggleButton
                         android:id="@+id/search.togglebutton.closing.1"
@@ -352,12 +381,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                style="@style/FontBGColor.White">
 
                 <Spinner
                     android:id="@+id/search.spinner.confession"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

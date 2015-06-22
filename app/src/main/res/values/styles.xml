@@ -30,7 +30,7 @@
     <!-- Text Styles -->
     <style name="header1">
         <item name="android:textSize">30sp</item>
-        <item name="android:background">#91d187</item>
+        <item name="android:background">#ffffff</item>
         <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingTop">10dp</item>
     </style>
@@ -52,6 +52,7 @@
         <item name="android:textSize">20sp</item>
         <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingTop">10dp</item>
+        <item name="android:background">#ffffff</item>
     </style>
 
 

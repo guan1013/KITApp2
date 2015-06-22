@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        style="@style/FontBGColor.White">
 
         <TextView
             android:id="@+id/result.textview.name"
@@ -25,7 +26,8 @@
             android:layout_height="wrap_content"
             android:isIndicator="true"
             android:numStars="5"
-            android:stepSize="0.5" />
+            android:stepSize="0.5"
+            />
     </LinearLayout>
 
     <RelativeLayout
@@ -38,7 +40,8 @@
             android:layout_height="200dp"
             android:layout_alignParentLeft="true"
             android:scaleType="fitXY"
-            android:src="@drawable/im1" />
+            android:src="@drawable/im1"
+            style="@style/FontBGColor.White"/>
 
         <TextView
             android:id="@+id/result.textview.circuit"
@@ -53,7 +56,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        style="@style/FontBGColor.White">
 
         <ImageButton
             android:id="@+id/result.imagebutton.tel"
