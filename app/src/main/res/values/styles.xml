@@ -2,7 +2,16 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+
+    <style name="FontBGColor">
+
+    </style>
+
+    <style name="FontBGColor.White">
+        <item name="android:background">#ffffff</item>
     </style>
 
 </resources>
