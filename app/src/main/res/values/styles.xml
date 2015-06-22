@@ -8,23 +8,43 @@
 
     <style name="FontBGColor"></style>
 
+
     <!-- Background White -->
     <style name="FontBGColor.White">
         <item name="android:background">#ffffff</item>
     </style>
 
+    <!-- Background Green -->
     <style name="FontBGColor.Green">
-        <item name="android:background">#5ed34c</item>
+        <item name="android:background">#91d187</item>
     </style>
 
+
+    <!-- Text Styles -->
     <style name="header1">
         <item name="android:textSize">30sp</item>
         <item name="android:background">#91d187</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
+    <style name="header1green">
+        <item name="android:textSize">30sp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
+    <style name="header2purple">
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">#ed78df</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
     </style>
 
     <style name="header2">
         <item name="android:textSize">20sp</item>
-        <item name="android:background">#efd128</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
     </style>
 
     <style name="textData">
@@ -33,6 +53,18 @@
 
     <style name="editTextHint">
         <item name="android:textStyle">italic</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+    <!-- Button Styles -->
+    <style name="button">
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
     </style>
 
 </resources>

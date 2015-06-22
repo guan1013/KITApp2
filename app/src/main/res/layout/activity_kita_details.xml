@@ -76,10 +76,11 @@
                 </HorizontalScrollView>
             </RelativeLayout>
 
+
             <TextView
                 android:id="@+id/KitaDetailsName"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="30dp"
@@ -101,7 +102,7 @@
 
             <TextView
                 android:id="@+id/KitaDetailsEvaluation"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -124,17 +125,19 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="20dp"
-                android:text="News " />
+                android:text="News "
+                style="@style/button"/>
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="KITA bewerten"
-                android:id="@+id/KitaDetailsButtonEvaluate"/>
+                android:id="@+id/KitaDetailsButtonEvaluate"
+                style="@style/button"/>
 
             <TextView
                 android:id="@+id/KitaDetailsCosts"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -154,7 +157,7 @@
 
             <TextView
                 android:id="@+id/KitaDetailsOpen"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -175,7 +178,7 @@
 
             <TextView
                 android:id="@+id/KitaDetailsManagement"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -195,7 +198,7 @@
 
             <TextView
                 android:id="@+id/KitaDetailsConfession"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -215,7 +218,7 @@
 
             <TextView
                 android:id="@+id/KitaDetailsAge"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -235,7 +238,7 @@
 
             <TextView
                 android:id="@+id/KitaDetailsAbout"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -255,7 +258,7 @@
 
             <TextView
                 android:id="@+id/KitaDetailsComments"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"

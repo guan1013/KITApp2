@@ -30,7 +30,8 @@
         android:layout_below="@+id/registerImageViewLogo"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/registerImageViewLogo"
-        android:hint="E-Mail" />
+        android:hint="E-Mail"
+        style="@style/editTextHint"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -41,7 +42,8 @@
         android:layout_below="@+id/registerEditTextEmail"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/registerEditTextEmail"
-        android:hint="Name" />
+        android:hint="Name"
+        style="@style/editTextHint"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -52,7 +54,8 @@
         android:layout_below="@+id/registerEditTextName"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/registerEditTextName"
-        android:hint="Passwort" />
+        android:hint="Passwort"
+        style="@style/editTextHint"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -63,7 +66,8 @@
         android:layout_below="@+id/registerEditTextPassword"
         android:layout_alignParentStart="true"
         android:layout_alignEnd="@+id/registerEditTextPassword"
-        android:hint="Passwort wiederholen" />
+        android:hint="Passwort wiederholen"
+        style="@style/editTextHint"/>
 
     <Button
         android:layout_width="fill_parent"
@@ -71,7 +75,8 @@
         android:text="Registrieren"
         android:id="@+id/registerButtonRegister"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        style="@style/button"/>
 
 
 </RelativeLayout>
