@@ -63,29 +63,33 @@
             android:id="@+id/result.imagebutton.tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/phone"
+            android:src="@drawable/ic_call_black_48dp"
             android:layout_weight="1"
+            style="@style/icons"
             />
 
         <ImageButton
             android:id="@+id/result.imagebutton.email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/mail"
-            android:layout_weight="1" />
+            android:src="@drawable/ic_email_black_48dp"
+            android:layout_weight="1"
+            style="@style/icons"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/fav"
-            android:layout_weight="1"/>
+            android:src="@drawable/ic_favorite_border_black_48dp"
+            android:layout_weight="1"
+            style="@style/icons"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.cont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/contact"
-            android:layout_weight="1"/>
+            android:src="@drawable/ic_person_add_black_48dp"
+            android:layout_weight="1"
+            style="@style/icons"/>
     </LinearLayout>
 </LinearLayout>
