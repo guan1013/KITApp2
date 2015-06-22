@@ -49,6 +49,7 @@ import java.util.concurrent.TimeoutException;
 import kitapp.hska.de.kitapp.MainActivity;
 import kitapp.hska.de.kitapp.domain.Kita;
 import kitapp.hska.de.kitapp.domain.SearchQuery;
+import kitapp.hska.de.kitapp.util.LoginResult;
 
 /**
  *
@@ -69,6 +70,7 @@ public class KitaService extends Service {
     }
 
     public class KitaServiceBinder extends Binder {
+
         public Kita[] getKitaByCity(String city) throws InterruptedException, ExecutionException, TimeoutException {
 
             AsyncTask<String, Void, Kita[]> kitaFinderTask = new AsyncTask<String, Void, Kita[]>() {

@@ -124,6 +124,12 @@
                 android:layout_marginTop="20dp"
                 android:text="News " />
 
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="KITA bewerten"
+                android:id="@+id/KitaDetailsButtonEvaluate"/>
+
             <TextView
                 android:id="@+id/KitaDetailsCosts"
                 android:layout_width="wrap_content"

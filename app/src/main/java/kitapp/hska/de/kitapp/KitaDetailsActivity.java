@@ -1,9 +1,12 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -36,6 +39,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
     RatingBar kitaDetailsRatingbar;
 
     private ListView evaluationListView;
+
+    private Kita displayedKita = null;
 
     private void initViews() {
         evaluationListView = (ListView) findViewById(R.id.evaluation_ListView);
@@ -95,6 +100,20 @@ public class KitaDetailsActivity extends AppCompatActivity {
             toast(getString(R.string.noKitaFound));
         }
 
+        Button buttonWriteEvaluation = (Button)findViewById(R.id.KitaDetailsButtonEvaluate);
+
+        buttonWriteEvaluation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(displayedKita == null) {
+                    return;
+                }
+                Intent i = new Intent(getApplicationContext(),WriteCommentActivity.class);
+                i.putExtra("kita",displayedKita);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void cleanUi() {
@@ -147,6 +166,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsConfessionData.setText(""+kita.getConfession());
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
+
+        this.displayedKita = kita;
     }
 
     //////////////////////////////////////////////////

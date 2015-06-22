@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
 import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.domain.Evaluation;
+import kitapp.hska.de.kitapp.domain.Kita;
 
 
 public class WriteCommentActivity extends ActionBarActivity {
@@ -48,7 +50,15 @@ public class WriteCommentActivity extends ActionBarActivity {
 
         initViews();
 
-        this.textViewName.setText(getString(R.string.placeHolderString));
+        Kita kita = (Kita) this.getIntent().getExtras().get("kita");
+
+        if(kita == null) {
+            toast("No KITA to evaluate");
+            Intent i= new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(i);
+        }
+
+        this.textViewName.setText(kita.getName());
     }
 
     @Override
@@ -84,5 +94,8 @@ public class WriteCommentActivity extends ActionBarActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void toast(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

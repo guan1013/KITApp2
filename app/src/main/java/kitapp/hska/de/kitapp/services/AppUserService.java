@@ -61,7 +61,7 @@ public class AppUserService extends Service {
 
     public class AppUserServiceBinder extends Binder {
 
-        private boolean isLoggedIn = false;
+        private LoginResult currentLoginResult = null;
 
 
         public void createAppUser(AppUser appUser) throws InterruptedException, ExecutionException, TimeoutException {
@@ -189,7 +189,7 @@ public class AppUserService extends Service {
                             HttpContext httpContext = new BasicHttpContext();
                             String url2 = BACKEND_URL + PATH_APP_USER + PATH_APP_USER_ID + "?" + PARAM_APP_USER_ID + appUser.getEmail();
                             HttpGet httpGetAppUser = new HttpGet(url2);
-                            httpGetAppUser.setHeader("Cookie","JSESSIONID=" + loginResult.getCookie());
+                            httpGetAppUser.setHeader("Cookie", "JSESSIONID=" + loginResult.getCookie());
                             HttpResponse responseAppUser = httpClient2.execute(httpGetAppUser, httpContext);
 
                             // Creates the json object which will manage the information received
@@ -204,9 +204,9 @@ public class AppUserService extends Service {
 
                             Gson gson = builder.create();
 
-                            AppUser loadedAppUser = gson.fromJson(new InputStreamReader(responseAppUser.getEntity().getContent()),AppUser.class);
+                            AppUser loadedAppUser = gson.fromJson(new InputStreamReader(responseAppUser.getEntity().getContent()), AppUser.class);
                             loginResult.setAppUser(loadedAppUser);
-
+                            currentLoginResult = loginResult;
                         }
 
                         loginResult.setStatusLine(response.getStatusLine());
@@ -228,6 +228,10 @@ public class AppUserService extends Service {
                 e.printStackTrace();
                 return null;
             }
+        }
+
+        public LoginResult getCurrentLoginResult() {
+            return currentLoginResult;
         }
 
         private String getB64Auth(String login, String pass) {
