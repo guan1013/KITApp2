@@ -24,7 +24,7 @@ import kitapp.hska.de.kitapp.adapter.KitaResultAdapter;
 import kitapp.hska.de.kitapp.domain.Kita;
 
 
-public class ResultActivity extends ActionBarActivity  {
+public class ResultActivity extends ActionBarActivity implements OnMapReadyCallback {
 
     /*
     <======================= CONSTANTS =======================>
@@ -38,7 +38,7 @@ public class ResultActivity extends ActionBarActivity  {
     private ListView resultListView;
     private LinearLayout resultLinearLayoutList;
     private LinearLayout resultLinearLayoutMap;
-    private GoogleMap map;
+    private MapFragment mapFragment;
       /*
     <======================= PUBLIC METHODS =======================>
      */
@@ -67,7 +67,8 @@ public class ResultActivity extends ActionBarActivity  {
         resultListView = (ListView) findViewById(R.id.result_listview);
         resultLinearLayoutList = (LinearLayout) findViewById(R.id.result_linarlayout_list);
         resultLinearLayoutMap = (LinearLayout) findViewById(R.id.result_linarlayout_map);
-        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.result_fragment_map)).getMap();
+        mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.result_fragment_map);
+        mapFragment.getMapAsync(this);
     }
 
     private void showDetail(Kita kita) {
@@ -120,12 +121,16 @@ public class ResultActivity extends ActionBarActivity  {
     }
 
     private void configGoogleMaps() {
-            //map.getUiSettings().setZoomControlsEnabled(true);
-            //map.getUiSettings().setZoomGesturesEnabled(true);
     }
     /*
     <======================= OVERRIDE METHODS =======================>
      */
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        map.getUiSettings().setZoomControlsEnabled(true);
+        map.getUiSettings().setZoomGesturesEnabled(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +140,6 @@ public class ResultActivity extends ActionBarActivity  {
         resultListView = (ListView) findViewById(R.id.result_listview);
         addResultListAdapter();
         setOnCheckedListener(R.id.result_radiogroup_buttons);
-        //configGoogleMaps();
     }
 
     @Override
