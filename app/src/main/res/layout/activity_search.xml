@@ -409,7 +409,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="10"
         android:background="#ffffff"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:layout_marginTop="15dp">
 
         <Button
             android:layout_width="fill_parent"
