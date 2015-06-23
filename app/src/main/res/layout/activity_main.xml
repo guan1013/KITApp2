@@ -27,11 +27,14 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/FontBGColor.White"
+                android:baselineAligned="false"
+                android:measureWithLargestChild="false">
 
                 <ImageView
                     android:id="@+id/mainImageViewLogo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/logo"
                     android:layout_alignParentTop="true"

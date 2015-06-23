@@ -37,17 +37,21 @@
 
                 <EditText
                     android:id="@+id/search.edittext.city"
-                    android:layout_width="292dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="@string/searchCity"
                     android:singleLine="true"
-                    style="@style/editTextHint"/>
+                    style="@style/editTextHint"
+                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/search.imagebutton.location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/gps" />
+                    android:src="@drawable/ic_location_searching_black_48dp"
+                    android:background="#ffffff"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
 

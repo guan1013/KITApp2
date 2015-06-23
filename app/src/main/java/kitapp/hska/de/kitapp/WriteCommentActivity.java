@@ -106,17 +106,17 @@ public class WriteCommentActivity extends ActionBarActivity {
                 query.setKitaIdx(kitaToEvaluate.getId());
                 query.setText(text);
                 query.setRating(rating);
+                query.setAuthorName(loggedInUser.getAppUser().getName());
 
-                try
-                {
+                try {
                     evaluationServiceBinder.createEvaluation(query);
 
                     Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    myIntent.putExtra("kita",kitaToEvaluate);
-                    myIntent.putExtra(Constants.EXTRAS_KEY_RELOAD_KITA,Boolean.TRUE);
-                    myIntent.putExtra(Constants.EXTRAS_KEY_LOGIN,loggedInUser);
+                    myIntent.putExtra("kita", kitaToEvaluate);
+                    myIntent.putExtra(Constants.EXTRAS_KEY_RELOAD_KITA, Boolean.TRUE);
+                    myIntent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);
                     startActivity(myIntent);
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     toast(e.getClass().getName());
                 }
