@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Comment;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +80,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
     TextView kitaDetailsAgeData;
     TextView kitaDetailsAboutData;
     RatingBar kitaRatingBar;
+    TextView kitaDetailsEvaluationTitle;
+    TextView kitaDetailsEvaluation;
 
     RatingBar kitaDetailsRatingbar;
 
@@ -98,6 +101,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsAboutData = (TextView) findViewById(R.id.KitaDetailsAboutData);
         kitaDetailsRatingbar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
         kitaRatingBar = (RatingBar) findViewById(R.id.KitaDetailsRatingBar);
+        kitaDetailsEvaluationTitle = (TextView) findViewById(R.id.KitaDetailsComments);
+        kitaDetailsEvaluation = (TextView) findViewById(R.id.KitaDetailsEvaluation);
 
     }
 
@@ -186,6 +191,8 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsAgeData.setText("");
         kitaDetailsAboutData.setText("");
         kitaRatingBar.setRating(0.0f);
+        kitaDetailsEvaluationTitle.setText("Bewertung");
+        kitaDetailsEvaluation.setText("Bewertung");
     }
 
     private void displayKita(Kita kita) {
@@ -219,18 +226,16 @@ public class KitaDetailsActivity extends AppCompatActivity {
         }
 
         if (kita.getOpeningHours() != null) {
-            kitaDetailsOpenhours.setText("" + kita.getOpeningHours());
+            kitaDetailsOpenhours.setText(Constants.OPENING_HOURS[kita.getOpeningHours()]);
         }
 
 
         kitaDetailsManagement.setText(kita.getManagement());
-        kitaDetailsConfessionData.setText("" + kita.getConfession());
+        kitaDetailsConfessionData.setText(Constants.CONFESSIONS[kita.getConfession()]);
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
-
-        for (Evaluation e : kita.getEvaluations()) {
-            System.out.println(e.getText());
-        }
+        kitaDetailsEvaluationTitle.setText("Bewertung (" + kita.getEvaluations().size() + ")");
+        kitaDetailsEvaluation.setText("Bewertung (" + kita.getEvaluations().size() + ")");
 
         this.displayedKita = kita;
     }

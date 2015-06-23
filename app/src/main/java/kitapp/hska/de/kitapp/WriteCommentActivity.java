@@ -132,7 +132,7 @@ public class WriteCommentActivity extends ActionBarActivity {
 
         if (loggedInUser == null) {
             toast("You are not logged in");
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(i);
         }
 

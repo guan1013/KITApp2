@@ -68,7 +68,7 @@ public class Kita implements Serializable{
     public enum Confession {
 
         KATHOLIC("Katholisch"), ISLAMIC("Islamisch"), BUDDHISTIC("Buddhistisch"), EVANGELIC(
-                "Evangelisch"), NO_CONFESSION("Keine Konfession");
+                "Evangelisch"), NO_CONFESSION("Keine Konfession"),EGAL("Egal");
 
         private String text;
 

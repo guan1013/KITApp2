@@ -303,6 +303,8 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
             confession = 3;
         } else if (confessionString.equals(Kita.Confession.NO_CONFESSION.toString())) {
             confession = 4;
+        } else if(confessionString.equals(Kita.Confession.EGAL.toString())) {
+            confession = -1;
         }
 
         return confession;

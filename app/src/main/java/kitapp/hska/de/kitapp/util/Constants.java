@@ -3,7 +3,7 @@ package kitapp.hska.de.kitapp.util;
 /**
  * This is a utility class which holds all constant values.
  *
- * @author Andreas Güntzel
+ * @author Andreas Gï¿½ntzel
  */
 public class Constants {
 
@@ -17,7 +17,7 @@ public class Constants {
     public final static String PATH_KITA = "/kita";
     public final static String PATH_LOGIN = "/server";
     public final static String PATH_EVALUATION = "/evaluation";
-    public  final static  String PATH_SEARCH = "/search";
+    public final static String PATH_SEARCH = "/search";
 
     // QUERY PARAMETER FOR REST-ENDPOINTS
     public final static String PARAM_APP_USER_ID = "email=";
@@ -30,5 +30,9 @@ public class Constants {
 
     // GLOBAL CONFIGURATIONS
     public final static Long TIME_OUT = 20L;
+
+    // OTHER
+    public final static String[] OPENING_HOURS = new String[]{"Halbtags", "VerlÃ¤nger", "Ganztags"};
+    public final static String[] CONFESSIONS = new String[]{"Katholisch", "Islamisch", "Buddisthisch", "Evangelisch", "Keine Konfesseion"};
 
 }
