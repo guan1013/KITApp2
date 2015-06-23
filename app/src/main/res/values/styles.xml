@@ -4,12 +4,18 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:actionBarStyle">@style/AppTheme.CustomActionBar</item>
+        <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
     </style>
 
 
     <!-- Actionbar Style -->
     <style name="AppTheme.CustomActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:background">#ce1e9c</item>
+    </style>
+
+    <!-- Actionbar Style Menu-->
+    <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">#ffffff</item>
     </style>
 
 
@@ -74,18 +80,15 @@
 
     <style name="editTextHint">
         <item name="android:textStyle">italic</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
 
     <!-- Button Styles -->
     <style name="button">
-        <item name="android:textStyle">bold</item>
-        <item name="android:paddingBottom">3dp</item>
-        <item name="android:paddingTop">3dp</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:paddingLeft">20dp</item>
-        <item name="android:paddingRight">20dp</item>
+
+
     </style>
 
 

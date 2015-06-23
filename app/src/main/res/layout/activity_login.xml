@@ -90,7 +90,9 @@
             android:layout_gravity="center_horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,18 +121,18 @@
             android:id="@+id/buttonLoginRegister"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            style="@style/button"
             android:layout_gravity="bottom|center_vertical"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:background="#91d187" />
+            android:background="#91d187"
+            android:textAllCaps="false"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Facebook"
-            android:id="@+id/buttonLoginFacebook"
+            android:text="facebook"
             style="@style/button"
+            android:id="@+id/buttonLoginFacebook"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/buttonLoginRegister"
             android:layout_gravity="bottom|center_vertical"
@@ -138,8 +140,7 @@
             android:layout_marginRight="5dp"
             android:background="#3B5998"
             android:textColor="#ffffff"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp" />
+            android:textAllCaps="false"/>
 
     </LinearLayout>
 

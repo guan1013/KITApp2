@@ -15,7 +15,8 @@
         android:id="@+id/comment.write.textview.name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/placeHolderString" />
+        android:text="@string/placeHolderString"
+        style="@style/FontBGColor.White"/>
 
     <EditText
         android:id="@+id/comment.write.edittext.text"
@@ -28,7 +29,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        style="@style/FontBGColor.White">
 
         <RatingBar
             android:id="@+id/comment.write.ratingbar.rating"
@@ -38,10 +40,13 @@
             android:stepSize="0.5" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/commentWriteButton"
-            android:text="@string/buttonSend" />
+            android:text="@string/buttonSend"
+            android:layout_marginLeft="30dp"
+            android:background="#91d187"
+            android:textAllCaps="false"/>
 
     </LinearLayout>
 

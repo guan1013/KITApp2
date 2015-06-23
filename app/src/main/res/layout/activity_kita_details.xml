@@ -251,7 +251,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="20dp"
-                android:text="News " />
+                android:text="News "
+                android:textAllCaps="false"
+                android:background="#91d187" />
 
             <Button
                 android:id="@+id/KitaDetailsButtonEvaluate"
@@ -259,7 +261,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="KITA bewerten"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:background="#91d187" />
 
             <TextView
                 android:id="@+id/KitaDetailsComments"
@@ -269,7 +273,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsComments" />
+                android:text="@string/kitaDetailsComments"
+                />
 
 
 
