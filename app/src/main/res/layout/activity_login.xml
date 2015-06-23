@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,75 +9,139 @@
     tools:context="kitapp.hska.de.kitapp.LoginActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    style="@style/FontBGColor.White">
+    android:orientation="vertical"
+    style="@style/FontBGColor.White"
+    >
 
 
-    <ImageView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageViewLayout">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:id="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:cropToPadding="false"
+            android:focusable="false"
+            style="@style/FontBGColor.White"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="false"
-        android:cropToPadding="false"
-        android:focusable="false"
-        style="@style/FontBGColor.White"/>
+        style="@style/FontBGColor.White"
+        android:id="@+id/editTextLoginLayout">
 
-    <EditText
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/editTextLoginEmail"
+            android:hint="E-Mail"
+            android:layout_below="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_alignParentStart="true"
+            style="@style/editTextHint"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editTextLoginPassword"
+            android:hint="Passwort"
+            android:layout_below="@+id/editTextLoginEmail"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            style="@style/editTextHint"
+            android:layout_gravity="top" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editTextLoginEmail"
-        android:hint="E-Mail"
-        android:layout_below="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView"
-        android:layout_alignParentStart="true"
-        style="@style/editTextHint"/>
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/loginButtonLayout"
+        style="@style/FontBGColor.White">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editTextLoginPassword"
-        android:hint="Passwort"
-        android:layout_below="@+id/editTextLoginEmail"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        style="@style/editTextHint"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/buttonLogin"
+            android:layout_below="@+id/editTextLoginPassword"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2"
+            style="@style/button"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="10dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/buttonLogin"
-        android:layout_below="@+id/editTextLoginPassword"
-        android:layout_marginTop="23dp"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        style="@style/button"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loginAccount"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/buttonLogin"
+            android:layout_centerHorizontal="true"
+            style="@style/textData"
+            android:layout_weight="2"
+            android:layout_marginTop="25dp" />
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loginAccount"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/buttonLogin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        style="@style/textData"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/registerButtonsLayout"
+        android:measureWithLargestChild="false"
+        style="@style/FontBGColor.White">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registrieren"
-        android:id="@+id/buttonLoginRegister"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        style="@style/button"/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrieren"
+            android:id="@+id/buttonLoginRegister"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            style="@style/button"
+            android:layout_gravity="bottom|center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="#91d187" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Facebook"
+            android:id="@+id/buttonLoginFacebook"
+            style="@style/button"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/buttonLoginRegister"
+            android:layout_gravity="bottom|center_vertical"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:background="#3B5998"
+            android:textColor="#ffffff"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp" />
+
+    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>
