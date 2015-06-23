@@ -4,7 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:actionBarStyle">@style/AppTheme.CustomActionBar</item>
-        <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
+        <item name="actionOverflowMenuStyle">@style/AppTheme.CMOptionsMenu</item>
     </style>
 
 
@@ -14,7 +14,7 @@
     </style>
 
     <!-- Actionbar Style Menu-->
-    <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+    <style name="AppTheme.CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">#ffffff</item>
     </style>
 

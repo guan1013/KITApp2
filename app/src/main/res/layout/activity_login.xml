@@ -121,26 +121,26 @@
             android:id="@+id/buttonLoginRegister"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="bottom|center_vertical"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:background="#91d187"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="facebook"
+            android:text="Login mit facebook"
             style="@style/button"
             android:id="@+id/buttonLoginFacebook"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/buttonLoginRegister"
-            android:layout_gravity="bottom|center_vertical"
             android:layout_weight="1"
-            android:layout_marginRight="5dp"
             android:background="#3B5998"
             android:textColor="#ffffff"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"/>
 
     </LinearLayout>
 
