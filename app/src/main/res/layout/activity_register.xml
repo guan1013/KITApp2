@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -7,77 +7,106 @@
     tools:context="kitapp.hska.de.kitapp.RegisterActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    style="@style/FontBGColor.White">
+    style="@style/FontBGColor.White"
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:id="@+id/registerImageViewLogo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="false"
-        android:cropToPadding="false"
-        android:focusable="false"
-        style="@style/FontBGColor.White"/>
+        android:layout_weight="1"
+        style="@style/FontBGColor.White">
 
-    <EditText
-        android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:id="@+id/registerImageViewLogo"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:cropToPadding="false"
+            android:focusable="false"
+            style="@style/FontBGColor.White"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/registerEditTextEmail"
-        android:layout_below="@+id/registerImageViewLogo"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/registerImageViewLogo"
-        android:hint="E-Mail"
-        style="@style/editTextHint"/>
+        android:layout_weight="1"
+        style="@style/FontBGColor.White">
 
-    <EditText
-        android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/registerEditTextEmail"
+            android:layout_below="@+id/registerImageViewLogo"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/registerImageViewLogo"
+            android:hint="E-Mail"
+            style="@style/editTextHint"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/registerEditTextName"
+            android:layout_below="@+id/registerEditTextEmail"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/registerEditTextEmail"
+            android:hint="Name"
+            style="@style/editTextHint"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/registerEditTextPassword"
+            android:layout_below="@+id/registerEditTextName"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/registerEditTextName"
+            android:hint="Passwort"
+            style="@style/editTextHint"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/registerEditTextPasswordRepeat"
+            android:layout_below="@+id/registerEditTextPassword"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/registerEditTextPassword"
+            android:hint="Passwort wiederholen"
+            style="@style/editTextHint"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/registerEditTextName"
-        android:layout_below="@+id/registerEditTextEmail"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/registerEditTextEmail"
-        android:hint="Name"
-        style="@style/editTextHint"/>
+        android:layout_weight="1"
+        android:layout_marginTop="10sp"
+        style="@style/FontBGColor.White">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/registerEditTextPassword"
-        android:layout_below="@+id/registerEditTextName"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/registerEditTextName"
-        android:hint="Passwort"
-        style="@style/editTextHint"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/registerEditTextPasswordRepeat"
-        android:layout_below="@+id/registerEditTextPassword"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/registerEditTextPassword"
-        android:hint="Passwort wiederholen"
-        style="@style/editTextHint"/>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Registrieren"
-        android:id="@+id/registerButtonRegister"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        style="@style/button"/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrieren"
+            android:id="@+id/registerButtonRegister"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            style="@style/button"
+            android:background="#91d187"
+            android:textSize="20dp"
+            android:textAllCaps="false"/>
+    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

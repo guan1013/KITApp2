@@ -14,79 +14,92 @@
     <ScrollView
         android:id="@+id/scrollViewMainActivity"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             style="@style/FontBGColor.White"
-            android:measureWithLargestChild="false">
+            android:measureWithLargestChild="true">
 
-            <ImageView
-                android:id="@+id/mainImageViewLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logo"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentLeft="false"
-                android:cropToPadding="false"
-                android:focusable="false"
-                style="@style/FontBGColor.White"/>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/mainImageViewLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logo"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentLeft="false"
+                    android:cropToPadding="false"
+                    android:focusable="false"
+                    style="@style/FontBGColor.White" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
-                android:layout_marginTop="50dp"
-                style="@style/FontBGColor.White">
+                style="@style/FontBGColor.White"
+                android:layout_marginTop="25dp">
 
                 <EditText
                     android:id="@+id/mainEditTextLocation"
-                    android:layout_width="295dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_above="@+id/button"
                     android:layout_alignParentStart="true"
-                    android:layout_marginBottom="10dp"
                     android:lines="1"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:windowSoftInputMode="stateUnspecified"
                     android:hint="Stadt/Standort"
                     style="@style/editTextHint"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp" />
 
                 <ImageButton
                     android:id="@+id/mainImageButtonLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/gps"
-                    android:layout_weight="2" />
+                    android:src="@drawable/ic_location_searching_black_48dp"
+                    android:background="#ffffff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1" />
 
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/mainButtonSearch"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="118dp"
-                android:layout_marginTop="90dp"
-                android:text="@string/buttonSuche"
-                style="@style/button"
-                android:layout_gravity="bottom|center_horizontal" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="135dp">
+
+                <Button
+                    android:id="@+id/mainButtonSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/buttonSuche"
+                    style="@style/button"
+                    android:textAllCaps="false"
+                    android:background="#91d187" />
+            </LinearLayout>
 
         </LinearLayout>
 
 
     </ScrollView>
-
 
 
 </RelativeLayout>

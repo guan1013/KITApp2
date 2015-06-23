@@ -26,7 +26,8 @@
             android:onClick="onToggle"
             android:textOff="@string/resultToggleButtonList"
             android:textOn="@string/resultToggleButtonList"
-            style="@style/button"/>
+            style="@style/button"
+            android:textAllCaps="false"/>
 
         <ToggleButton
             android:id="@+id/result.togglebutton.map"
@@ -37,7 +38,8 @@
             android:text="@string/resultToggleButtonMapValue"
             android:textOff="@string/resultToggleButtonMap"
             android:textOn="@string/resultToggleButtonMap"
-            style="@style/button"/>
+            style="@style/button"
+            android:textAllCaps="false"/>
     </RadioGroup>
 
     <LinearLayout
