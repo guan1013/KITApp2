@@ -47,8 +47,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import kitapp.hska.de.kitapp.MainActivity;
+import kitapp.hska.de.kitapp.client.WebserviceClient;
 import kitapp.hska.de.kitapp.domain.Kita;
 import kitapp.hska.de.kitapp.domain.SearchQuery;
+import kitapp.hska.de.kitapp.util.Constants;
 import kitapp.hska.de.kitapp.util.LoginResult;
 
 /**
@@ -58,11 +60,6 @@ import kitapp.hska.de.kitapp.util.LoginResult;
 public class KitaService extends Service {
 
     private final KitaServiceBinder binder = new KitaServiceBinder();
-
-    private final static String BACKEND_URL = "http://ebusiness-kitapp-backend.herokuapp.com/";
-    private final static String KITAS_PARAM = "kitas";
-    private final static String CITY_PARAM = "city";
-    private final static String SEARCH_PARAM = "search";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -93,18 +90,14 @@ public class KitaService extends Service {
 
                     String city = params[0];
 
-                    System.out.print("Search for city: " + city);
-
                     try {
-                        HttpClient httpClient = new DefaultHttpClient();
-                        HttpContext localContext = new BasicHttpContext();
-                        String url = BACKEND_URL + KITAS_PARAM + "?" + CITY_PARAM + "=" + URLEncoder.encode(city, "UTF-8");
-                        HttpGet httpGet = new HttpGet(url);
-                        String text = null;
 
-                        HttpResponse response = httpClient.execute(httpGet, localContext);
+                        String url = Constants.BACKEND_URL + Constants.PATH_KITAS + "?" + Constants.PARAM_KITA_CIY + URLEncoder.encode(city, "UTF-8");
+
+                        HttpResponse response = WebserviceClient.create().callWebservice(url, WebserviceClient.HttpMethod.GET);
 
                         HttpEntity entity = response.getEntity();
+
                         // Creates the json object which will manage the information received
                         GsonBuilder builder = new GsonBuilder();
 
@@ -116,9 +109,8 @@ public class KitaService extends Service {
                         });
 
                         Gson gson = builder.create();
-                        text = getASCIIContentFromEntity(entity);
-                        Kita[] kitas = gson.fromJson(text, Kita[].class);
-                        System.out.println(text);
+                        Kita[] kitas = gson.fromJson(new InputStreamReader(entity.getContent()), Kita[].class);
+
                         return kitas;
 
                     } catch (Exception e) {
@@ -171,22 +163,17 @@ public class KitaService extends Service {
 
                     try {
 
-                        HttpClient httpClient = new DefaultHttpClient();
-                        HttpPost postAction = new HttpPost(BACKEND_URL + KITAS_PARAM + "/" + SEARCH_PARAM);
-                        postAction.addHeader(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-                        postAction.setEntity(new StringEntity(request));
-                        String text = null;
+                        String url = Constants.BACKEND_URL + Constants.PATH_KITAS + Constants.PATH_SEARCH;
 
-                        HttpResponse response = httpClient.execute(postAction);
+                        HttpResponse response = WebserviceClient
+                                .create()
+                                .setEntity(request)
+                                .callWebservice(url, WebserviceClient.HttpMethod.POST);
                         HttpEntity entity = response.getEntity();
-                        text = getASCIIContentFromEntity(entity);
 
-                        System.out.println(text);
-                        Kita[] kitas = gson.fromJson(text, Kita[].class);
 
-                        for (Kita k : kitas) {
-                            System.out.println(k.toString());
-                        }
+                        Kita[] kitas = gson.fromJson(new InputStreamReader(entity.getContent()), Kita[].class);
+
                         return kitas;
 
                     } catch (Exception e) {
@@ -203,21 +190,47 @@ public class KitaService extends Service {
             return kitas;
         }
 
-        protected String getASCIIContentFromEntity(HttpEntity entity) throws IllegalStateException, IOException {
-            InputStream in = entity.getContent();
-            StringBuffer out = new StringBuffer();
-            int n = 1;
-            while (n > 0) {
-                byte[] b = new byte[4096];
+        public Kita getKityById(Long id) throws InterruptedException, ExecutionException, TimeoutException {
+            AsyncTask<Long, Void, Kita> kitaFinderTask = new AsyncTask<Long, Void, Kita>() {
+                @Override
+                protected Kita doInBackground(Long... params) {
 
-                n = in.read(b);
+                    Long id = params[0];
 
-                if (n > 0) out.append(new String(b, 0, n));
+                    String url = Constants.BACKEND_URL + Constants.PATH_KITAS + Constants.PATH_KITA + "?" + Constants.PARAM_KITA_ID + id;
 
-            }
-            return out.toString();
+                    try {
+                        HttpResponse response = WebserviceClient.create().callWebservice(url, WebserviceClient.HttpMethod.GET);
+                        if (response.getStatusLine().getStatusCode() == 200) {
+
+                            // Creates the json object which will manage the information received
+                            GsonBuilder builder = new GsonBuilder();
+
+                            // Register an adapter to manage the date types as long values
+                            builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+                                public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                                    return new Date(json.getAsJsonPrimitive().getAsLong());
+                                }
+                            });
+
+                            Gson gson = builder.create();
+
+                            Kita kita = gson.fromJson(new InputStreamReader(response.getEntity().getContent()), Kita.class);
+
+                            return kita;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    return null;
+                }
+            };
+
+            kitaFinderTask.execute(id);
+            Kita kita = kitaFinderTask.get(Constants.TIME_OUT, TimeUnit.SECONDS);
+            return kita;
         }
     }
-
 
 }

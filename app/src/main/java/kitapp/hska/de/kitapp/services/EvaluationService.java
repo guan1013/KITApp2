@@ -9,11 +9,6 @@ import android.os.IBinder;
 import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -57,7 +52,7 @@ public class EvaluationService extends Service {
 
 
                     // Build URL for webservice call
-                    String url = Constants.BACKEND_URL + Constants.EVALUATION;
+                    String url = Constants.BACKEND_URL + Constants.PATH_EVALUATION;
 
                     // Execute webservice call
                     try {

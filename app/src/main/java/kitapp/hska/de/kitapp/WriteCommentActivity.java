@@ -111,8 +111,9 @@ public class WriteCommentActivity extends ActionBarActivity {
                 {
                     evaluationServiceBinder.createEvaluation(query);
 
-                    Intent myIntent = new Intent(getApplicationContext(), KitaDetailsActivity.class);
+                    Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
                     myIntent.putExtra("kita",kitaToEvaluate);
+                    myIntent.putExtra(Constants.EXTRAS_KEY_RELOAD_KITA,Boolean.TRUE);
                     myIntent.putExtra(Constants.EXTRAS_KEY_LOGIN,loggedInUser);
                     startActivity(myIntent);
                 }catch(Exception e){

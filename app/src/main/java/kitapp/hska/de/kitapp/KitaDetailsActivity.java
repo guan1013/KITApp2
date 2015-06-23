@@ -1,6 +1,9 @@
 package kitapp.hska.de.kitapp;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,11 +24,48 @@ import kitapp.hska.de.kitapp.adapter.EvaluationsAdapter;
 import kitapp.hska.de.kitapp.domain.AppUser;
 import kitapp.hska.de.kitapp.domain.Evaluation;
 import kitapp.hska.de.kitapp.domain.Kita;
+import kitapp.hska.de.kitapp.services.KitaService;
 import kitapp.hska.de.kitapp.util.Constants;
 import kitapp.hska.de.kitapp.util.LoginResult;
 
 public class KitaDetailsActivity extends AppCompatActivity {
 
+    private KitaService.KitaServiceBinder kitaServiceBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            KitaDetailsActivity.this.kitaServiceBinder = ((KitaService.KitaServiceBinder) service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+
+    @Override
+    protected void onStart() {
+        Intent i = new Intent(this, KitaService.class);
+        bindService(i, serviceConnection, BIND_AUTO_CREATE);
+        super.onStart();
+
+        Boolean b = (Boolean) this.getIntent().getExtras().get(Constants.EXTRAS_KEY_RELOAD_KITA);
+
+        if (b != null && b == Boolean.TRUE) {
+            try {
+                System.out.println("Reload KITA: " + displayedKita);
+                Long id = displayedKita.getId();
+                displayedKita = kitaServiceBinder.getKityById(id);
+                displayKita(displayedKita);
+                System.out.println("KITA NOW: " + displayedKita);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private final static String KITA_BUNDLE_KEY = "kita";
 
@@ -90,7 +130,9 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
         evaluationListView = (ListView) findViewById(R.id.evaluation_ListView);
 
-        final Kita kita = getKita();
+        Kita kita = getKita();
+
+
 
 
         LoginResult loggedInUser = null;
