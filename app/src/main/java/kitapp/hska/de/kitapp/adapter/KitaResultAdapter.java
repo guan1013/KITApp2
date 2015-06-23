@@ -44,6 +44,7 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
 
         if (kita != null) {
             TextView textViewName = (TextView) view.findViewById(R.id.result_textview_name);
+            TextView textViewCity = (TextView) view.findViewById(R.id.result_textview_city);
             RatingBar ratingBarEvaluation = (RatingBar) view.findViewById(R.id.result_ratingbar_rating);
             ImageView imageViewTN = (ImageView) view.findViewById(R.id.result_imageview_thumbnail);
             TextView textViewCircuit = (TextView) view.findViewById(R.id.result_textview_circuit);
@@ -55,6 +56,10 @@ public class KitaResultAdapter extends ArrayAdapter<Kita> {
 
             if (textViewName != null) {
                 textViewName.setText(kita.getName());
+            }
+
+            if (textViewCity != null) {
+                textViewCity.setText(kita.getAddress().getCity());
             }
 
             if (ratingBarEvaluation != null) {

@@ -120,9 +120,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     }
 
     private void getExtras() {
-
         Bundle bundle = this.getIntent().getExtras();
-
         if (bundle != null) {
             try {
                 this.kitas = (ArrayList<Kita>) bundle.get(KITAS_BUNDLE_KEY);

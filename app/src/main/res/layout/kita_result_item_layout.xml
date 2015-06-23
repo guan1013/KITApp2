@@ -2,46 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:descendantFocusability="blocksDescendants">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        style="@style/FontBGColor.White">
-
-        <TextView
-            android:id="@+id/result.textview.name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:text="@string/placeHolderString"
-            style="@style/textData"/>
-
-        <RatingBar
-            android:id="@+id/result.ratingbar.rating"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:stepSize="0.5"
-            />
-    </LinearLayout>
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="200dp">
 
         <ImageView
             android:id="@+id/result.imageview.thumbnail"
+            style="@style/FontBGColor.White"
             android:layout_width="fill_parent"
             android:layout_height="200dp"
             android:layout_alignParentLeft="true"
             android:scaleType="fitXY"
-            android:src="@drawable/im1"
-            style="@style/FontBGColor.White"/>
+            android:src="@drawable/im1" />
 
         <TextView
             android:id="@+id/result.textview.circuit"
@@ -49,47 +24,75 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="@string/placeHolderString"
             android:background="@color/secondary_text_default_material_dark"
+            android:text="@string/placeHolderString" />
+
+        <TextView
+            android:id="@+id/result.textview.name"
+            style="@style/header2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/result.textview.city"
+            android:background="@color/secondary_text_default_material_dark"
+            android:text="@string/placeHolderString" />
+
+        <TextView
+            android:id="@+id/result.textview.city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/secondary_text_default_material_dark"
+            android:text="@string/placeHolderString"
             />
+
+        <RatingBar
+            android:id="@+id/result.ratingbar.rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/secondary_text_default_material_dark"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.5" />
+
     </RelativeLayout>
 
     <LinearLayout
+        style="@style/FontBGColor.White"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/FontBGColor.White">
+        android:layout_height="match_parent">
 
         <ImageButton
             android:id="@+id/result.imagebutton.tel"
+            style="@style/icons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_call_black_48dp"
             android:layout_weight="1"
-            style="@style/icons"
-            />
+            android:src="@drawable/ic_call_black_48dp" />
 
         <ImageButton
             android:id="@+id/result.imagebutton.email"
+            style="@style/icons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_email_black_48dp"
             android:layout_weight="1"
-            style="@style/icons"/>
+            android:src="@drawable/ic_email_black_48dp" />
 
         <ImageButton
             android:id="@+id/result.imagebutton.fav"
+            style="@style/icons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_border_black_48dp"
             android:layout_weight="1"
-            style="@style/icons"/>
+            android:src="@drawable/ic_favorite_border_black_48dp" />
 
         <ImageButton
             android:id="@+id/result.imagebutton.cont"
+            style="@style/icons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_person_add_black_48dp"
             android:layout_weight="1"
-            style="@style/icons"/>
+            android:src="@drawable/ic_person_add_black_48dp" />
     </LinearLayout>
 </LinearLayout>
