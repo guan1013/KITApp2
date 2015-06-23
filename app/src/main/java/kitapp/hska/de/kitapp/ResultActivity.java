@@ -103,7 +103,6 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     private void showDetail(Kita kita) {
 
         Bundle bundle = this.getIntent().getExtras();
-
         LoginResult loggedInUser = null;
         if (bundle != null) {
             try {
@@ -112,7 +111,6 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
                 e.printStackTrace();
             }
         }
-
         Intent intent = new Intent(this, KitaDetailsActivity.class);
         if (loggedInUser != null) {
             intent.putExtra(Constants.EXTRAS_KEY_LOGIN, loggedInUser);

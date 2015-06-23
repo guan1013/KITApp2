@@ -16,4 +16,9 @@ public enum SortSpinnerEnum {
     public String getCompareTo() {
         return compareTo;
     }
+
+    @Override
+    public String toString() {
+        return compareTo;
+    }
 }

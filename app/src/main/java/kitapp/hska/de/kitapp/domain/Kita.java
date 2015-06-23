@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Yannick on 20.06.2015.
  */
-public class Kita implements Serializable{
+public class Kita implements Serializable {
 
 
     /*
@@ -68,7 +68,7 @@ public class Kita implements Serializable{
     public enum Confession {
 
         KATHOLIC("Katholisch"), ISLAMIC("Islamisch"), BUDDHISTIC("Buddhistisch"), EVANGELIC(
-                "Evangelisch"), NO_CONFESSION("Keine Konfession"),EGAL("Egal");
+                "Evangelisch"), NO_CONFESSION("Keine Konfession"), EGAL("Egal");
 
         private String text;
 
@@ -77,6 +77,11 @@ public class Kita implements Serializable{
         }
 
         public String getText() {
+            return text;
+        }
+
+        @Override
+        public String toString() {
             return text;
         }
 
@@ -295,7 +300,6 @@ public class Kita implements Serializable{
     public void setClosingDays(Integer closingDays) {
         this.closingDays = closingDays;
     }
-
 
 
     public String getManagement() {
