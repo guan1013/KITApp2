@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/result.textview.name"
             style="@style/header2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/result.textview.city"
             android:background="@color/secondary_text_default_material_dark"
