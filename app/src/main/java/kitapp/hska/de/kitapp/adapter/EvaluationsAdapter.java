@@ -47,20 +47,17 @@ public class EvaluationsAdapter extends ArrayAdapter<Evaluation> {
             TextView textViewText = (TextView) view.findViewById(R.id.EvaluationText);
 
             if (textViewName != null) {
-                textViewName.setText(evaluation.getAuthorIdx().toString());
+                textViewName.setText(evaluation.getAuthorName());
             }
 
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String dateInString = "07/06/2013";
 
             Date date = null;
 
             try {
 
-                date = formatter.parse(dateInString);
-                System.out.println(date);
-                System.out.println(formatter.format(date));
+                date = formatter.parse(formatter.format(evaluation.getDate()));
 
             } catch (ParseException e) {
                 e.printStackTrace();

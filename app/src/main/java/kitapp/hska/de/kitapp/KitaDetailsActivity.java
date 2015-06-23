@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -122,6 +123,12 @@ public class KitaDetailsActivity extends AppCompatActivity {
 
     }
 
+    private void addEvaluationListAdapter(List<Evaluation> evaluations) {
+
+        EvaluationsAdapter evaAdapter = new EvaluationsAdapter(this, R.layout.evaluation_item_layout, evaluations);
+        evaluationListView.setAdapter(evaAdapter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,9 +138,9 @@ public class KitaDetailsActivity extends AppCompatActivity {
         evaluationListView = (ListView) findViewById(R.id.evaluation_ListView);
 
         Kita kita = getKita();
-
-
-
+        if (kita != null)
+            if (kita.getEvaluations() != null)
+                addEvaluationListAdapter(kita.getEvaluations());
 
         LoginResult loggedInUser = null;
         if (this.getIntent().getExtras() != null) {
@@ -221,7 +228,7 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
 
-        for(Evaluation e : kita.getEvaluations()) {
+        for (Evaluation e : kita.getEvaluations()) {
             System.out.println(e.getText());
         }
 
