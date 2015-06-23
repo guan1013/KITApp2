@@ -1,10 +1,2 @@
 <resources>
-    <string-array name="searchConfessionList">
-        <item>@string/searchConfessionValue1</item>
-        <item>@string/searchConfessionValue2</item>
-    </string-array>
-    <string-array name="resultSortList">
-        <item>@string/resultSortValue1</item>
-        <item>@string/resultSortValue2</item>
-    </string-array>
 </resources>

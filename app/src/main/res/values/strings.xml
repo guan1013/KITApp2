@@ -44,11 +44,6 @@
     <string name="resultToggleButtonMapValue">1</string>
     <string name="about">ca</string>
 
-    <!-- Sort -->
-    <string name="resultSortTitle">Sortieren nach...</string>
-    <string name="resultSortValue1">Entfernung(Aufsteigend)</string>
-    <string name="resultSortValue2">Entferung(Absteigend)</string>
-
     <!-- Search Strings -->
     <!-- City -->
     <string name="searchCity">Stadt/Standort</string>
@@ -92,10 +87,6 @@
     <string name="searchClosingButtonText1">weniger 10</string>
     <string name="searchClosingButtonValue2">20</string>
     <string name="searchClosingButtonText2">weniger 20</string>
-    <!-- Confession -->
-    <string name="searchConfessionTitle">Confession</string>
-    <string name="searchConfessionValue1">Flying Spaghetti Monster</string>
-    <string name="searchConfessionValue2">All other</string>
 
 
     <!-- Kita Details Strings -->

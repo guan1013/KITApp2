@@ -8,9 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -22,13 +24,16 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import kitapp.hska.de.kitapp.adapter.KitaResultAdapter;
 import kitapp.hska.de.kitapp.domain.Kita;
+import kitapp.hska.de.kitapp.util.SortSpinnerEnum;
 import kitapp.hska.de.kitapp.util.Constants;
+import kitapp.hska.de.kitapp.util.KitaComparer;
 import kitapp.hska.de.kitapp.util.LoginResult;
 
 
@@ -48,12 +53,16 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     private LinearLayout resultLinearLayoutList;
     private LinearLayout resultLinearLayoutMap;
     private MapFragment mapFragment;
+    private Spinner spinnerSort;
+    KitaResultAdapter resultAdapter;
+
+    /*
+    <======================= CLASS ATTRUIBUTES =======================>
+     */
     private Location currentLocation;
-
-
     private List<Kita> kitas;
 
-      /*
+    /*
     <======================= PUBLIC METHODS =======================>
      */
 
@@ -84,6 +93,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         resultListView = (ListView) findViewById(R.id.result_listview);
         mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.result_fragment_map);
         mapFragment.getMapAsync(this);
+        spinnerSort = (Spinner) findViewById(R.id.result_spinner_sort);
     }
 
     private void toast(String message) {
@@ -130,7 +140,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     private void addResultListAdapter() {
 
         final List<Kita> kitas = this.kitas;
-        KitaResultAdapter resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, kitas);
+        resultAdapter = new KitaResultAdapter(this, R.layout.kita_result_item_layout, this.kitas);
         resultListView.setAdapter(resultAdapter);
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -150,6 +160,46 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
                 }
             }
         });
+    }
+
+    private void configureSortSpinner() {
+        spinnerSort.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, SortSpinnerEnum.values()));
+
+        spinnerSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                KitaComparer comprator = new KitaComparer();
+                String selectedItem = spinnerSort.getSelectedItem().toString();
+                if (selectedItem.equalsIgnoreCase(SortSpinnerEnum.DIST_ASC.toString()) || selectedItem.equalsIgnoreCase(SortSpinnerEnum.DIST_DES.toString())) {
+                    if (currentLocation == null) {
+                        toast("Sortierung nicht möglich, keine Location gefunden!");
+                        return;
+                    } else {
+                        comprator.setCurrentLocation(currentLocation);
+                    }
+                }
+
+                comprator.setCompareBy(selectedItem);
+                Collections.sort(kitas, comprator);
+                resultAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                if (currentLocation == null) {
+                    KitaComparer comprator = new KitaComparer();
+                    comprator.setCompareBy(SortSpinnerEnum.DIST_ASC.toString());
+                    comprator.setCurrentLocation(currentLocation);
+                    Collections.sort(kitas, comprator);
+                    resultAdapter.notifyDataSetChanged();
+                } else {
+                    toast("Keine Location Sortierung möglich");
+                }
+            }
+        });
+
+
     }
 
 
@@ -192,6 +242,7 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
         initViews();
         getExtras();
         addResultListAdapter();
+        configureSortSpinner();
         setOnCheckedListener(R.id.result_radiogroup_buttons);
     }
 
