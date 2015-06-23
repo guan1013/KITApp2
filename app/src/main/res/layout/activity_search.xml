@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FontBGColor.White"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
@@ -9,119 +10,117 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="kitapp.hska.de.kitapp.SearchActivity"
-    style="@style/FontBGColor.White">
+    tools:context="kitapp.hska.de.kitapp.SearchActivity">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="90"
-        >
+        android:layout_weight="90">
 
         <LinearLayout
+            style="@style/FontBGColor.White"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:divider="@drawable/divider"
             android:orientation="vertical"
-            android:showDividers="middle"
-            style="@style/FontBGColor.White">
+            android:showDividers="middle">
 
             <!-- Search for City-->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
-                style="@style/FontBGColor.White"
                 android:weightSum="1">
 
                 <EditText
                     android:id="@+id/search.edittext.city"
+                    style="@style/editTextHint"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:hint="@string/searchCity"
-                    android:singleLine="true"
-                    style="@style/editTextHint"
-                    android:layout_weight="1" />
+                    android:singleLine="true" />
 
                 <ImageButton
                     android:id="@+id/search.imagebutton.location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_location_searching_black_48dp"
-                    android:background="#ffffff"
                     android:layout_marginRight="0dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:background="#ffffff"
+                    android:src="@drawable/ic_location_searching_black_48dp" />
             </LinearLayout>
 
 
             <!-- Search in Circuit of City -->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
+                    style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchCircuit"
-                    style="@style/textData"/>
+                    android:text="@string/searchCircuit" />
 
                 <LinearLayout
+                    style="@style/FontBGColor.White"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    style="@style/FontBGColor.White">
+                    android:orientation="horizontal">
 
                     <SeekBar
                         android:id="@+id/search.seekbar.circuit"
+                        style="@style/FontBGColor.White"
                         android:layout_width="270dp"
                         android:layout_height="wrap_content"
-                        android:max="50"
-                        style="@style/FontBGColor.White"/>
+                        android:max="50" />
 
                     <EditText
                         android:id="@+id/search.edittext.circuit"
+                        style="@style/FontBGColor.White"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
                         android:layout_marginLeft="10dp"
-                        style="@style/FontBGColor.White"/>
+                        android:inputType="number" />
 
                     <TextView
+                        style="@style/textData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:labelFor="@+id/search.edittext.circuit"
-                        android:text="@string/searchTextViewCircuite"
                         android:layout_marginLeft="10dp"
-                        style="@style/textData"/>
+                        android:labelFor="@+id/search.edittext.circuit"
+                        android:text="@string/searchTextViewCircuite" />
                 </LinearLayout>
             </LinearLayout>
 
 
             <!-- Search for age group -->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
+                    style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchAge"
-                    style="@style/textData"/>
+                    android:text="@string/searchAge" />
 
                 <LinearLayout
+                    style="@style/FontBGColor.White"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    style="@style/FontBGColor.White">
+                    android:orientation="horizontal">
 
 
                     <ToggleButton
@@ -156,26 +155,26 @@
 
             <!-- Search for Costs -->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/search.textview.cost"
+                    style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchCost"
-                    style="@style/textData"/>
+                    android:text="@string/searchCost" />
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.cost"
+                    style="@style/FontBGColor.White"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    style="@style/FontBGColor.White">
+                    android:orientation="horizontal">
 
                     <ToggleButton
                         android:id="@+id/search.togglebutton.cost.1"
@@ -209,25 +208,25 @@
 
             <!-- Search for Open Times-->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
+                    style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchOpen"
-                    style="@style/textData"/>
+                    android:text="@string/searchOpen" />
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.open"
+                    style="@style/FontBGColor.White"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    style="@style/FontBGColor.White">
+                    android:orientation="vertical">
 
                     <ToggleButton
                         android:id="@+id/search.togglebutton.open.1"
@@ -259,50 +258,50 @@
 
             <!-- Search for Evaluation -->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
+                    style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchEvaluation"
-                    style="@style/textData"/>
+                    android:text="@string/searchEvaluation" />
 
                 <RatingBar
                     android:id="@+id/search.ratingbar.rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:mirrorForRtl="true"
-                    style="@style/FontBGColor.White"/>
+                    android:background="@color/primary_text_default_material_dark"
+                    android:mirrorForRtl="true" />
             </LinearLayout>
 
             <!-- Search for Group Size -->
 
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/search.textview.size"
+                    style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchSize"
-                    style="@style/textData"/>
+                    android:text="@string/searchSize" />
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.size"
+                    style="@style/FontBGColor.White"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    style="@style/FontBGColor.White">
+                    android:orientation="horizontal">
 
                     <ToggleButton
                         android:id="@+id/size.togglebutton.size.1"
@@ -337,26 +336,26 @@
 
             <!-- Search for Closing Time per year -->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/search.textview.closing"
+                    style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/searchClosing"
-                    style="@style/textData"/>
+                    android:text="@string/searchClosing" />
 
                 <RadioGroup
                     android:id="@+id/search.radiogroup.closing"
+                    style="@style/FontBGColor.White"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    style="@style/FontBGColor.White">
+                    android:orientation="horizontal">
 
                     <ToggleButton
                         android:id="@+id/search.togglebutton.closing.1"
@@ -383,19 +382,23 @@
 
             <!-- Search for Confession -->
             <LinearLayout
+                style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/textData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kitaDetailsConfession" />
 
                 <Spinner
                     android:id="@+id/search.spinner.confession"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#ffffff"
-                    />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -405,14 +408,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="10"
-        android:gravity="bottom"
-        android:background="@color/secondary_text_disabled_material_light">
+        android:background="#ffffff"
+        android:gravity="bottom">
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:onClick="sendSearch"
-            android:text="@string/buttonSearch" />
+            android:text="@string/buttonSearch"
+            style="@style/button"
+            android:background="#91d187"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
 
     </RelativeLayout>
 </LinearLayout>

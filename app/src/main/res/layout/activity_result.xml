@@ -52,7 +52,8 @@
         <Spinner
             android:id="@+id/result.spinner.sort"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+           />
         <!-- style="@style/textData" -->
 
         <ListView

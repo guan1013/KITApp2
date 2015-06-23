@@ -37,16 +37,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:stepSize="0.5" />
+            android:stepSize="0.5"
+            android:background="@color/primary_text_default_material_dark"/>
 
         <Button
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/commentWriteButton"
             android:text="@string/buttonSend"
-            android:layout_marginLeft="30dp"
             android:background="#91d187"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 
