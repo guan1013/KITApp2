@@ -221,6 +221,10 @@ public class KitaDetailsActivity extends AppCompatActivity {
         kitaDetailsAgeData.setText(kita.getMinAge() + " - " + kita.getMaxAge());
         kitaDetailsAboutData.setText(kita.getAbout());
 
+        for(Evaluation e : kita.getEvaluations()) {
+            System.out.println(e.getText());
+        }
+
         this.displayedKita = kita;
     }
 
