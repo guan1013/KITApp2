@@ -1,136 +1,138 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/FontBGColor.White"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kitapp.hska.de.kitapp.LoginActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    style="@style/FontBGColor.White"
-    >
+    tools:context="kitapp.hska.de.kitapp.LoginActivity">
 
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/imageViewLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageViewLayout"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imageView"
+            style="@style/FontBGColor.White"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:src="@drawable/logo"
-            android:id="@+id/imageView"
+            android:layout_weight="1"
             android:cropToPadding="false"
             android:focusable="false"
-            style="@style/FontBGColor.White"
-            android:layout_weight="1" />
+            android:src="@drawable/logo" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/editTextLoginLayout"
+        style="@style/FontBGColor.White"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="@style/FontBGColor.White"
-        android:id="@+id/editTextLoginLayout"
-        android:layout_below="@+id/imageViewLayout"
         android:layout_alignParentStart="true"
-        android:layout_margin="20dp">
+        android:layout_below="@+id/imageViewLayout"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
         <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
             android:id="@+id/editTextLoginEmail"
-            android:hint="@string/loginHintEmail"
             style="@style/editTextHint"
-            android:layout_marginTop="20dp" />
-
-        <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:layout_marginTop="20dp"
             android:ems="10"
+            android:hint="@string/loginHintEmail"
+            android:inputType="textEmailAddress" />
+
+        <EditText
             android:id="@+id/editTextLoginPassword"
-            android:hint="@string/loginHintPassword"
             style="@style/editTextHint"
-            android:layout_gravity="top" />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:ems="10"
+            android:hint="@string/loginHintPassword"
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:id="@+id/loginButtonLayout"
         style="@style/FontBGColor.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/registerButtonsLayout"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/loginButtonLogin"
-            style="@style/button"
             android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_selector"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
+            android:text="@string/loginButtonLogin"
             android:textAllCaps="false"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
+
+
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="@string/loginAccount"
             android:id="@+id/loginNoAccount"
             style="@style/textData"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="25dp"
             android:layout_weight="2"
-            android:layout_marginTop="25dp" />
+            android:text="@string/loginAccount" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/registerButtonsLayout"
+        style="@style/FontBGColor.White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/registerButtonsLayout"
-        android:measureWithLargestChild="false"
-        style="@style/FontBGColor.White"
-        android:layout_gravity="bottom"
-        android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp">
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:measureWithLargestChild="false"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/loginButtonRegister"
             android:id="@+id/buttonLoginRegister"
-            android:layout_weight="1"
-            android:background="#91d187"
-            android:textAllCaps="false"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            style="@style/button" />
-
-        <Button
+            style="@style/button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/loginButtonFacebook"
-            style="@style/button"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:text="@string/loginButtonRegister"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/buttonLoginFacebook"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:background="#3B5998"
-            android:textColor="#ffffff"
+            android:text="@string/loginButtonFacebook"
             android:textAllCaps="false"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp" />
+            android:textColor="#ffffff" />
 
     </LinearLayout>
+
 
 
 </RelativeLayout>

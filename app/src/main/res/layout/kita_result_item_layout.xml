@@ -27,9 +27,10 @@
             android:layout_alignParentTop="true"
             android:background="@color/secondary_text_default_material_dark"
             android:text="@string/placeHolderString"
-            android:autoText="false"
             android:gravity="center_vertical"
-            android:layout_alignBottom="@+id/result.ratingbar.rating" />
+            android:layout_alignBottom="@+id/result.ratingbar.rating"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp" />
 
         <TextView
             android:id="@+id/result.textview.name"
