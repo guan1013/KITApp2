@@ -1,9 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="kitapp.hska.de.kitapp.RegisterActivity"
     android:focusable="true"
     android:focusableInTouchMode="true"
@@ -14,8 +11,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        style="@style/FontBGColor.White">
+        style="@style/FontBGColor.White"
+        android:id="@+id/linearLayout3">
 
         <ImageView
             android:layout_width="fill_parent"
@@ -24,15 +21,18 @@
             android:id="@+id/registerImageViewLogo"
             android:cropToPadding="false"
             android:focusable="false"
-            style="@style/FontBGColor.White"/>
+            style="@style/FontBGColor.White"
+            android:layout_gravity="top|center_vertical" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        style="@style/FontBGColor.White">
+        style="@style/FontBGColor.White"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_alignParentStart="true"
+        android:layout_margin="20dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -75,9 +75,11 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginTop="10sp"
-        style="@style/FontBGColor.White">
+        style="@style/FontBGColor.White"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout2">
 
         <Button
             android:layout_width="fill_parent"
@@ -86,8 +88,9 @@
             android:id="@+id/registerButtonRegister"
             style="@style/button"
             android:background="#91d187"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:layout_margin="20dp" />
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

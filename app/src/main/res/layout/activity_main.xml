@@ -5,10 +5,6 @@
     android:layout_height="fill_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:orientation="vertical">
 
@@ -39,9 +35,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:layout_marginTop="42dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@+id/linearLayout"
-        android:layout_alignParentStart="true">
+        android:layout_centerHorizontal="true">
 
         <EditText
             android:id="@+id/mainEditTextLocation"
@@ -75,7 +73,8 @@
         android:baselineAligned="false"
         android:measureWithLargestChild="true"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        style="@style/FontBGColor.White">
 
         <Button
             android:id="@+id/mainButtonSearch"
@@ -84,7 +83,8 @@
             android:layout_height="match_parent"
             android:background="#91d187"
             android:text="@string/buttonSuche"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:layout_margin="20dp" />
 
     </LinearLayout>
 
