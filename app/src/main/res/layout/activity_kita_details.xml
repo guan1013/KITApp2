@@ -23,7 +23,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/gallery_relative_layout"
+                android:id="@+id/KitaDetailsImagesLayout"
                 style="@style/FontBGColor.White"
                 android:layout_width="fill_parent"
                 android:layout_height="300dp"
@@ -87,8 +87,11 @@
                 android:layout_height="fill_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="30dp"
-                android:text="@string/kitaDetailsKitaName" />
+                android:text="@string/kitaDetailsKitaName"
+                android:layout_margin="20dp"
+                android:clickable="false"
+                android:gravity="center_horizontal"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -97,164 +100,204 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
                 android:lines="4"
                 android:maxLines="4"
                 android:text="@string/kitaDetailsAddressData" />
 
 
-            <TextView
-                android:id="@+id/KitaDetailsEvaluation"
-                style="@style/header2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="50dp"
-                android:text="@string/kitaDetailsEvaluation" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/KitaDetailsEvaluationLayout"
+                style="@style/FontBGColor.White">
 
-            <RatingBar
-                android:id="@+id/KitaDetailsRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="0.5"
-                android:background="@color/primary_text_default_material_dark"/>
+                <TextView
+                    android:id="@+id/KitaDetailsEvaluation"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsEvaluation" />
 
-            <TextView
-                android:id="@+id/KitaDetailsCosts"
-                style="@style/header2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsCosts" />
+                <RatingBar
+                    android:id="@+id/KitaDetailsRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="4"
+                    android:stepSize="0.5"
+                    android:background="@color/primary_text_default_material_dark"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/KitaDetailsCostsData"
-                style="@style/textData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsCostsData" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/KitaDetailsAboutLayout">
 
-            <TextView
-                android:id="@+id/KitaDetailsOpen"
-                style="@style/header2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="50dp"
-                android:text="@string/kitaDetailsOpen" />
+                <TextView
+                    android:id="@+id/KitaDetailsAbout"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsAbout" />
 
-            <TextView
-                android:id="@+id/KitaDetailsOpenhours"
-                style="@style/textData"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"
-                android:lines="1"
-                android:maxLines="1"
-                android:text="@string/kitaDetailsOpenData" />
+                <TextView
+                    android:id="@+id/KitaDetailsAboutData"
+                    style="@style/textData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsAboutData" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/KitaDetailsManagement"
-                style="@style/header2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsManagement" />
 
-            <TextView
-                android:id="@+id/KitaDetailsManagementData"
-                style="@style/textData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsManagementData" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/KitaDetailsCostsLayout"
+                style="@style/FontBGColor.White">
 
-            <TextView
-                android:id="@+id/KitaDetailsConfession"
-                style="@style/header2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsConfession" />
+                <TextView
+                    android:id="@+id/KitaDetailsCosts"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsCosts" />
 
-            <TextView
-                android:id="@+id/KitaDetailsConfessionData"
-                style="@style/textData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsConfessionData" />
+                <TextView
+                    android:id="@+id/KitaDetailsCostsData"
+                    style="@style/textData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsCostsData" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/KitaDetailsAge"
-                style="@style/header2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsAge" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/KitaDetailsOpenhoursLayout"
+                style="@style/FontBGColor.White">
 
-            <TextView
-                android:id="@+id/KitaDetailsAgeData"
-                style="@style/textData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsAgeData" />
+                <TextView
+                    android:id="@+id/KitaDetailsOpen"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsOpen" />
 
-            <TextView
-                android:id="@+id/KitaDetailsAbout"
-                style="@style/header2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="40dp"
-                android:text="@string/kitaDetailsAbout" />
+                <TextView
+                    android:id="@+id/KitaDetailsOpenhours"
+                    style="@style/textData"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="@string/kitaDetailsOpenData" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/KitaDetailsAboutData"
-                style="@style/textData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/kitaDetailsAboutData" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/KitaDetailsConfessionLayout"
+                style="@style/FontBGColor.White">
 
+                <TextView
+                    android:id="@+id/KitaDetailsConfession"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsConfession" />
+
+                <TextView
+                    android:id="@+id/KitaDetailsConfessionData"
+                    style="@style/textData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsConfessionData" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/KitaDetailsAgeLayout"
+                style="@style/FontBGColor.White">
+
+                <TextView
+                    android:id="@+id/KitaDetailsAge"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsAge" />
+
+                <TextView
+                    android:id="@+id/KitaDetailsAgeData"
+                    style="@style/textData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsAgeData" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/KitaDetailsManagementLayout"
+                style="@style/FontBGColor.White">
+
+                <TextView
+                    android:id="@+id/KitaDetailsManagement"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsManagement" />
+
+                <TextView
+                    android:id="@+id/KitaDetailsManagementData"
+                    style="@style/textData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/kitaDetailsManagementData" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/KitaDetailsButtonNews"
                 style="@style/button"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="20dp"
                 android:text="News "
                 android:textAllCaps="false"
-                android:background="#91d187" />
+                android:background="#91d187"
+                android:layout_margin="20dp" />
 
             <Button
                 android:id="@+id/KitaDetailsButtonEvaluate"
@@ -262,9 +305,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:text="KITA bewerten"
-                android:layout_marginTop="20dp"
                 android:textAllCaps="false"
-                android:background="#91d187" />
+                android:background="#91d187"
+                android:layout_margin="20dp" />
 
             <TextView
                 android:id="@+id/KitaDetailsComments"
@@ -273,17 +316,15 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="40dp"
                 android:text="@string/kitaDetailsComments"
                 />
-
-
 
             <RelativeLayout
                 style="@style/FontBGColor.White"
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"
-                android:layout_weight="30">
+                android:layout_weight="30"
+                android:id="@+id/KitaDetailsEvaluationListLayout">
 
                 <ListView
                     android:id="@+id/evaluation_ListView"
