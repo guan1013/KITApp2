@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:hint="Stadt/Standort"
+            android:hint="@string/mainHintLocation"
             android:lines="1"
             android:maxLines="1"
             android:singleLine="true"

@@ -91,6 +91,8 @@
 
     <!-- Kita Details Strings -->
     <string name="kitaDetailsKitaName">Kita Regenbogen</string>
+
+    <string name="kitaDetailsAddress">Adresse</string>
     <string name="kitaDetailsAddressData">76841 Karlsruhe \nBlumenstraße 23 \n0721 / 164823 \nregenbogenkita@gmail.com</string>
 
     <string name="kitaDetailsEvaluation">Bewertung</string>
@@ -117,10 +119,18 @@
     <string name="title_activity_comment">CommentActivity</string>
     <string name="title_activity_write_comment">WriteCommentActivity</string>
 
+    <string name="kitaDetailsButtonNews">News</string>
+    <string name="kitaDetailsButtonEvaluate">KiTa bewerten</string>
+
     <!-- Login Strings -->
     <string name="loginAccount">Noch kein Benutzerkonto?</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_news">NewsActivity</string>
+    <string name="loginButtonFacebook">Login mit facebook</string>
+    <string name="loginButtonRegister">Registrieren</string>
+    <string name="loginButtonLogin">Login</string>
+    <string name="loginHintPassword">Passwort</string>
+    <string name="loginHintEmail">Email</string>
 
     <!-- News Strings -->
     <string name="newsKitaText">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
@@ -129,5 +139,14 @@
     <string name="newsAuthor3">Kita Villa Kunterbunt</string>
     <string name="newsAuthor4">Kita Katholischer Kindergarten Durlach</string>
 
+    <!-- Main Strings -->
+    <string name="mainHintLocation">Stadt/Standort</string>
+
+    <!-- Register Strings -->
+    <string name="registerHintEmail">Email</string>
+    <string name="registerHintName">Name</string>
+    <string name="registerHintPassword">Passwort</string>
+    <string name="registerHintPasswordrepeat">Passwort wiederholen</string>
+    <string name="registerButtonRegister">Registrieren</string>
 
 </resources>

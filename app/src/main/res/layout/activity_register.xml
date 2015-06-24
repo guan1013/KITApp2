@@ -22,10 +22,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/logo"
             android:id="@+id/registerImageViewLogo"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentLeft="false"
             android:cropToPadding="false"
             android:focusable="false"
             style="@style/FontBGColor.White"/>
@@ -44,10 +40,7 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/registerEditTextEmail"
-            android:layout_below="@+id/registerImageViewLogo"
-            android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/registerImageViewLogo"
-            android:hint="E-Mail"
+            android:hint="@string/registerHintEmail"
             style="@style/editTextHint"/>
 
         <EditText
@@ -56,10 +49,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/registerEditTextName"
-            android:layout_below="@+id/registerEditTextEmail"
-            android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/registerEditTextEmail"
-            android:hint="Name"
+            android:hint="@string/registerHintName"
             style="@style/editTextHint"/>
 
         <EditText
@@ -68,10 +58,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/registerEditTextPassword"
-            android:layout_below="@+id/registerEditTextName"
-            android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/registerEditTextName"
-            android:hint="Passwort"
+            android:hint="@string/registerHintPassword"
             style="@style/editTextHint"/>
 
         <EditText
@@ -80,10 +67,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/registerEditTextPasswordRepeat"
-            android:layout_below="@+id/registerEditTextPassword"
-            android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/registerEditTextPassword"
-            android:hint="Passwort wiederholen"
+            android:hint="@string/registerHintPasswordrepeat"
             style="@style/editTextHint"/>
     </LinearLayout>
 
@@ -98,13 +82,10 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Registrieren"
+            android:text="@string/registerButtonRegister"
             android:id="@+id/registerButtonRegister"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             style="@style/button"
             android:background="#91d187"
-            android:textSize="20dp"
             android:textAllCaps="false"/>
     </LinearLayout>
 

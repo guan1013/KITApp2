@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/placeHolderString"
-        style="@style/FontBGColor.White"/>
+        style="@style/header2"/>
 
     <EditText
         android:id="@+id/comment.write.edittext.text"
@@ -24,7 +24,8 @@
         android:layout_height="200dp"
         android:lines="10"
         android:maxLines="30"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:gravity="top|left" />
 
     <LinearLayout
         android:layout_width="fill_parent"

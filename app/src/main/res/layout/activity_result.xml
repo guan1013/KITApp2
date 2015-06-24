@@ -54,7 +54,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
            />
-        <!-- style="@style/textData" -->
 
         <ListView
             android:id="@+id/result.listview"

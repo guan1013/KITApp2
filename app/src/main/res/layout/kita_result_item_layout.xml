@@ -16,7 +16,7 @@
             style="@style/FontBGColor.White"
             android:layout_width="fill_parent"
             android:layout_height="200dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:scaleType="fitXY"
             android:src="@drawable/im1" />
 
@@ -24,7 +24,7 @@
             android:id="@+id/result.textview.circuit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:background="@color/secondary_text_default_material_dark"
             android:text="@string/placeHolderString" />
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:background="@color/secondary_text_default_material_dark"
             android:text="@string/placeHolderString"
             />

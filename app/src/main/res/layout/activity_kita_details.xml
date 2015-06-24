@@ -12,7 +12,7 @@
 
     <kitapp.hska.de.kitapp.VerticalScrollview
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="30">
 
         <LinearLayout
@@ -38,7 +38,7 @@
 
                     <LinearLayout
                         android:id="@+id/gallery"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -85,66 +85,49 @@
                 style="@style/header1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="@string/kitaDetailsKitaName"
                 android:layout_margin="20dp"
                 android:clickable="false"
                 android:gravity="center_horizontal"
+                android:text="@string/kitaDetailsKitaName"
                 android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/KitaDetailsAddressData"
-                style="@style/textData"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:lines="4"
-                android:maxLines="4"
-                android:text="@string/kitaDetailsAddressData" />
-
-
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/KitaDetailsEvaluationLayout"
+                style="@style/FontBGColor.White"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/KitaDetailsEvaluationLayout"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/KitaDetailsEvaluation"
                     style="@style/header2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsEvaluation" />
 
                 <RatingBar
                     android:id="@+id/KitaDetailsRatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/primary_text_default_material_dark"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:rating="4"
-                    android:stepSize="0.5"
-                    android:background="@color/primary_text_default_material_dark"/>
+                    android:stepSize="0.5" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/KitaDetailsAboutLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/KitaDetailsAboutLayout">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/KitaDetailsAbout"
                     style="@style/header2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsAbout" />
 
                 <TextView
@@ -152,26 +135,46 @@
                     style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsAboutData" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/KitaDetailsCostsLayout"
+                android:id="@+id/KitaDetailsAddressLayout"
+                android:orientation="vertical"
                 style="@style/FontBGColor.White">
+
+                <TextView
+                    android:id="@+id/KitaDetailsAddress"
+                    style="@style/header2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kitaDetailsAddress" />
+
+                <TextView
+                    android:id="@+id/KitaDetailsAddressData"
+                    style="@style/textData"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="4"
+                    android:maxLines="4"
+                    android:text="@string/kitaDetailsAddressData" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/KitaDetailsCostsLayout"
+                style="@style/FontBGColor.White"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/KitaDetailsCosts"
                     style="@style/header2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsCosts" />
 
                 <TextView
@@ -179,25 +182,21 @@
                     style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsCostsData" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/KitaDetailsOpenhoursLayout"
+                style="@style/FontBGColor.White"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/KitaDetailsOpenhoursLayout"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/KitaDetailsOpen"
                     style="@style/header2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsOpen" />
 
                 <TextView
@@ -205,26 +204,23 @@
                     style="@style/textData"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:lines="1"
                     android:maxLines="1"
                     android:text="@string/kitaDetailsOpenData" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/KitaDetailsConfessionLayout"
+                style="@style/FontBGColor.White"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/KitaDetailsConfessionLayout"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/KitaDetailsConfession"
                     style="@style/header2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsConfession" />
 
                 <TextView
@@ -232,25 +228,21 @@
                     style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsConfessionData" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/KitaDetailsAgeLayout"
+                style="@style/FontBGColor.White"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/KitaDetailsAgeLayout"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/KitaDetailsAge"
                     style="@style/header2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsAge" />
 
                 <TextView
@@ -258,25 +250,21 @@
                     style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsAgeData" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/KitaDetailsManagementLayout"
+                style="@style/FontBGColor.White"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/KitaDetailsManagementLayout"
-                style="@style/FontBGColor.White">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/KitaDetailsManagement"
                     style="@style/header2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsManagement" />
 
                 <TextView
@@ -284,8 +272,6 @@
                     style="@style/textData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:text="@string/kitaDetailsManagementData" />
             </LinearLayout>
 
@@ -294,37 +280,34 @@
                 style="@style/button"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="News "
-                android:textAllCaps="false"
+                android:layout_margin="20dp"
                 android:background="#91d187"
-                android:layout_margin="20dp" />
+                android:text="@string/kitaDetailsButtonNews"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/KitaDetailsButtonEvaluate"
                 style="@style/button"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="KITA bewerten"
-                android:textAllCaps="false"
+                android:layout_margin="20dp"
                 android:background="#91d187"
-                android:layout_margin="20dp" />
+                android:text="@string/kitaDetailsButtonEvaluate"
+                android:textAllCaps="false" />
 
             <TextView
                 android:id="@+id/KitaDetailsComments"
                 style="@style/header2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="@string/kitaDetailsComments"
-                />
+                android:text="@string/kitaDetailsComments" />
 
             <RelativeLayout
+                android:id="@+id/KitaDetailsEvaluationListLayout"
                 style="@style/FontBGColor.White"
                 android:layout_width="wrap_content"
                 android:layout_height="300dp"
-                android:layout_weight="30"
-                android:id="@+id/KitaDetailsEvaluationListLayout">
+                android:layout_weight="30">
 
                 <ListView
                     android:id="@+id/evaluation_ListView"

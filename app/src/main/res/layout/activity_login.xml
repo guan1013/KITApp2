@@ -22,13 +22,9 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:src="@drawable/logo"
             android:id="@+id/imageView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentLeft="false"
             android:cropToPadding="false"
             android:focusable="false"
             style="@style/FontBGColor.White"
@@ -49,10 +45,7 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/editTextLoginEmail"
-            android:hint="E-Mail"
-            android:layout_below="@+id/imageView"
-            android:layout_alignEnd="@+id/imageView"
-            android:layout_alignParentStart="true"
+            android:hint="@string/loginHintEmail"
             style="@style/editTextHint"
             android:layout_marginTop="20dp" />
 
@@ -62,10 +55,7 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/editTextLoginPassword"
-            android:hint="Passwort"
-            android:layout_below="@+id/editTextLoginEmail"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
+            android:hint="@string/loginHintPassword"
             style="@style/editTextHint"
             android:layout_gravity="top" />
     </LinearLayout>
@@ -79,13 +69,10 @@
         style="@style/FontBGColor.White">
 
         <Button
+            android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:id="@+id/buttonLogin"
-            android:layout_below="@+id/editTextLoginPassword"
-            android:layout_alignStart="@+id/textView2"
-            android:layout_alignEnd="@+id/textView2"
+            android:text="@string/loginButtonLogin"
             style="@style/button"
             android:layout_gravity="center_horizontal"
             android:paddingLeft="20dp"
@@ -96,11 +83,9 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="@string/loginAccount"
-            android:id="@+id/textView2"
-            android:layout_below="@+id/buttonLogin"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/loginNoAccount"
             style="@style/textData"
             android:layout_weight="2"
             android:layout_marginTop="25dp" />
@@ -112,29 +97,27 @@
         android:layout_height="fill_parent"
         android:id="@+id/registerButtonsLayout"
         android:measureWithLargestChild="false"
-        style="@style/FontBGColor.White">
+        style="@style/FontBGColor.White"
+        android:layout_gravity="bottom">
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Registrieren"
+            android:text="@string/loginButtonRegister"
             android:id="@+id/buttonLoginRegister"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
             android:layout_weight="1"
             android:background="#91d187"
             android:textAllCaps="false"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"/>
+            android:layout_marginEnd="5dp"
+            />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Login mit facebook"
+            android:text="@string/loginButtonFacebook"
             style="@style/button"
             android:id="@+id/buttonLoginFacebook"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/buttonLoginRegister"
             android:layout_weight="1"
             android:background="#3B5998"
             android:textColor="#ffffff"
