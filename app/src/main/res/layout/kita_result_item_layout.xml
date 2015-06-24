@@ -26,7 +26,10 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:background="@color/secondary_text_default_material_dark"
-            android:text="@string/placeHolderString" />
+            android:text="@string/placeHolderString"
+            android:autoText="false"
+            android:gravity="center_vertical"
+            android:layout_alignBottom="@+id/result.ratingbar.rating" />
 
         <TextView
             android:id="@+id/result.textview.name"
@@ -49,10 +52,10 @@
 
         <RatingBar
             android:id="@+id/result.ratingbar.rating"
-            style="?android:attr/ratingBarStyleSmall"
+            style="?android:attr/ratingBarStyleIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/secondary_text_default_material_dark"
+            android:background="#00000000"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.5" />
@@ -62,7 +65,8 @@
     <LinearLayout
         style="@style/FontBGColor.White"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="#91d187">
 
         <ImageButton
             android:id="@+id/result.imagebutton.tel"
@@ -70,7 +74,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_call_black_48dp" />
+            android:src="@drawable/ic_call_black_48dp"
+            android:background="#00000000"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.email"
@@ -78,7 +83,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_email_black_48dp" />
+            android:src="@drawable/ic_email_black_48dp"
+            android:background="#00000000"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.fav"
@@ -86,7 +92,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_favorite_border_black_48dp" />
+            android:src="@drawable/ic_favorite_border_black_48dp"
+            android:background="#00000000"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.cont"
@@ -94,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_person_add_black_48dp" />
+            android:src="@drawable/ic_person_add_black_48dp"
+            android:background="#00000000"/>
     </LinearLayout>
 </LinearLayout>
