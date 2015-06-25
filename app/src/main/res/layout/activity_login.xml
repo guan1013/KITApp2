@@ -79,7 +79,8 @@
             android:paddingRight="20dp"
             android:text="@string/loginButtonLogin"
             android:textAllCaps="false"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="#02331a" />
 
 
 
@@ -116,20 +117,22 @@
             android:layout_weight="1"
             android:background="@drawable/button_selector"
             android:text="@string/loginButtonRegister"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="#02331a" />
 
         <Button
             android:id="@+id/buttonLoginFacebook"
             style="@style/button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
-            android:background="#3B5998"
+            android:background="@drawable/button_selector_facebook"
             android:text="@string/loginButtonFacebook"
             android:textAllCaps="false"
-            android:textColor="#ffffff" />
+            android:textColor="#e6f7f5"
+            android:gravity="center_vertical|center" />
 
     </LinearLayout>
 
