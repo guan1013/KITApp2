@@ -67,7 +67,7 @@
         style="@style/FontBGColor.White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#91d187">
+        android:background="@color/secondary_text_default_material_dark">
 
         <ImageButton
             android:id="@+id/result.imagebutton.tel"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_call_black_48dp"
-            android:background="#00000000"/>
+            android:background="@drawable/button_selector"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.email"
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_email_black_48dp"
-            android:background="#00000000"/>
+            android:background="@drawable/button_selector"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.fav"
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_favorite_border_black_48dp"
-            android:background="#00000000"/>
+            android:background="@drawable/button_selector"/>
 
         <ImageButton
             android:id="@+id/result.imagebutton.cont"
@@ -103,6 +103,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_person_add_black_48dp"
-            android:background="#00000000"/>
+            android:background="@drawable/button_selector"/>
     </LinearLayout>
 </LinearLayout>
