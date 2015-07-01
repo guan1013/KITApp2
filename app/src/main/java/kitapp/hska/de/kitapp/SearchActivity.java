@@ -303,7 +303,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
             confession = 3;
         } else if (confessionString.equals(Kita.Confession.NO_CONFESSION.toString())) {
             confession = 4;
-        } else if(confessionString.equals(Kita.Confession.EGAL.toString())) {
+        } else if (confessionString.equals(Kita.Confession.EGAL.toString())) {
             confession = -1;
         }
 
@@ -414,8 +414,13 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
         });
     }
 
-    private void setSpinnerConfessionListener() {
-        spinnerConfession.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Kita.Confession.values()));
+    private void setSpinnerConfessionAdapter() {
+
+        ArrayAdapter<Kita.Confession> adapter = new ArrayAdapter<>(this, R.layout.default_spinner_item, Kita.Confession.values());
+
+        adapter.setDropDownViewResource(R.layout.default_spinner_dropdown_item);
+
+        spinnerConfession.setAdapter(adapter);
     }
 
     private void setButtonLocationListener() {
@@ -506,7 +511,7 @@ public class SearchActivity extends ActionBarActivity implements LocationListene
         setOnCheckedListener(R.id.search_radiogroup_size);
         setOnCheckedListener(R.id.search_radiogroup_closing);
         setOnCheckedListener(R.id.search_radiogroup_open);
-        setSpinnerConfessionListener();
+        setSpinnerConfessionAdapter();
         setButtonLocationListener();
         getCurrentLocation();
         initValues();
