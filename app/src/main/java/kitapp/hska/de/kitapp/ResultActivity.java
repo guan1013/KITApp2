@@ -159,7 +159,12 @@ public class ResultActivity extends ActionBarActivity implements OnMapReadyCallb
     }
 
     private void configureSortSpinner() {
-        spinnerSort.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, SortSpinnerEnum.values()));
+
+        ArrayAdapter<SortSpinnerEnum> adapter = new ArrayAdapter<>(this, R.layout.default_spinner_item, SortSpinnerEnum.values());
+
+        adapter.setDropDownViewResource(R.layout.default_spinner_dropdown_item);
+
+        spinnerSort.setAdapter(adapter);
 
         spinnerSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
